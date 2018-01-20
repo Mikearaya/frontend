@@ -4,6 +4,7 @@
     </mat-card-header>
     <mat-card-content>
         <app-table (addnew)="addnew();" (view)="view($event);" (deleted)="delete($event);"
-        [displayedColumns]="items?.columns" [items]="items.result" datakey='id_no'></app-table>
+        [showEvent]=true
+        [displayedColumns]="items!.columns" [items]="items.result" datakey='id_no'></app-table>
     </mat-card-content>
 </mat-card>

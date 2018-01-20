@@ -1,9 +1,14 @@
 <div class="example-container mat-elevation-z8">
   <div class="example-header">
-    <button mat-raised-button color="primary" (click)="addnew.emit();">Add</button>
-    <button mat-raised-button (click)="edit.emit();">Edit</button>
-    <button mat-raised-button (click)="view.emit(selection.selected);$event.stopImmediatePropagation();">View</button>
-    <button mat-raised-button (click)="deleted.emit(selection.selected);$event.stopImmediatePropagation();">Delete</button>
+    <span *ngIf="showEvent">
+      <button mat-raised-button color="primary" (click)="addnew.emit();">Add</button>
+      <button mat-raised-button *ngIf="selection.selected.length" 
+      (click)="edit.emit();">Edit</button>
+      <button mat-raised-button *ngIf="selection.selected.length"
+       (click)="view.emit(selection.selected);$event.stopImmediatePropagation();">View</button>
+      <button mat-raised-button *ngIf="selection.selected.length" 
+      (click)="deleted.emit(selection.selected);$event.stopImmediatePropagation();">Delete</button>
+    </span>
     <mat-form-field class="example-spacer" layout-align="end center">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>

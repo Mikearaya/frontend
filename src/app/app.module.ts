@@ -26,12 +26,27 @@ import { GridsComponent } from './pages/grids/grids.component';
 import { DataComponent } from './pages/data/data.component';
 import { GridServices } from './services/grid.services';
 import { TitleCasePipe } from './pipes/title-case.pipe';
+import { CoursesComponent } from './module/course/courses/courses.component';
+import { GuardianComponent } from './module/student/guardian/guardian.component';
+import { EnrollmentComponent } from './module/student/enrollment/enrollment.component';
+import { StudentsComponent } from './module/student/students/students.component';
+import { ScholarshipsComponent } from './module/student/scholarships/scholarships.component';
+import { ResultComponent } from './module/student/result/result.component';
+import { FeetypeComponent } from './module/fee/feetype/feetype.component';
+import { RateComponent } from './module/fee/rate/rate.component';
+import { Scholarship_coverageComponent } from './module/scholarship/scholarship_coverage/scholarship_coverage.component';
+import { Scholarship_typeComponent } from './module/scholarship/scholarship_type/scholarship_type.component';
+import { SubjectComponent } from './module/course/subject/subject.component';
+import { EventsComponent } from './module/events/events.component';
 @NgModule({
   declarations: [
     AppComponent, SidenavComponent, MenudemoComponent, CarddemoComponent, TabdemoComponent,
     FromdemoComponent, MenusComponent, FormsComponent,
     LayoutComponent, GridComponent, TableComponent, SortComponent,
-    HomeComponent, GridsComponent, OtherComponent, DataComponent, TitleCasePipe
+    HomeComponent, GridsComponent, OtherComponent, DataComponent, TitleCasePipe ,
+    CoursesComponent, GuardianComponent, EnrollmentComponent, StudentsComponent , ScholarshipsComponent ,
+    ResultComponent, FeetypeComponent, RateComponent, Scholarship_coverageComponent, Scholarship_typeComponent,
+    SubjectComponent, EventsComponent
 ],
   imports: [
     BrowserModule, BrowserAnimationsModule, CoreModule ,

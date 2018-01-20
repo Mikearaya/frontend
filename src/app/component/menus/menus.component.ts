@@ -8,8 +8,8 @@ import { ItemsServices } from '../../services/items.services';
 })
 export class MenusComponent implements OnInit {
 
-  private menus: any[];
-  private reports: any[];
+  menus: any[];
+  reports: any[];
   constructor (private items: ItemsServices) {}
 
   ngOnInit() {

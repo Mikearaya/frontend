@@ -17,6 +17,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() datakey: any;
   @Input() readonly = false;
   @Input() displayedColumns: any [];
+  @Input() showEvent: boolean;
   pageSize = 10;
   pageSizeOptions = [5, 10, 25, 100];
   pageEvent: PageEvent;
@@ -25,6 +26,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   pageindex= (this.pageEvent) ? this.pageEvent.pageIndex : 0;
   mydata= null;
   dataSource= null;
+  length: number;
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
