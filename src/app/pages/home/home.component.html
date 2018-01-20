@@ -1,0 +1,9 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title><h3>Students List</h3></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <app-table [items]="items" datakey='position' [displayedColumns]="displayedColumns"
+        (addnew)="addnew();" (deleted)="delete($event);"></app-table>
+    </mat-card-content>
+</mat-card>

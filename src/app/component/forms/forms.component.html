@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-form-field>
+        <input matInput [(ngModel)]="answer" placeholder="Who has the best dev tutorials?">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button (click)="showAnswer()">Answer me</button>
+    <mat-spinner  class="example-loading-shade" [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+</mat-card>
+<mat-card *ngIf="answerDisplay">
+    <h1>{{ answerDisplay }}, you're damn right.</h1>
+</mat-card>

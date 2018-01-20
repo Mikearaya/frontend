@@ -1,0 +1,39 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <button mat-raised-button color="primary" (click)="addnew.emit();">Add</button>
+    <button mat-raised-button (click)="edit.emit();">Edit</button>
+    <button mat-raised-button (click)="view.emit(selection.selected);$event.stopImmediatePropagation();">View</button>
+    <button mat-raised-button (click)="deleted.emit(selection.selected);$event.stopImmediatePropagation();">Delete</button>
+    <mat-form-field class="example-spacer" layout-align="end center">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <mat-table #table [dataSource]="dataSource" matSort>
+     <!-- Checkbox Column -->
+     <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row[datakey]) : null"
+                        [checked]="selection.isSelected(row[datakey])">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <ng-container  [matColumnDef]="x" *ngFor="let x of displayedColumns">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{x | titleCase }} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[x]}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumnsWith"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumnsWith;"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions"
+              (page)="pageEvent = $event">
+  </mat-paginator>
+</div>
