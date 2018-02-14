@@ -28,7 +28,6 @@ export class TableComponent implements OnInit, AfterViewInit {
   dataSource= null;
   length: number;
 
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -49,6 +48,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     if (this.items) {
       this.dataSource = new MatTableDataSource(this.items);
+      console.log(this.items);
       this.displayedColumnsWith = this.displayedColumns.slice();
       if (this.datakey) {
         this.displayedColumnsWith.unshift('select');
@@ -58,6 +58,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (this.items) {
+      console.log(this.items);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , AfterViewInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { GridServices } from '../../services/grid.services';
@@ -9,7 +9,7 @@ import { GridServices } from '../../services/grid.services';
 })
 export class DataComponent implements OnInit {
 
-  items: any;
+  items: DataTable;
   private sub: any;
   id: string;
   columns: any;
@@ -47,4 +47,8 @@ export class DataComponent implements OnInit {
     console.log(selectedItem);
   }
 
+}
+export interface DataTable {
+  columns: any [];
+  result: any [];
 }
