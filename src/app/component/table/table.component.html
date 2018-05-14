@@ -13,7 +13,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-  <mat-table #table [dataSource]="dataSource" matSort>
+  <mat-table #table [dataSource]="getData(items)" matSort>
      <!-- Checkbox Column -->
      <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef>
@@ -42,6 +42,3 @@
               (page)="pageEvent = $event">
   </mat-paginator>
 </div>
-<pre>
-  {{items |json}}
-</pre>

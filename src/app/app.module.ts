@@ -1,9 +1,14 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
+import { StudentService } from './services/student.service';
+import { MainService } from './main.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {SharedModule} from './shared/shared.module';
+
 import {ItemsServices} from './services/items.services';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
@@ -49,11 +54,11 @@ import { EventsComponent } from './module/events/events.component';
     SubjectComponent, EventsComponent
 ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, CoreModule ,
+    BrowserModule, BrowserAnimationsModule, CoreModule , MatInputModule, MatFormFieldModule,
     SharedModule, HttpModule, FormsModule, HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ItemsServices, GridServices],
+  providers: [ItemsServices, GridServices, MainService, StudentService],
   bootstrap: [AppComponent],
   exports: []
 })

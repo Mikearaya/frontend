@@ -13,7 +13,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Output() addnew = new EventEmitter();
   @Output() deleted = new EventEmitter();
   @Output() view = new EventEmitter();
-  @Input() items: any;
+  @Input() items: any[];
   @Input() datakey: any;
   @Input() readonly = false;
   @Input() displayedColumns: any [];
@@ -42,17 +42,31 @@ export class TableComponent implements OnInit, AfterViewInit {
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+        this.dataSource.data.forEach(row =>  this.selection.select(row));
   }
 
   ngOnInit() {
-    if (this.items) {
-      this.dataSource = new MatTableDataSource(this.items);
-      console.log(this.items);
+    setTimeout(() => {
+      if (this.items) {
+        this.dataSource = new MatTableDataSource(this.items);
+        console.log(this.items);
+        this.displayedColumnsWith = this.displayedColumns.slice();
+        if (this.datakey) {
+          this.displayedColumnsWith.unshift('select');
+        }
+      }
+  });
+  }
+
+  getData(items) {
+
+    if (items.length) {
+      this.dataSource = new MatTableDataSource(items);
       this.displayedColumnsWith = this.displayedColumns.slice();
       if (this.datakey) {
         this.displayedColumnsWith.unshift('select');
       }
+      return this.dataSource;
     }
   }
 

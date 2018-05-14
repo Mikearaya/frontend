@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemsServices} from './services/items.services';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,6 +8,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'app';
+
   private datas: any[];
   tiles = [
     {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
@@ -23,9 +24,11 @@ export class AppComponent implements OnInit {
     { path: '/http', icon: 'face', label: 'Http'}
   ];
 
-  constructor (private items: ItemsServices) {}
+  constructor (private items: ItemsServices, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     // this.items.getData('1').subscribe(data => this.datas = data);
+
   }
 }

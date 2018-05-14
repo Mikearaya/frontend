@@ -1,6 +1,5 @@
 import { Component, OnInit , AfterViewInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
 import { GridServices } from '../../services/grid.services';
 @Component({
   selector: 'app-data',
@@ -19,6 +18,7 @@ export class DataComponent implements OnInit {
 
   ngOnInit() {
     this.lenght = 10;
+
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id']; // (+) converts string 'id' to a number
       this.getItems(this.id);
@@ -27,7 +27,11 @@ export class DataComponent implements OnInit {
 
   getItems(id) {
     this.gridservices.getData(id)
-      .subscribe(items => this.items = items );
+      .subscribe(items => {
+
+      this.items = items;
+      console.log(items);
+    } );
   }
 
   populate(data) {
@@ -39,8 +43,12 @@ export class DataComponent implements OnInit {
     console.log(selectedItem);
   }
 
-  addnew() {
-    console.log('Hello There');
+  edit(selectedItem: any[]) {
+    console.log(selectedItem);
+  }
+
+  addnew(selected: any[]) {
+    console.log(selected);
   }
 
   delete(selectedItem: any[]) {

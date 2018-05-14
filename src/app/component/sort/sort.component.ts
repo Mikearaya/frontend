@@ -44,6 +44,7 @@ export class SortComponent implements AfterViewInit , OnInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
+          // tslint:disable-next-line:no-non-null-assertion
           return this.exampleDatabase!.getRepoIssues(this.paginator.pageIndex);
         }),
         map(data => {
