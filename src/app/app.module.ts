@@ -11,7 +11,7 @@ import {SharedModule} from './shared/shared.module';
 
 import {ItemsServices} from './services/items.services';
 import {HttpModule} from '@angular/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SidenavComponent} from './component/sidenav/sidenav.component';
 import {MenudemoComponent} from './component/menudemo/menudemo.component';
 import {CarddemoComponent} from './component/carddemo/carddemo.component';
@@ -43,6 +43,7 @@ import { Scholarship_coverageComponent } from './module/scholarship/scholarship_
 import { Scholarship_typeComponent } from './module/scholarship/scholarship_type/scholarship_type.component';
 import { SubjectComponent } from './module/course/subject/subject.component';
 import { EventsComponent } from './module/events/events.component';
+import { StudentFormComponent } from './forms/student-form/student-form.component';
 @NgModule({
   declarations: [
     AppComponent, SidenavComponent, MenudemoComponent, CarddemoComponent, TabdemoComponent,
@@ -51,12 +52,12 @@ import { EventsComponent } from './module/events/events.component';
     HomeComponent, GridsComponent, OtherComponent, DataComponent, TitleCasePipe ,
     CoursesComponent, GuardianComponent, EnrollmentComponent, StudentsComponent , ScholarshipsComponent ,
     ResultComponent, FeetypeComponent, RateComponent, Scholarship_coverageComponent, Scholarship_typeComponent,
-    SubjectComponent, EventsComponent
+    SubjectComponent, EventsComponent, StudentFormComponent
 ],
   imports: [
     BrowserModule, BrowserAnimationsModule, CoreModule , MatInputModule, MatFormFieldModule,
     SharedModule, HttpModule, FormsModule, HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule, ReactiveFormsModule
   ],
   providers: [ItemsServices, GridServices, MainService, StudentService],
   bootstrap: [AppComponent],

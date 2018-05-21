@@ -1,0 +1,27 @@
+
+<form [formGroup]="studentForm">
+  <label>Id</label>
+  <input 
+        type="text"
+        name="id_no"
+        formControlName="id_no"/>
+  
+        <label>Full Name</label>
+        <input 
+              type="text"
+              name="full-name"
+              formControlName="full_name">
+        <label>Blood Group</label>
+        <select name="blod_group" formControlName="blood_group">
+          <option *ngform="let blood of bloodTypes" [value]="blood">{{bood}}</option>
+        </select>
+
+        <label>Brithdate</label>
+        <input type="date" formControlName="birthdate" />
+
+        <lable>Gender</lable>
+        <select type="text" formControlName="gender">
+          <option value="Male">Male</option>
+          <option value="Femal">Female</option>
+        </select>
+</form>
