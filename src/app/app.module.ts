@@ -44,6 +44,7 @@ import { Scholarship_typeComponent } from './module/scholarship/scholarship_type
 import { SubjectComponent } from './module/course/subject/subject.component';
 import { EventsComponent } from './module/events/events.component';
 import { StudentFormComponent } from './forms/student-form/student-form.component';
+import {MatRadioModule} from '@angular/material/radio';
 @NgModule({
   declarations: [
     AppComponent, SidenavComponent, MenudemoComponent, CarddemoComponent, TabdemoComponent,
@@ -57,7 +58,7 @@ import { StudentFormComponent } from './forms/student-form/student-form.componen
   imports: [
     BrowserModule, BrowserAnimationsModule, CoreModule , MatInputModule, MatFormFieldModule,
     SharedModule, HttpModule, FormsModule, HttpClientModule,
-    AppRoutingModule, ReactiveFormsModule
+    AppRoutingModule, ReactiveFormsModule, MatRadioModule
   ],
   providers: [ItemsServices, GridServices, MainService, StudentService],
   bootstrap: [AppComponent],

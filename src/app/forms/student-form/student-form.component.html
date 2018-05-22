@@ -1,27 +1,60 @@
 
-<form [formGroup]="studentForm">
-  <label>Id</label>
-  <input 
-        type="text"
-        name="id_no"
-        formControlName="id_no"/>
-  
-        <label>Full Name</label>
-        <input 
-              type="text"
-              name="full-name"
-              formControlName="full_name">
-        <label>Blood Group</label>
-        <select name="blod_group" formControlName="blood_group">
-          <option *ngform="let blood of bloodTypes" [value]="blood">{{bood}}</option>
-        </select>
-
-        <label>Brithdate</label>
-        <input type="date" formControlName="birthdate" />
-
-        <lable>Gender</lable>
-        <select type="text" formControlName="gender">
-          <option value="Male">Male</option>
-          <option value="Femal">Female</option>
-        </select>
-</form>
+<mat-card>
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" [formGroup]="studentForm">
+      <div class="student-container">
+      
+        <mat-form-field>
+          <input 
+                  type="text"
+                  matInput
+                  name="full_name"
+                  placeholder="Full Name"
+                  formControlName="full_name">
+          <div *ngIf="full_name?.invalid " 
+                class="alert alert-danger">
+            <div >Full Name is Required</div>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select name="blood_group" placholder="Blood Group" formControlName="blood_group">
+            <mat-option *ngFor="let blood of bloodTypes" [value]="blood">{{blood}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="birthdate" [matDatepicker]="picker" matInput placeholder="Birth date"  />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>     
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button value="Male">Male</mat-radio-button>
+          <mat-radio-button value="Female">Female</mat-radio-button>
+        </mat-radio-group>
+        <div class="row">
+          <div class="col-sm-6 col-xs-6">
+            <button 
+              mat-raised-button
+              type="submit"
+              color="primary"
+              [disabled]="studentForm.invalid"
+                        >
+                        Submit 
+            </button>
+          </div>
+          <div class="col-sm-6 col-xs-6">
+              <button 
+                mat-raised-button            
+                color="warn"
+                [disabled]="studentForm.submitted"
+                          >
+                       Cancel              
+              </button>
+            </div>  
+        </div>
+        
+      </div>
+      TODO: Remove diagnostic
+      <p>form Value {{studentForm.value | json}}</p>
+    </form>
+  </mat-card-content>
+</mat-card>

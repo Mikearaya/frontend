@@ -1,0 +1,8 @@
+.student-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.student-container > * {
+width: 100%;
+}
