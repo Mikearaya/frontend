@@ -8,7 +8,7 @@ import { RouterOutlet, ActivatedRoute } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-
+  spinner = false;
   private datas: any[];
   tiles = [
     {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
@@ -26,7 +26,11 @@ export class AppComponent implements OnInit {
 
   constructor (private items: ItemsServices, private route: ActivatedRoute) {
   }
-
+  spin(x: any[]) {
+    console.log('spin');
+    console.log(x);
+    this.spinner = true;
+  }
   ngOnInit() {
     // this.items.getData('1').subscribe(data => this.datas = data);
 

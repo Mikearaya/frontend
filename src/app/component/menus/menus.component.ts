@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ItemsServices } from '../../services/items.services';
+
 
 @Component({
   selector: 'app-menus',
@@ -7,7 +8,7 @@ import { ItemsServices } from '../../services/items.services';
   styleUrls: ['./menus.component.css']
 })
 export class MenusComponent implements OnInit {
-
+  @Output() showSpinner = new EventEmitter();
   menus: any[];
   reports: any[];
   constructor (private items: ItemsServices) {}

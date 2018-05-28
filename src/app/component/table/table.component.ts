@@ -13,6 +13,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Output() addnew = new EventEmitter();
   @Output() deleted = new EventEmitter();
   @Output() view = new EventEmitter();
+  @Output() edit = new EventEmitter();
   @Input() items: any[];
   @Input() datakey: any;
   @Input() readonly = false;
@@ -35,18 +36,28 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
+    //console.log('all number selected');
+    //console.log(numSelected);
     const numRows = this.dataSource.data.length;
+   // console.log('number rows');
+   // console.log(numRows);
     return numSelected === numRows;
   }
 
   masterToggle() {
+    console.log('selection');
+          console.log(this.selection);
     this.isAllSelected() ?
         this.selection.clear() :
-        this.dataSource.data.forEach(row =>  this.selection.select(row));
+        this.dataSource.data.forEach(row =>  
+          { 
+            this.selection.select(row)
+          });
   }
 
   ngOnInit() {
-    setTimeout(() => {
+    this.dataSource = this.paginator;
+        this.dataSource = this.sort;
       if (this.items) {
         this.dataSource = new MatTableDataSource(this.items);
         console.log(this.items);
@@ -55,7 +66,7 @@ export class TableComponent implements OnInit, AfterViewInit {
           this.displayedColumnsWith.unshift('select');
         }
       }
-  });
+
   }
 
   getData(items) {

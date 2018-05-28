@@ -11,7 +11,8 @@ import { StudentFormComponent } from './forms/student-form/student-form.componen
 const routes: Routes = [
     { path: '', component: HomeComponent},
     { path: 'data/:id', component: DataComponent},
-    { path: 'add/students', component: StudentFormComponent},
+    { path: 'manage/students', component: StudentFormComponent},
+    { path: 'manage/students/:id', component: StudentFormComponent},
     { path: 'home', component: HomeComponent},
     { path: 'other', component: OtherComponent},
     { path: 'http', component: SortComponent},

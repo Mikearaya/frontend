@@ -5,7 +5,7 @@
         </button>
         <span>Smart School Managment</span>
         <span class="example-spacer"></span>
-        <button mat-button *ngFor="let link of links" 
+        <button mat-button (click)="spin($event)" *ngFor="let link of links" 
         [routerLink]="link.path"
         routerLinkActive="active">
             {{link.label}}
@@ -14,9 +14,12 @@
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav #drawer mode="side" class="app-sidenav">
-        <app-menus></app-menus>                
+        <app-menus (showSpinner)="spin($event);"></app-menus>                
     </mat-sidenav>
     <div class="app-content">
-        <router-outlet></router-outlet>
+            
+        <router-outlet>
+           <!--     <mat-spinner  class="example-loading-shade" [style.display]="spinner ? 'block' : 'none'"></mat-spinner> -->
+        </router-outlet>
     </div>
 </mat-sidenav-container>

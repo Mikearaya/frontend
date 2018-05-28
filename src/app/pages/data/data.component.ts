@@ -3,6 +3,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { GridServices } from '../../services/grid.services';
 import {Location} from '@angular/common';
 import { Route } from '@angular/compiler/src/core';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-data',
   templateUrl: './data.component.html',
@@ -15,11 +17,11 @@ export class DataComponent implements OnInit {
   currentPage: string;
   columns: any;
   lenght: number;
-
-  constructor(private route: ActivatedRoute, private gridservices: GridServices, private router: Router) {}
+  private url = 'http://localhost/smart_school/index.php/api/';
+  constructor(private route: ActivatedRoute, private gridservices: GridServices, private router: Router,
+  private httpClient: HttpClient) {}
 
   ngOnInit() {
-    this.lenght = 10;
 
     this.sub = this.route.params.subscribe(params => {
       this.currentPage = params['id']; // (+) converts string 'id' to a number
@@ -40,19 +42,26 @@ export class DataComponent implements OnInit {
 
   view(selectedItem: any[]) {
     console.log(selectedItem);
+    this.router.navigate([`/manage/${this.currentPage}/${selectedItem}`]);
   }
 
   edit(selectedItem: any[]) {
+    console.log('selected');
     console.log(selectedItem);
+    this.router.navigate([`/manage/${this.currentPage}/${selectedItem}`]);
+
   }
 
   addnew() {
     console.log(this.currentPage);
-    this.router.navigate([`/add/${this.currentPage}`]);
+    this.router.navigate([`/manage/${this.currentPage}`]);
   }
 
   delete(selectedItem: any[]) {
     console.log(selectedItem);
+    this.httpClient.delete(`${this.url}/${this.currentPage}/${selectedItem}` )
+    .subscribe(ts => console.log(ts));
+
   }
 
 }

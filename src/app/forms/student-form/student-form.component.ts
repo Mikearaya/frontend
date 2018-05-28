@@ -14,6 +14,7 @@ export class StudentFormComponent implements OnInit {
   error: Array<any>;
   isUpdate: Boolean;
   id: number;
+  id_no: string;
   bloodTypes = ['A+', 'A-', 'B-', 'B+', 'AB+', 'AB-', 'O+', 'O-' ];
   constructor(private formBuilder: FormBuilder,
               private studentService: StudentService,
@@ -22,29 +23,33 @@ export class StudentFormComponent implements OnInit {
    }
 
    generateForm(selectedStudent: any = '') {
+     this.id_no = selectedStudent.id_no;
       this.studentForm = this.formBuilder.group({
         full_name: selectedStudent.full_name ?
                                               [selectedStudent.full_name, Validators.required] :
                                               ['', Validators.required],
-        gender: '',
-        blood_group: '',
-        birthdate: ''
+        gender: selectedStudent.gender ?
+        [selectedStudent.gender, Validators.required] :
+        ['', Validators.required],
+        blood_group: selectedStudent.blood_group ? selectedStudent.blood_group : '',
+        birthdate: selectedStudent.birthdate ? selectedStudent.birthdate : ''
       });
    }
 
   ngOnInit() {
     this.id = +  this.activatedRoute.snapshot.paramMap.get('id');
     console.log(this.id);
-    this.studentService.getStudents(this.id).subscribe((student: Student[]) => this.generateForm(student[0]));
+    this.studentService.getStudents(this.id).subscribe((student: any) => this.generateForm(student.result));
     this.isUpdate =  (this.id) ? true : false;
 
   }
   prepareData(): Student {
     const formModel = this.studentForm.value;
-    console.log(this.studentForm);
+    console.log(formModel);
     const studentData = {
       select: false,
-      id_no: this.id ? this.id : 0,
+      id_no: this.id,
+      id: this.id ? this.id : 0,
       full_name: formModel.full_name ? formModel.full_name : '' ,
       gender: formModel.gender ? formModel.gender : '',
       birthdate: formModel.birthdate,
@@ -55,7 +60,8 @@ export class StudentFormComponent implements OnInit {
   onSubmit() {
     this.student = this.prepareData();
 
-    if (this.isUpdate) {
+    if (!this.isUpdate) {
+
     this.studentService.addStudent(this.student).subscribe(
       (test: any) => {
               if (test.success) {
