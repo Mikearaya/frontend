@@ -1,6 +1,8 @@
 import { Component, OnInit , AfterViewInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { GridServices } from '../../services/grid.services';
+import {Location} from '@angular/common';
+import { Route } from '@angular/compiler/src/core';
 @Component({
   selector: 'app-data',
   templateUrl: './data.component.html',
@@ -10,28 +12,25 @@ export class DataComponent implements OnInit {
 
   items: DataTable;
   private sub: any;
-  id: string;
+  currentPage: string;
   columns: any;
   lenght: number;
 
-  constructor(private route: ActivatedRoute, private gridservices: GridServices) {}
+  constructor(private route: ActivatedRoute, private gridservices: GridServices, private router: Router) {}
 
   ngOnInit() {
     this.lenght = 10;
 
     this.sub = this.route.params.subscribe(params => {
-      this.id = params['id']; // (+) converts string 'id' to a number
-      this.getItems(this.id);
+      this.currentPage = params['id']; // (+) converts string 'id' to a number
+
+      this.getItems(this.currentPage);
    });
   }
 
-  getItems(id) {
-    this.gridservices.getData(id)
-      .subscribe(items => {
-
-      this.items = items;
-      console.log(items);
-    } );
+  getItems(page) {
+    this.gridservices.getData(page)
+      .subscribe(items => {this.items = items; } );
   }
 
   populate(data) {
@@ -47,8 +46,9 @@ export class DataComponent implements OnInit {
     console.log(selectedItem);
   }
 
-  addnew(selected: any[]) {
-    console.log(selected);
+  addnew() {
+    console.log(this.currentPage);
+    this.router.navigate([`/add/${this.currentPage}`]);
   }
 
   delete(selectedItem: any[]) {
