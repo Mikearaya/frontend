@@ -18,10 +18,7 @@ export class AppComponent implements OnInit {
   ];
 
   links = [
-    { path: '/home', icon: 'home', label: 'Home'},
-    { path: '/grid', icon: 'list', label: 'grid'},
-    { path: '/other', icon: 'view_quilt', label: 'Other'},
-    { path: '/http', icon: 'face', label: 'Http'}
+    { path: '/home', icon: 'home', label: 'Home'}
   ];
 
   constructor (private items: ItemsServices, private route: ActivatedRoute) {

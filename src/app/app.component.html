@@ -14,12 +14,12 @@
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav #drawer mode="side" class="app-sidenav">
-        <app-menus (showSpinner)="spin($event);"></app-menus>                
+        <app-menus ></app-menus>                
     </mat-sidenav>
     <div class="app-content">
             
-        <router-outlet>
-           <!--     <mat-spinner  class="example-loading-shade" [style.display]="spinner ? 'block' : 'none'"></mat-spinner> -->
+        <router-outlet (NavigationStart)="spinner = true" (NavigationEnd)="alert('end')" >
+            <mat-spinner  class="example-loading-shade" [style.display]="spinner ? 'block' : 'none'"></mat-spinner>
         </router-outlet>
     </div>
 </mat-sidenav-container>

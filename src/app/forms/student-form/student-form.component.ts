@@ -1,5 +1,6 @@
 import { StudentService } from './../../services/student.service';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {Student} from '../../models/student';
 import { ActivatedRoute } from '@angular/router';
@@ -10,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class StudentFormComponent implements OnInit {
   studentForm: FormGroup;
+
   student: Student;
   error: Array<any>;
   isUpdate: Boolean;
@@ -18,7 +20,8 @@ export class StudentFormComponent implements OnInit {
   bloodTypes = ['A+', 'A-', 'B-', 'B+', 'AB+', 'AB-', 'O+', 'O-' ];
   constructor(private formBuilder: FormBuilder,
               private studentService: StudentService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+            private location: Location) {
     this.generateForm();
    }
 
@@ -32,7 +35,18 @@ export class StudentFormComponent implements OnInit {
         [selectedStudent.gender, Validators.required] :
         ['', Validators.required],
         blood_group: selectedStudent.blood_group ? selectedStudent.blood_group : '',
-        birthdate: selectedStudent.birthdate ? selectedStudent.birthdate : ''
+        birthdate: selectedStudent.birthdate ? selectedStudent.birthdate : '',
+        addressForm : this.formBuilder.group({
+          region : '',
+          wereda: '',
+          kebele: '',
+          house_no: '',
+          mobile: '',
+          phone: '',
+          post_code: '',
+          type: '',
+          status: ''
+        })
       });
    }
 
@@ -45,7 +59,6 @@ export class StudentFormComponent implements OnInit {
   }
   prepareData(): Student {
     const formModel = this.studentForm.value;
-    console.log(formModel);
     const studentData = {
       select: false,
       id_no: this.id,
@@ -65,7 +78,7 @@ export class StudentFormComponent implements OnInit {
     this.studentService.addStudent(this.student).subscribe(
       (test: any) => {
               if (test.success) {
-                alert('success');
+                this.location.back();
               } else {
                 this.error = test;
               }
@@ -75,7 +88,7 @@ export class StudentFormComponent implements OnInit {
       this.studentService.updateStudent(this.student, this.id).subscribe(
         (test: any) => {
                 if (test.success) {
-                  alert('success');
+                  this.location.back();
                 } else {
                   this.error = test;
                 }

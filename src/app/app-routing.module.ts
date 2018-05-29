@@ -9,18 +9,18 @@ import { StudentFormComponent } from './forms/student-form/student-form.componen
 
 
 const routes: Routes = [
-    { path: '', component: HomeComponent},
-    { path: 'data/:id', component: DataComponent},
-    { path: 'manage/students', component: StudentFormComponent},
-    { path: 'manage/students/:id', component: StudentFormComponent},
-    { path: 'home', component: HomeComponent},
+    { path: '',  redirectTo: 'home', pathMatch: 'full'},
+    { path: 'data/:id', component: DataComponent, data : {title : 'List'}},
+    { path: 'manage/students', component: StudentFormComponent, data : {title: 'Add New Student'}},
+    { path: 'manage/students/:id', component: StudentFormComponent, data: { title : 'Update Student'}},
+    { path: 'home', component: HomeComponent, data: {title : 'Home'}},
     { path: 'other', component: OtherComponent},
     { path: 'http', component: SortComponent},
     { path: 'grid', component: GridsComponent}
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {enableTracing: true})],
     exports: [RouterModule]
 })
 
