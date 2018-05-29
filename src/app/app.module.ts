@@ -45,6 +45,7 @@ import { SubjectComponent } from './module/course/subject/subject.component';
 import { EventsComponent } from './module/events/events.component';
 import { StudentFormComponent } from './forms/student-form/student-form.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { HeroListComponent } from './hero-list/hero-list.component';
 @NgModule({
   declarations: [
     AppComponent, SidenavComponent, MenudemoComponent, CarddemoComponent, TabdemoComponent,
@@ -53,7 +54,7 @@ import {MatRadioModule} from '@angular/material/radio';
     HomeComponent, GridsComponent, OtherComponent, DataComponent, TitleCasePipe ,
     CoursesComponent, GuardianComponent, EnrollmentComponent, StudentsComponent , ScholarshipsComponent ,
     ResultComponent, FeetypeComponent, RateComponent, Scholarship_coverageComponent, Scholarship_typeComponent,
-    SubjectComponent, EventsComponent, StudentFormComponent
+    SubjectComponent, EventsComponent, StudentFormComponent, HeroListComponent
 ],
   imports: [
     BrowserModule, BrowserAnimationsModule, CoreModule , MatInputModule, MatFormFieldModule,

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {Student} from '../../models/student';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
@@ -21,6 +21,7 @@ export class StudentFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private studentService: StudentService,
               private activatedRoute: ActivatedRoute,
+              private router: Router,
             private location: Location) {
     this.generateForm();
    }
@@ -55,7 +56,8 @@ export class StudentFormComponent implements OnInit {
     console.log(this.id);
     this.studentService.getStudents(this.id).subscribe((student: any) => this.generateForm(student.result));
     this.isUpdate =  (this.id) ? true : false;
-
+    console.log('activated route data');
+    console.log(this.router.routerState);
   }
   prepareData(): Student {
     const formModel = this.studentForm.value;
