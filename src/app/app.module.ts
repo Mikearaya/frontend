@@ -1,6 +1,5 @@
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
-import { StudentService } from './services/student.service';
 import { MainService } from './main.service';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -8,7 +7,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {SharedModule} from './shared/shared.module';
-
+import {MatButtonModule} from '@angular/material/button';
 import {ItemsServices} from './services/items.services';
 import {HttpModule} from '@angular/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -31,37 +30,20 @@ import { GridsComponent } from './pages/grids/grids.component';
 import { DataComponent } from './pages/data/data.component';
 import { GridServices } from './services/grid.services';
 import { TitleCasePipe } from './pipes/title-case.pipe';
-import { CoursesComponent } from './module/course/courses/courses.component';
-import { GuardianComponent } from './module/student/guardian/guardian.component';
-import { EnrollmentComponent } from './module/student/enrollment/enrollment.component';
-import { StudentsComponent } from './module/student/students/students.component';
-import { ScholarshipsComponent } from './module/student/scholarships/scholarships.component';
-import { ResultComponent } from './module/student/result/result.component';
-import { FeetypeComponent } from './module/fee/feetype/feetype.component';
-import { RateComponent } from './module/fee/rate/rate.component';
-import { Scholarship_coverageComponent } from './module/scholarship/scholarship_coverage/scholarship_coverage.component';
-import { Scholarship_typeComponent } from './module/scholarship/scholarship_type/scholarship_type.component';
-import { SubjectComponent } from './module/course/subject/subject.component';
-import { EventsComponent } from './module/events/events.component';
-import { StudentFormComponent } from './forms/student-form/student-form.component';
-import {MatRadioModule} from '@angular/material/radio';
-import { HeroListComponent } from './hero-list/hero-list.component';
+import { StudentModule } from './modules/student/student.module';
 @NgModule({
   declarations: [
     AppComponent, SidenavComponent, MenudemoComponent, CarddemoComponent, TabdemoComponent,
     FromdemoComponent, MenusComponent, FormsComponent,
     LayoutComponent, GridComponent, TableComponent, SortComponent,
-    HomeComponent, GridsComponent, OtherComponent, DataComponent, TitleCasePipe ,
-    CoursesComponent, GuardianComponent, EnrollmentComponent, StudentsComponent , ScholarshipsComponent ,
-    ResultComponent, FeetypeComponent, RateComponent, Scholarship_coverageComponent, Scholarship_typeComponent,
-    SubjectComponent, EventsComponent, StudentFormComponent, HeroListComponent
+    HomeComponent, GridsComponent, OtherComponent, DataComponent, TitleCasePipe
 ],
   imports: [
     BrowserModule, BrowserAnimationsModule, CoreModule , MatInputModule, MatFormFieldModule,
-    SharedModule, HttpModule, FormsModule, HttpClientModule,
-    AppRoutingModule, ReactiveFormsModule, MatRadioModule
+    SharedModule, HttpModule, FormsModule, MatButtonModule, HttpClientModule,  StudentModule,
+    AppRoutingModule, ReactiveFormsModule
   ],
-  providers: [ItemsServices, GridServices, MainService, StudentService],
+  providers: [ItemsServices, GridServices, MainService],
   bootstrap: [AppComponent],
   exports: []
 })

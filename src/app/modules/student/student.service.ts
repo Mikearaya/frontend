@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Student } from '../models/student';
+
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -49,4 +49,14 @@ console.log('in');
      return this.http.delete<Student>(`${this.url}/students/${deletedId}`);
    }
 
+}
+
+export class Student {
+  select: Boolean;
+  id_no: number;
+  id: number;
+  full_name: string;
+  gender: string;
+  birthdate: string;
+  blood_group: string;
 }

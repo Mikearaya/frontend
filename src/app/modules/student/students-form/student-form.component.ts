@@ -1,8 +1,7 @@
-import { StudentService } from './../../services/student.service';
+import { StudentService, Student } from '../student.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {Student} from '../../models/student';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-student-form',

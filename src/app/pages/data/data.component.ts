@@ -42,13 +42,13 @@ export class DataComponent implements OnInit {
 
   view(selectedItem: any[]) {
     console.log(selectedItem);
-    this.router.navigate([`/manage/${this.currentPage}/${selectedItem}`]);
+    this.router.navigate([`/manage/${this.currentPage}`, { 'id' : selectedItem} ]);
   }
 
   edit(selectedItem: any[]) {
     console.log('selected');
     console.log(selectedItem);
-    this.router.navigate([`/manage/${this.currentPage}/${selectedItem}`]);
+    this.router.navigate([`/manage/${this.currentPage}`, { 'id' : selectedItem}]);
 
   }
 
