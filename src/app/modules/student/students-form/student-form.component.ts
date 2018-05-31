@@ -1,4 +1,4 @@
-import { StudentService, Student } from '../student.service';
+import { StudentService, IStudent } from '../student.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class StudentFormComponent implements OnInit {
   studentForm: FormGroup;
 
-  student: Student;
+  student: IStudent;
   error: Array<any>;
   isUpdate: Boolean;
   id: number;
@@ -37,28 +37,25 @@ export class StudentFormComponent implements OnInit {
         blood_group: selectedStudent.blood_group ? selectedStudent.blood_group : '',
         birthdate: selectedStudent.birthdate ? selectedStudent.birthdate : '',
         addressForm : this.formBuilder.group({
-          region : '',
-          wereda: '',
-          kebele: '',
-          house_no: '',
-          mobile: '',
-          phone: '',
-          post_code: '',
-          type: '',
-          status: ''
+          region : selectedStudent.region ? selectedStudent.region : '',
+          wereda: selectedStudent.wereda ? selectedStudent.wereda : '',
+          kebele: selectedStudent.kebele ? selectedStudent.kebele : '',
+          houseNo: selectedStudent.house_no ? selectedStudent.house_no : '',
+          mobile: selectedStudent.mobile ? selectedStudent.mobile : '',
+          phone: selectedStudent.phone ? selectedStudent.phone : '',
+          postCode: selectedStudent.post_code ? selectedStudent.post_code : '',
+          status: selectedStudent.status ? selectedStudent.status : '',
+          type: selectedStudent.type ? selectedStudent.type : ''
         })
       });
    }
 
   ngOnInit() {
     this.id = +  this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
+    this.isUpdate = (this.id) ? true : false;
     this.studentService.getStudents(this.id).subscribe((student: any) => this.generateForm(student.result));
-    this.isUpdate =  (this.id) ? true : false;
-    console.log('activated route data');
-    console.log(this.router.routerState);
   }
-  prepareData(): Student {
+  prepareData(): IStudent {
     const formModel = this.studentForm.value;
     const studentData = {
       select: false,
@@ -67,7 +64,11 @@ export class StudentFormComponent implements OnInit {
       full_name: formModel.full_name ? formModel.full_name : '' ,
       gender: formModel.gender ? formModel.gender : '',
       birthdate: formModel.birthdate,
-      blood_group: formModel.blood_group
+      blood_group: formModel.blood_group,
+      hasAddress: false,
+      address: {
+
+      }
     };
     return studentData;
   }
@@ -76,25 +77,17 @@ export class StudentFormComponent implements OnInit {
 
     if (!this.isUpdate) {
 
-    this.studentService.addStudent(this.student).subscribe(
-      (test: any) => {
-              if (test.success) {
-                this.location.back();
-              } else {
-                this.error = test;
-              }
-      }
-    );
+    this.studentService.addStudent(this.student).subscribe((response: any) => this.handelResponse(response));
     } else {
-      this.studentService.updateStudent(this.student, this.id).subscribe(
-        (test: any) => {
-                if (test.success) {
-                  this.location.back();
-                } else {
-                  this.error = test;
-                }
-        }
-      );
+      this.studentService.updateStudent(this.student, this.id).subscribe((response: any) => this.handelResponse(response));
+    }
+  }
+
+  handelResponse(response: any) {
+    if (response.success) {
+      this.location.back();
+    } else {
+      this.error = response;
     }
   }
 

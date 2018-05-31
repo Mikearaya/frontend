@@ -31,6 +31,7 @@ import { DataComponent } from './pages/data/data.component';
 import { GridServices } from './services/grid.services';
 import { TitleCasePipe } from './pipes/title-case.pipe';
 import { StudentModule } from './modules/student/student.module';
+import { CourseModule } from './modules/course/course.module';
 @NgModule({
   declarations: [
     AppComponent, SidenavComponent, MenudemoComponent, CarddemoComponent, TabdemoComponent,
@@ -40,8 +41,8 @@ import { StudentModule } from './modules/student/student.module';
 ],
   imports: [
     BrowserModule, BrowserAnimationsModule, CoreModule , MatInputModule, MatFormFieldModule,
-    SharedModule, HttpModule, FormsModule, MatButtonModule, HttpClientModule,  StudentModule,
-    AppRoutingModule, ReactiveFormsModule
+    SharedModule, HttpModule, FormsModule, MatButtonModule, HttpClientModule, 
+    StudentModule, CourseModule, AppRoutingModule, ReactiveFormsModule
   ],
   providers: [ItemsServices, GridServices, MainService],
   bootstrap: [AppComponent],

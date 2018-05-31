@@ -3,60 +3,69 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
+
+
+export class IStudent {
+  select?: Boolean;
+  id_no: Number;
+  id: Number;
+  full_name: string;
+  gender: string;
+  birthdate?: string;
+  blood_group?: string;
+}
+
+
 @Injectable()
 export class StudentService {
-  private url = 'http://localhost/smart_school/index.php/api/';
+  private url = 'http://localhost/smart_school/index.php/api/students';
+  private header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
   data: URLSearchParams;
   constructor(private http: HttpClient) {
 
    }
 
-   getStudents(id: number = 0): Observable<Student[]> {
+   getStudents(id: number = 0): Observable<any> {
      console.log(id);
-     if (id) {
-      return this.http.get<Student[]>(`${this.url}/students/${id}`);
+     if (id === 0) {
+      return this.http.get<IStudent>(`${this.url}`);
      } else {
-      return this.http.get<Student[]>(`${this.url}/students`);
+      return this.http.get<IStudent[]>(`${this.url}/${id}`);
      }
 
    }
 
-   addStudent(newStudent: Student): Observable<Student> {
-      this.data = new URLSearchParams();
-      const myheader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-      const options = { 'headers': myheader };
-      this.data.set('full_name', newStudent.full_name);
-      this.data.set('gender', newStudent.gender);
-      this.data.set('blood_group', newStudent.blood_group);
-      this.data.set('birthdate', newStudent.birthdate);
-console.log('in');
-     return this.http.post<Student>(`${this.url}/students`, this.data.toString(), options);
+   addStudent(newStudent: IStudent): Observable<IStudent> {
+      this.data = this.setDataModel(newStudent);
+      const options = { 'headers': this.header };
+     return this.http.post<IStudent>(`${this.url}`, this.data.toString(), options);
+    }
+
+   updateStudent(updatedStudent: IStudent, id: number): Observable<IStudent> {
+        this.data = this.setDataModel(updatedStudent);
+        const options = { 'headers': this.header };
+      return this.http.post<IStudent>(`${this.url}/${id}`, this.data.toString(), options);
    }
 
-   updateStudent(updatedStudent: Student, id: number): Observable<Student> {
-    this.data = new URLSearchParams();
-    const myheader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-      const options = { 'headers': myheader };
-    this.data.set('full_name', updatedStudent.full_name);
-    this.data.set('gender', updatedStudent.gender);
-    this.data.set('blood_group', updatedStudent.blood_group);
-    this.data.set('birthdate', updatedStudent.birthdate);
-     return this.http.post<Student>(`${this.url}/students/${id}`, this.data.toString(), options);
+   deleteStudent(deletedId: number): Observable<any> {
+     return this.http.delete<IStudent>(`${this.url}/${deletedId}`);
    }
 
-   deleteStudent(deletedId: number): Observable<Student> {
-     return this.http.delete<Student>(`${this.url}/students/${deletedId}`);
-   }
+   private setDataModel(formModel: IStudent): URLSearchParams {
+    const dataModel = new URLSearchParams();
+      dataModel.set('full_name', formModel.full_name);
+      dataModel.set('gender', formModel.gender);
+      dataModel.set('blood_group', formModel.blood_group);
+      dataModel.set('birthdate', formModel.birthdate);
 
-}
+      const address = {
+        'hasAddress' : false,
+        'region': 'Addis Ababa'
+      };
+      dataModel.append('address', JSON.stringify(address));
 
-export class Student {
-  select: Boolean;
-  id_no: number;
-  id: number;
-  full_name: string;
-  gender: string;
-  birthdate: string;
-  blood_group: string;
+  return dataModel;
+ }
+
 }
