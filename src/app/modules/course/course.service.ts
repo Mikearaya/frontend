@@ -30,7 +30,7 @@ export class CourseService {
 
 
   getCourse(id: number = 0 ): Observable<any> {
-    console.log('course service id'+ id);
+    console.log('course service id' + id);
     if (id === 0) {
       return this.httpClient.get<ICourse[]>(`${this.url}`);
     } else {
@@ -59,5 +59,5 @@ export class CourseService {
       data.set('fees_term', formModel.fees_term);
     return data;
   }
-  
+
 }
