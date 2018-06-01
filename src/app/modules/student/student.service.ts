@@ -31,13 +31,13 @@ export class StudentService {
         getStudents(id: number = 0): Observable<IStudent[]> {
           console.log(id);
           if (id) {
-            return this.http.get<Student[]>(`${this.url}/${id}`).pipe(
+            return this.http.get<IStudent[]>(`${this.url}/${id}`).pipe(
               retry(3),
               map(res => {
-                if (!res.response) {
+                if (!res) {
                   throw new Error('Unexpected Error');
                 }
-                return res.response;
+                return res;
               }),
               catchError(err => of([]))
             );
@@ -64,12 +64,21 @@ export class StudentService {
         }
 
 
-      private setDataModel(formModel: IStudent): URLSearchParams {
+      private setDataModel(formModel: any): URLSearchParams {
           const dataModel = new URLSearchParams();
             dataModel.set('full_name', formModel.full_name);
             dataModel.set('gender', formModel.gender);
             dataModel.set('blood_group', formModel.blood_group);
             dataModel.set('birthdate', formModel.birthdate);
+            dataModel.set('address[hasAddress]', 'true');
+            dataModel.set('address[region]', formModel.address.region );
+            dataModel.set('address[wereda]', formModel.address.wereda );
+            dataModel.set('address[kebele]', formModel.address.kebele );
+            dataModel.set('address[type]', formModel.address.type );
+            dataModel.set('address[phone]', formModel.address.phone );
+            dataModel.set('address[mobile]', formModel.address.mobile );
+            dataModel.set('address[house_no]', formModel.address.house_no );
+            dataModel.set('address[post_code]', formModel.address.postCode );
 
          return dataModel;
 

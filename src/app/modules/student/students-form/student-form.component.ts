@@ -55,10 +55,12 @@ export class StudentFormComponent implements OnInit {
     this.isUpdate = (this.id) ? true : false;
     this.studentService.getStudents(this.id).subscribe((student: any) => this.generateForm(student.result));
   }
-  prepareData(): IStudent {
+  prepareData(): any {
+
     const formModel = this.studentForm.value;
+    console.log('student form' );
+    console.log(formModel);
     const studentData = {
-      select: false,
       id_no: this.id,
       id: this.id ? this.id : 0,
       full_name: formModel.full_name ? formModel.full_name : '' ,
@@ -67,7 +69,15 @@ export class StudentFormComponent implements OnInit {
       blood_group: formModel.blood_group,
       hasAddress: false,
       address: {
-
+        region: formModel.addressForm.region,
+        wereda: formModel.addressForm.wereda,
+        kebele: formModel.addressForm.kebele,
+        house_no: formModel.addressForm.houseNo,
+        mobile: formModel.addressForm.mobile,
+        phone: formModel.addressForm.phone,
+        postCode: formModel.addressForm.postCode,
+        status: formModel.addressForm.status,
+        type: formModel.addressForm.type
       }
     };
     return studentData;
