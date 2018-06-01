@@ -41,7 +41,7 @@ import { CourseModule } from './modules/course/course.module';
 ],
   imports: [
     BrowserModule, BrowserAnimationsModule, CoreModule , MatInputModule, MatFormFieldModule,
-    SharedModule, HttpModule, FormsModule, MatButtonModule, HttpClientModule, 
+    SharedModule, HttpModule, FormsModule, MatButtonModule, HttpClientModule,
     StudentModule, CourseModule, AppRoutingModule, ReactiveFormsModule
   ],
   providers: [ItemsServices, GridServices, MainService],

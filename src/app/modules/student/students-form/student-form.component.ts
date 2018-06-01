@@ -1,7 +1,7 @@
 import { StudentService, IStudent } from '../student.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-student-form',
@@ -25,36 +25,44 @@ export class StudentFormComponent implements OnInit {
     this.generateForm();
    }
 
+        ngOnInit() {
+          this.id = +  this.activatedRoute.snapshot.paramMap.get('id');
+          this.isUpdate = (this.id) ? true : false;
+          this.studentService.getStudents(this.id).subscribe((student: any) => this.generateForm(student.result));
+        }
+
    generateForm(selectedStudent: any = '') {
      this.id_no = selectedStudent.id_no;
       this.studentForm = this.formBuilder.group({
-        full_name: selectedStudent.full_name ?
-                                              [selectedStudent.full_name, Validators.required] :
-                                              ['', Validators.required],
-        gender: selectedStudent.gender ?
-        [selectedStudent.gender, Validators.required] :
-        ['', Validators.required],
-        blood_group: selectedStudent.blood_group ? selectedStudent.blood_group : '',
-        birthdate: selectedStudent.birthdate ? selectedStudent.birthdate : '',
+        full_name: this.buildControl(selectedStudent.full_name, true),
+        gender: this.buildControl(selectedStudent.gender , true),
+        blood_group: this.buildControl(selectedStudent.blood_group),
+        birthdate: this.buildControl(selectedStudent.birthdate),
         addressForm : this.formBuilder.group({
-          region : selectedStudent.region ? selectedStudent.region : '',
-          wereda: selectedStudent.wereda ? selectedStudent.wereda : '',
-          kebele: selectedStudent.kebele ? selectedStudent.kebele : '',
-          houseNo: selectedStudent.house_no ? selectedStudent.house_no : '',
-          mobile: selectedStudent.mobile ? selectedStudent.mobile : '',
-          phone: selectedStudent.phone ? selectedStudent.phone : '',
-          postCode: selectedStudent.post_code ? selectedStudent.post_code : '',
-          status: selectedStudent.status ? selectedStudent.status : '',
-          type: selectedStudent.type ? selectedStudent.type : ''
+          region : this.buildControl(selectedStudent.region),
+          wereda: this.buildControl(selectedStudent.wereda),
+          kebele: this.buildControl(selectedStudent.kebele),
+          houseNo: this.buildControl(selectedStudent.house_no),
+          mobile: this.buildControl(selectedStudent.mobile),
+          phone: this.buildControl(selectedStudent.phone),
+          postCode: this.buildControl(selectedStudent.post_code),
+          status: this.buildControl(selectedStudent.status),
+          type: this.buildControl(selectedStudent.type),
+        }),
+        guardianForm: this.formBuilder.group({
+          fullName: this.buildControl(selectedStudent.guardian.full_name),
+          wereda: this.buildControl(selectedStudent.guardian.wereda),
+          houseNo: this.buildControl(selectedStudent.guardian.house_no),
+          phoneNumber: this.buildControl(selectedStudent.guardian.phone),
+          relation: this.buildControl(selectedStudent.guardian.relation),
+          gender: this.buildControl(selectedStudent.guardian.gender),
+          city: this.buildControl(selectedStudent.guardian.city),
+          subCity: this.buildControl(selectedStudent.guardian.sub_city),
+          birthDate: this.buildControl(selectedStudent.guardian.date_of_birth)
         })
       });
    }
 
-  ngOnInit() {
-    this.id = +  this.activatedRoute.snapshot.paramMap.get('id');
-    this.isUpdate = (this.id) ? true : false;
-    this.studentService.getStudents(this.id).subscribe((student: any) => this.generateForm(student.result));
-  }
   prepareData(): any {
 
     const formModel = this.studentForm.value;
@@ -86,12 +94,17 @@ export class StudentFormComponent implements OnInit {
     this.student = this.prepareData();
 
     if (!this.isUpdate) {
-
-    this.studentService.addStudent(this.student).subscribe((response: any) => this.handelResponse(response));
+        this.studentService.addStudent(this.student).subscribe((response: any) => this.handelResponse(response));
     } else {
-      this.studentService.updateStudent(this.student, this.id).subscribe((response: any) => this.handelResponse(response));
+        this.studentService.updateStudent(this.student, this.id).subscribe((response: any) => this.handelResponse(response));
     }
   }
+
+  buildControl(val: any = '', required: Boolean = false) {
+    return (required) ? [val, Validators.required ] : '';
+
+    }
+
 
   handelResponse(response: any) {
     if (response.success) {

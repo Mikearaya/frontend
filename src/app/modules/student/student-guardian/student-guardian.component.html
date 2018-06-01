@@ -1,0 +1,34 @@
+<form [formGroup]="form">
+
+  <mat-form-field>
+    <input matInput formControlName="fullName" placeholder="Full Name">
+    <mat-error *ngIf="form.get('fullName').hasError('required')" > Guardians full name is required</mat-error>
+  </mat-form-field>
+  <mat-radio-group formControlName="gender">
+    <mat-radio-button value="male">Male</mat-radio-button>
+    <mat-radio-button value="female">Female</mat-radio-button>
+  </mat-radio-group>
+    <mat-select placeholder="Relation" formControlName="relation">
+      <mat-option *ngFor="let relation of RELATIONSHIPS" [value]="relation">{{relation}}</mat-option>
+      <mat-error *ngIf="form.get('relation').errors?.required"> Realtionship is required</mat-error>
+    </mat-select>
+  <mat-form-field>
+    <input matInput placeholder="Phonenumber" formControlName="phoneNumber" >
+    <mat-error *ngIf="form.get('phoneNumber').errors?.required">Phonenumber is required </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="City" formControlName="city">
+    <mat-error *ngIf="form.get('city').errors?.required">City is required </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Sub-City" formControlName="subCity">
+    <mat-error *ngIf="form.get('subCity').errors?.required">Sub-City is Required  </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Wereda" formControlName="wereda" >
+    <mat-error *ngIf="form.get('wereda').errors?.required" >Wereda is required   </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="House Number" formControlName="houseNo">
+  </mat-form-field>
+</form>

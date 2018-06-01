@@ -70,7 +70,8 @@ export class StudentService {
             dataModel.set('gender', formModel.gender);
             dataModel.set('blood_group', formModel.blood_group);
             dataModel.set('birthdate', formModel.birthdate);
-            dataModel.set('address[hasAddress]', 'true');
+            dataModel.set('hasAddress', 'false');
+            dataModel.set('hasGuadian', 'true');
             dataModel.set('address[region]', formModel.address.region );
             dataModel.set('address[wereda]', formModel.address.wereda );
             dataModel.set('address[kebele]', formModel.address.kebele );
