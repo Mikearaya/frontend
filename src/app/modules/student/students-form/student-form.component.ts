@@ -1,7 +1,7 @@
 import { StudentService, IStudent } from '../student.service';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import {FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-student-form',
@@ -16,6 +16,7 @@ export class StudentFormComponent implements OnInit {
   isUpdate: Boolean;
   id: number;
   id_no: string;
+  RELATIONSHIPS = ['Mother', 'Father'];
   bloodTypes = ['A+', 'A-', 'B-', 'B+', 'AB+', 'AB-', 'O+', 'O-' ];
   constructor(private formBuilder: FormBuilder,
               private studentService: StudentService,
@@ -33,41 +34,31 @@ export class StudentFormComponent implements OnInit {
 
    generateForm(selectedStudent: any = '') {
      this.id_no = selectedStudent.id_no;
+     const student = {...selectedStudent.result};
+     console.log(student);
+
       this.studentForm = this.formBuilder.group({
-        full_name: this.buildControl(selectedStudent.full_name, true),
-        gender: this.buildControl(selectedStudent.gender , true),
-        blood_group: this.buildControl(selectedStudent.blood_group),
-        birthdate: this.buildControl(selectedStudent.birthdate),
+        full_name: this.buildControl(student.full_name, true),
+        gender: this.buildControl(student.gender , true),
+        blood_group: this.buildControl(student.blood_group),
+        birthdate: this.buildControl(student.birthdate, true),
         addressForm : this.formBuilder.group({
-          region : this.buildControl(selectedStudent.region),
-          wereda: this.buildControl(selectedStudent.wereda),
-          kebele: this.buildControl(selectedStudent.kebele),
-          houseNo: this.buildControl(selectedStudent.house_no),
-          mobile: this.buildControl(selectedStudent.mobile),
-          phone: this.buildControl(selectedStudent.phone),
-          postCode: this.buildControl(selectedStudent.post_code),
-          status: this.buildControl(selectedStudent.status),
-          type: this.buildControl(selectedStudent.type),
-        }),
-        guardianForm: this.formBuilder.group({
-          fullName: this.buildControl(selectedStudent.guardian.full_name),
-          wereda: this.buildControl(selectedStudent.guardian.wereda),
-          houseNo: this.buildControl(selectedStudent.guardian.house_no),
-          phoneNumber: this.buildControl(selectedStudent.guardian.phone),
-          relation: this.buildControl(selectedStudent.guardian.relation),
-          gender: this.buildControl(selectedStudent.guardian.gender),
-          city: this.buildControl(selectedStudent.guardian.city),
-          subCity: this.buildControl(selectedStudent.guardian.sub_city),
-          birthDate: this.buildControl(selectedStudent.guardian.date_of_birth)
+          region : this.buildControl(student.region, true),
+          wereda: this.buildControl(student.wereda, true ),
+          city: this.buildControl(student.city, true ),
+          subCity: this.buildControl(student.sub_city, true ),
+          houseNo: this.buildControl(student.house_no, true),
+          mobile: this.buildControl(student.mobile, true),
+          phone: this.buildControl(student.phone, true),
+          postCode: this.buildControl(student.post_code),
         })
       });
+
    }
 
   prepareData(): any {
 
     const formModel = this.studentForm.value;
-    console.log('student form' );
-    console.log(formModel);
     const studentData = {
       id_no: this.id,
       id: this.id ? this.id : 0,
@@ -79,13 +70,12 @@ export class StudentFormComponent implements OnInit {
       address: {
         region: formModel.addressForm.region,
         wereda: formModel.addressForm.wereda,
-        kebele: formModel.addressForm.kebele,
-        house_no: formModel.addressForm.houseNo,
+        houseNo: formModel.addressForm.houseNo,
+        city: formModel.addressForm.city,
+        subCity: formModel.addressForm.subCity,
         mobile: formModel.addressForm.mobile,
         phone: formModel.addressForm.phone,
         postCode: formModel.addressForm.postCode,
-        status: formModel.addressForm.status,
-        type: formModel.addressForm.type
       }
     };
     return studentData;
@@ -100,10 +90,22 @@ export class StudentFormComponent implements OnInit {
     }
   }
 
-  buildControl(val: any = '', required: Boolean = false) {
-    return (required) ? [val, Validators.required ] : '';
+  buildControl(value: any = '', required: Boolean = false) {
+    return (required) ? [value, Validators.required ] : value;
 
     }
+    getErrors = (formGroup: FormGroup, errors: any = {}) {
+      Object.keys(formGroup.controls).forEach(field => {
+        const control = formGroup.get(field);
+        if (control instanceof FormControl) {
+          errors[field] = control.errors;
+        } else if (control instanceof FormGroup) {
+          errors[field] = this.getErrors(control);
+        }
+      });
+      return errors;
+    }
+    
 
 
   handelResponse(response: any) {
