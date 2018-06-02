@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemsServices} from './services/items.services';
-import { RouterOutlet, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +20,7 @@ export class AppComponent implements OnInit {
     { path: '/home', icon: 'home', label: 'Home'}
   ];
 
-  constructor ( private route: ActivatedRoute) {
+  constructor () {
   }
 
   ngOnInit() {
