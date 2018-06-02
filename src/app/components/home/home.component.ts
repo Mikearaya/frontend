@@ -1,4 +1,3 @@
-import { MainService } from './../../main.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {FormControl, Validator } from '@angular/forms';

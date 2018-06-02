@@ -18,14 +18,14 @@ export class DataComponent implements OnInit {
   columns: any;
   lenght: number;
   private url = 'http://localhost/smart_school/index.php/api/';
-  constructor(private route: ActivatedRoute, private gridservices: GridServices, private router: Router,
+
+      constructor(private route: ActivatedRoute, private gridservices: GridServices, private router: Router,
   private httpClient: HttpClient) {}
 
   ngOnInit() {
 
     this.sub = this.route.params.subscribe(params => {
       this.currentPage = params['id']; // (+) converts string 'id' to a number
-
       this.getItems(this.currentPage);
    });
   }
@@ -41,24 +41,19 @@ export class DataComponent implements OnInit {
   }
 
   view(selectedItem: any[]) {
-    console.log(selectedItem);
     this.router.navigate([`/manage/${this.currentPage}`, { 'id' : selectedItem} ]);
   }
 
   edit(selectedItem: any[]) {
-    console.log('selected');
-    console.log(selectedItem);
     this.router.navigate([`/manage/${this.currentPage}`, { 'id' : selectedItem}]);
 
   }
 
   addnew() {
-    console.log(this.currentPage);
     this.router.navigate([`/manage/${this.currentPage}`]);
   }
 
   delete(selectedItem: any[]) {
-    console.log(selectedItem);
     this.httpClient.delete(`${this.url}/${this.currentPage}/${selectedItem}` )
     .subscribe(ts => console.log(ts));
 

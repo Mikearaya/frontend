@@ -37,14 +37,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
-   // console.log('number rows');
-   // console.log(numRows);
     return numSelected === numRows;
   }
 
   masterToggle() {
-    console.log('selection');
-          console.log(this.selection);
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach(row => { this.selection.select(row); });
@@ -55,7 +51,6 @@ export class TableComponent implements OnInit, AfterViewInit {
         this.dataSource = this.sort;
       if (this.items) {
         this.dataSource = new MatTableDataSource(this.items);
-        console.log(this.items);
         this.displayedColumnsWith = this.displayedColumns.slice();
         if (this.datakey) {
           this.displayedColumnsWith.unshift('select');
@@ -78,7 +73,6 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (this.items) {
-      console.log(this.items);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }

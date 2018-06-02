@@ -21,13 +21,9 @@ export class AppComponent implements OnInit {
     { path: '/home', icon: 'home', label: 'Home'}
   ];
 
-  constructor (private items: ItemsServices, private route: ActivatedRoute) {
+  constructor ( private route: ActivatedRoute) {
   }
-  spin(x: any[]) {
-    console.log('spin');
-    console.log(x);
-    this.spinner = true;
-  }
+
   ngOnInit() {
     // this.items.getData('1').subscribe(data => this.datas = data);
 
