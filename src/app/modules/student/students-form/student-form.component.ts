@@ -94,19 +94,6 @@ export class StudentFormComponent implements OnInit {
     return (required) ? [value, Validators.required ] : value;
 
     }
-    getErrors = (formGroup: FormGroup, errors: any = {}) {
-      Object.keys(formGroup.controls).forEach(field => {
-        const control = formGroup.get(field);
-        if (control instanceof FormControl) {
-          errors[field] = control.errors;
-        } else if (control instanceof FormGroup) {
-          errors[field] = this.getErrors(control);
-        }
-      });
-      return errors;
-    }
-    
-
 
   handelResponse(response: any) {
     if (response.success) {

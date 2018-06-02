@@ -30,7 +30,7 @@
         </mat-cell>
       </ng-container>
       <ng-container  [matColumnDef]="x" *ngFor="let x of displayedColumns">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{x | titleCase }} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{x}} </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element[x]}} </mat-cell>
       </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumnsWith"></mat-header-row>

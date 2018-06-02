@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title><h3>{{currentPage | titleCase}} List</h3></mat-card-title>
+        <mat-card-title><h3>{{currentPage}} List</h3></mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <app-table *ngIf="items"  (addnew)="addnew();" (edit)="edit($event);" (view)="view($event);" (deleted)="delete($event);"

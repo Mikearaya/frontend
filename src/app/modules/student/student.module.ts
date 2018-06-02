@@ -13,7 +13,7 @@ import { StudentFormComponent } from './students-form/student-form.component';
 import { StudentService } from './student.service';
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentGuardianComponent } from './student-guardian/student-guardian.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -26,6 +26,7 @@ import { StudentGuardianComponent } from './student-guardian/student-guardian.co
     MatSelectModule,
     MatDatepickerModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     MatCardModule,
     StudentRoutingModule,
     MatStepperModule

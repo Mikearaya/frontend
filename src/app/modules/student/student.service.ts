@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
-import { Student } from '../../template-classes/student';
 import { of } from 'rxjs/observable/of';
 
 export class IStudent {

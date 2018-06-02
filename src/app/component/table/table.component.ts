@@ -36,8 +36,6 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    //console.log('all number selected');
-    //console.log(numSelected);
     const numRows = this.dataSource.data.length;
    // console.log('number rows');
    // console.log(numRows);
@@ -49,10 +47,7 @@ export class TableComponent implements OnInit, AfterViewInit {
           console.log(this.selection);
     this.isAllSelected() ?
         this.selection.clear() :
-        this.dataSource.data.forEach(row =>  
-          { 
-            this.selection.select(row)
-          });
+        this.dataSource.data.forEach(row => { this.selection.select(row); });
   }
 
   ngOnInit() {
