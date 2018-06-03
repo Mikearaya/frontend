@@ -1,5 +1,4 @@
 
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
   <mat-card>
       <mat-card-header>
           <mat-card-title>Title</mat-card-title>
@@ -9,10 +8,10 @@
       <mat-card-content>
 <form (ngSubmit)="onSubmit()" [formGroup]="studentForm"  class="mat-elevation-z8">
     <mat-horizontal-stepper  linear>
-      <mat-step label="Basic Info">
+      <mat-step label="Basic Info" >
         <div class="container">
           <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-10">
+            <div class="col-xs-12 col-sm-6">
         
           <mat-form-field appearance="outline">
             <input 
@@ -26,78 +25,96 @@
             <mat-error *ngIf="studentForm.get('full_name').errors?.required">Full Name is Required</mat-error>                
           </mat-form-field>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-2">
-        
-          
+        <div class="col-xs-12 col-sm-6">          
             <mat-radio-group formControlName="gender">
               <mat-radio-button value="Male">Male</mat-radio-button>
               <mat-radio-button value="Female">Female</mat-radio-button>
+              
             </mat-radio-group>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-6">
-
-          
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <mat-form-field appearance="outline">
             <mat-select name="blood_group" placeholder="Blood Group" formControlName="blood_group">
               <mat-option *ngFor="let blood of bloodTypes" [value]="blood">{{blood}}</mat-option>
             </mat-select>
+          </mat-form-field> 
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
-          <mat-form-field>          
+          <mat-form-field  appearance="outline">          
             <input formControlName="birthdate" [matDatepicker]="picker" matInput placeholder="Birth date"  />
             <mat-datepicker-toggle matSuffix [for]="picker">
                 <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
             </mat-datepicker-toggle>
             <mat-datepicker startView="year" #picker></mat-datepicker>
+            
           </mat-form-field>
-          </div>
-          </div>
+        </div>
+      </div>
         </div>
       
           <div>
               <button mat-button matStepperNext color="accent" type="button">Next</button>
           </div>
       </mat-step> 
-      <mat-step formGroupName="addressForm" label="Address">
+      <mat-step formGroupName="addressForm" label="Address" [completed]="studentSaved || isUpdate" >
         <div class="container">
           <div class="row">
             
-        <div class="col-sm-3">
+        <div class="col-sm-6 col-xs-12">
         <mat-form-field>
           <input matInput placeholder="Region" formControlName="region">
+   
         </mat-form-field>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-6 col-xs-12">
         <mat-form-field>
             <input matInput placeholder="City" formControlName="city">
+   
           </mat-form-field>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-6 col-xs-12">
           <mat-form-field>
               <input matInput placeholder="Sub-City" formControlName="subCity">
             </mat-form-field>
+         
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-6 col-xs-12">
               <mat-form-field>
                 <input matInput placeholder="woreda" formControlName="wereda">
               </mat-form-field>         
+         
               </div>
           </div>
         </div>
-        <mat-form-field>
-          
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-xs-12">
+        <mat-form-field>          
           <input matInput placeholder="Mobile Number" formControlName="mobile">
+         
         </mat-form-field>
+      </div>
+      <div class="col-sm-6 col-xs-12">
+
         <mat-form-field>
           <input matInput placeholder="Phone Number" formControlName="phone">
+         
         </mat-form-field>
+      </div>
+      <div class="col-sm-6 col-xs-12">
         <mat-form-field>
-          <input matInput placeholder="Postal Code" formControlName="postCode" >
+          <input matInput placeholder="Phone Number" formControlName="postCode">
         </mat-form-field>        
-        
+      </div>
+        <div class="col-sm-6 col-xs-12">
         <mat-form-field>
           <input matInput placeholder="House Number" formControlName="houseNo" >
+          
         </mat-form-field>
-      
+      </div>
+    </div>
+    </div>
+    
         <div>
             <button 
             mat-button 
@@ -108,36 +125,38 @@
                       Back
           </button>
           <button 
+          
+            type="submit"     
+            mat-button                          
+            >
+              Save
+          </button>
+          <button 
             matStepperNext
             type="button"     
             mat-button 
+            [disabled]="!studentSaved && !isUpdate"
             type="button"                         
             >
-              Complete
+              next
           </button>
-          
         </div>  
       </mat-step>
-      <mat-step  label="Complete" >
+      <mat-step  label="Guardian" >
+        <app-student-guardian [studentId]="id"></app-student-guardian>
           <output  *ngIf="error?.length">
               <div class="alert alert-danger" *ngFor="let err of error">{{err}}</div>
             </output>      
             TODO: Remove diagnostic
-            <p>form Value {{studentForm.value | json}}</p>
+            <p>form Value {{guardian.form.value | json}}</p>
           <div>
-            <button 
-            mat-raised-button 
-            matStepperPrevious
-            color="accent"
-            type="button"
-            [disabled]="studentForm.submitted"
-                      >
-                      Reset
-          </button>
+
           <button 
             mat-raised-button            
             color="primary"
-            [disabled]="studentForm.invalid"            
+            type="button"
+            (click)="guardian.onSubmit()"
+            [disabled]="studentForm.invalid || guardian.form.invalid "            
             >
                 Save
           </button>
@@ -151,5 +170,3 @@
   </mat-card-content>
 
 </mat-card>
-
-</div>

@@ -9,12 +9,16 @@
     <mat-radio-button value="female">Female</mat-radio-button>
   </mat-radio-group>
     <mat-select placeholder="Relation" formControlName="relation">
-      <mat-option *ngFor="let relation of RELATIONSHIPS" [value]="relation">{{relation}}</mat-option>
+      <mat-option *ngFor="let relation of RELATIONS" [value]="relation">{{relation}}</mat-option>
       <mat-error *ngIf="form.get('relation').errors?.required"> Realtionship is required</mat-error>
     </mat-select>
   <mat-form-field>
     <input matInput placeholder="Phonenumber" formControlName="phoneNumber" >
     <mat-error *ngIf="form.get('phoneNumber').errors?.required">Phonenumber is required </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Region" formControlName="region">
+    <mat-error *ngIf="form.get('region').errors?.required">City is required </mat-error>
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="City" formControlName="city">

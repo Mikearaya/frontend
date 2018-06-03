@@ -1,21 +1,25 @@
 import { StudentService, IStudent } from '../student.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import {StudentGuardianComponent} from '../student-guardian/student-guardian.component';
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
   styleUrls: ['./student-form.component.css']
 })
-export class StudentFormComponent implements OnInit {
-  studentForm: FormGroup;
+export class StudentFormComponent implements OnInit, AfterViewInit {
 
+  studentForm: FormGroup;
+  guardianForm: FormGroup;
+@ViewChild(StudentGuardianComponent) guardian;
   student: IStudent;
   error: Array<any>;
   isUpdate: Boolean;
   id: number;
   id_no: string;
+  studentSaved = false;
   RELATIONSHIPS = ['Mother', 'Father'];
   bloodTypes = ['A+', 'A-', 'B-', 'B+', 'AB+', 'AB-', 'O+', 'O-' ];
   constructor(private formBuilder: FormBuilder,
@@ -31,12 +35,14 @@ export class StudentFormComponent implements OnInit {
           this.isUpdate = (this.id) ? true : false;
           this.studentService.getStudents(this.id).subscribe((student: any) => this.generateForm(student.result));
         }
-
+        ngAfterViewInit() {
+          this.guardianForm = this.guardian.form;
+          console.log(this.guardianForm);
+        }
    generateForm(selectedStudent: any = '') {
      this.id_no = selectedStudent.id_no;
-     const student = {...selectedStudent.result};
-     console.log(student);
-
+     const student = selectedStudent;
+console.log(student.id);
       this.studentForm = this.formBuilder.group({
         full_name: this.buildControl(student.full_name, true),
         gender: this.buildControl(student.gender , true),
@@ -95,10 +101,16 @@ export class StudentFormComponent implements OnInit {
 
     }
 
+
   handelResponse(response: any) {
     if (response.success) {
-      this.location.back();
+      this.studentSaved = true;
+      if (response.studentId) {
+        this.id = response.studentId;
+      }
+      // this.location.back();
     } else {
+      this.studentSaved = false;
       this.error = response;
     }
   }

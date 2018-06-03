@@ -26,14 +26,10 @@ import { TitleCasePipe } from './pipes/title-case.pipe';
 
 import { StudentModule } from './modules/student/student.module';
 import { CourseModule } from './modules/course/course.module';
-import { HttpModule } from '@angular/http';
+
 
 @NgModule({
-  declarations: [
-                AppComponent, MenusComponent,
-                TableComponent, HomeComponent,
-                DataComponent
-              ],
+
   imports: [
              BrowserModule, BrowserAnimationsModule,
              MatInputModule, MatFormFieldModule,
@@ -42,9 +38,13 @@ import { HttpModule } from '@angular/http';
              MatButtonModule, HttpClientModule, MatTableModule,
              ReactiveFormsModule, StudentModule, MatCheckboxModule,
              MatPaginatorModule, MatSortModule, MatCardModule,
-             CourseModule, AppRoutingModule,
-             HttpModule
+             CourseModule, AppRoutingModule
            ],
+  declarations: [
+            AppComponent, MenusComponent,
+            TableComponent, HomeComponent,
+            DataComponent, TitleCasePipe
+          ],
   providers: [GridServices , TitleCasePipe ],
   bootstrap: [AppComponent],
   exports: []
