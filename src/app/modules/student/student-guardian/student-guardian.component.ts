@@ -19,6 +19,7 @@ export class StudentGuardianComponent implements OnInit {
   guardian: IGuardian;
   RELATIONS = ['Father', 'Mother'];
   id: number;
+
   @Input() studentId;
   constructor(  private formBuilder: FormBuilder,
                private guardianService: StudentService,
@@ -26,13 +27,14 @@ export class StudentGuardianComponent implements OnInit {
 
   ngOnInit() {
       const param = this.activatedRoute.snapshot.paramMap.get('id');
-      console.log('in guardian' + param );
       if (param) {
         this.studentId = + param;
        }
-       this.generateForm();
-       console.log('student id' + this.studentId);
+       if ( this.studentId) {
       this.guardianService.getGardian(this.studentId).subscribe((guard: any ) => this.generateForm(guard.result));
+       }
+
+       this.generateForm();
   }
   generateForm(currentGuardian: any = '') {
 this.id = currentGuardian.id;
