@@ -1,18 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { StudentService } from '../student.service';
 import { GuardianService, IGuardian } from '../guardian.service';
 
 
 @Component({
-  selector: 'app-student-guardian',
-  templateUrl: './student-guardian.component.html',
-  styleUrls: ['./student-guardian.component.css']
+  selector: 'app-guardian-form',
+  templateUrl: './guardian-form.component.html',
+  styleUrls: ['./guardian-form.component.css']
 })
 
 
-export class StudentGuardianComponent implements OnInit {
+export class GuardianFormComponent implements OnInit {
   error: any;
   location: any;
   form: FormGroup;

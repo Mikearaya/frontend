@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {StudentGuardianComponent} from '../student-guardian/student-guardian.component';
+import {GuardianFormComponent} from '../../guardian/guardian-form/guardian-form.component';
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
@@ -13,7 +13,7 @@ export class StudentFormComponent implements OnInit, AfterViewInit {
 
   studentForm: FormGroup;
   guardianForm: FormGroup;
-@ViewChild(StudentGuardianComponent) guardian;
+@ViewChild(GuardianFormComponent) guardian;
   student: IStudent;
   error: Array<any>;
   isUpdate: Boolean;

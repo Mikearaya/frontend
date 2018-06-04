@@ -1,4 +1,3 @@
-import { GuardianService } from './guardian.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,8 +12,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { StudentFormComponent } from './students-form/student-form.component';
 import { StudentService } from './student.service';
 import { StudentRoutingModule } from './student-routing.module';
-import { StudentGuardianComponent } from './student-guardian/student-guardian.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { GuardianModule } from '../guardian/guardian.module';
 
 
 @NgModule({
@@ -32,12 +31,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule,
     MatCardModule,
     StudentRoutingModule,
-    MatStepperModule
+    MatStepperModule,
+    GuardianModule
   ],
-  declarations: [
-    StudentFormComponent,
-    StudentGuardianComponent
-  ],
-  providers : [StudentService, GuardianService]
+  declarations: [StudentFormComponent],
+  providers : [StudentService]
 })
 export class StudentModule { }

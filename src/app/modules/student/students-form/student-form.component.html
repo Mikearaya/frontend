@@ -143,7 +143,7 @@
         </div>  
       </mat-step>
       <mat-step  label="Guardian" >
-        <app-student-guardian [studentId]="id"></app-student-guardian>
+        <app-guardian-form [studentId]="id"></app-guardian-form>
           <output  *ngIf="error?.length">
               <div class="alert alert-danger" *ngFor="let err of error">{{err}}</div>
             </output>      
