@@ -26,6 +26,7 @@ import { TitleCasePipe } from './pipes/title-case.pipe';
 
 import { StudentModule } from './modules/student/student.module';
 import { CourseModule } from './modules/course/course.module';
+import { SubjectModule } from './modules/subject/subject.module';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { CourseModule } from './modules/course/course.module';
              MatButtonModule, HttpClientModule, MatTableModule,
              ReactiveFormsModule, StudentModule, MatCheckboxModule,
              MatPaginatorModule, MatSortModule, MatCardModule,
-             CourseModule, AppRoutingModule
+             CourseModule, SubjectModule, AppRoutingModule
            ],
   declarations: [
             AppComponent, MenusComponent,

@@ -20,7 +20,6 @@ export class IStudent {
 export class StudentService {
 
   private url = 'http://localhost/smart_school/index.php/api/students';
-  private guardianUrl = 'http://localhost/smart_school/index.php/api/guardian';
   private header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
   data: URLSearchParams;
 

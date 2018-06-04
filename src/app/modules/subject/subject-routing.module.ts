@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { SubjectFormComponent } from './subject-form/subject-form.component';
 
 const routes: Routes = [
-  {path: 'manage/subject', component: SubjectFormComponent, data: {title: 'Subject'} },
-  {path: 'manage/subject/:id', component: SubjectFormComponent, data: {title: 'Subject'} }
+  {path: 'manage/subjects', component: SubjectFormComponent, data: {title: 'Subject'} },
+  {path: 'manage/subjects/:id', component: SubjectFormComponent, data: {title: 'Subject'} }
 ];
 
 @NgModule({

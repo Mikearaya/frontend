@@ -37,12 +37,10 @@ export class StudentFormComponent implements OnInit, AfterViewInit {
         }
         ngAfterViewInit() {
           this.guardianForm = this.guardian.form;
-          console.log(this.guardianForm);
         }
    generateForm(selectedStudent: any = '') {
      this.id_no = selectedStudent.id_no;
      const student = selectedStudent;
-console.log(student.id);
       this.studentForm = this.formBuilder.group({
         full_name: this.buildControl(student.full_name, true),
         gender: this.buildControl(student.gender , true),
