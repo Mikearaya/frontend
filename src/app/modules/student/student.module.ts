@@ -1,3 +1,4 @@
+import { GuardianService } from './guardian.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -37,6 +38,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     StudentFormComponent,
     StudentGuardianComponent
   ],
-  providers : [StudentService]
+  providers : [StudentService, GuardianService]
 })
 export class StudentModule { }

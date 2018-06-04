@@ -82,59 +82,5 @@ export class StudentService {
          return dataModel;
 
       }
-      private setGuardianDataModel(formModel: any): URLSearchParams {
-        const dataModel = new URLSearchParams();
-        dataModel.set('student_code', formModel.studentId);
-          dataModel.set('full_name', formModel.fullName);
-          dataModel.set('gender', formModel.gender);
-          // dataModel.set('birthdate', formModel.birthdate);
-          dataModel.set('region', formModel.region );
-          dataModel.set('wereda', formModel.wereda );
-          dataModel.set('phone', formModel.phoneNumber );
-          dataModel.set('city', formModel.city );
-          dataModel.set('sub_city', formModel.subCity );
-          dataModel.set('mobile', formModel.mobile );
-          dataModel.set('house_no', formModel.houseNo );
-          dataModel.set('relation', formModel.relation );
-       return dataModel;
-
-    }
-      getGardian(id: number = 0): Observable<IGuardian[]> {
-        if (id) {
-          return this.http.get<IGuardian[]>(`${this.guardianUrl}/${id}`);
-        } else {
-          return this.http.get<IGuardian[]>(`${this.guardianUrl}`);
-        }
-      }
-      addGuardian(newGuardian: IGuardian): Observable<IGuardian> {
-        const options = { 'headers': this.header };
-        this.data = this.setGuardianDataModel(newGuardian);
-    return this.http.post<IGuardian>(`${this.guardianUrl}`, this.data.toString(), options);
-  }
-
-  updateGuardian(updatedGuardian: IGuardian, id: number): Observable<IStudent> {
-    console.log('update');
-        this.data = this.setGuardianDataModel(updatedGuardian);
-        const options = { 'headers': this.header };
-    return this.http.post<IStudent>(`${this.guardianUrl}/${id}`, this.data.toString(), options);
-  }
-
 
 }
-
-export class IGuardian {
-  student_id: number;
-  full_name: string;
-  phone: string;
-  house_no: string;
-  relation: string;
-  sub_city: string;
-  city: string;
-  wereda: string;
-  gender: string;
-  date_of_birth: string;
-
-}
-
-
-

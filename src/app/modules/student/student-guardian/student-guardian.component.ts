@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {IGuardian } from './guardian.service';
 import { ActivatedRoute } from '@angular/router';
 import { StudentService } from '../student.service';
+import { GuardianService, IGuardian } from '../guardian.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class StudentGuardianComponent implements OnInit {
 
   @Input() studentId;
   constructor(  private formBuilder: FormBuilder,
-               private guardianService: StudentService,
+               private guardianService: GuardianService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {

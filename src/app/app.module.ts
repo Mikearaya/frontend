@@ -45,7 +45,7 @@ import { CourseModule } from './modules/course/course.module';
             TableComponent, HomeComponent,
             DataComponent, TitleCasePipe
           ],
-  providers: [GridServices , TitleCasePipe ],
+  providers: [GridServices],
   bootstrap: [AppComponent],
   exports: []
 })
