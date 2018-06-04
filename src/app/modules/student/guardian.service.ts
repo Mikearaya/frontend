@@ -15,6 +15,7 @@ export class IGuardian {
   date_of_birth: string;
 
 }
+
 @Injectable()
 export class GuardianService {
   private url = 'http://localhost/smart_school/index.php/api/guardian';
@@ -56,13 +57,10 @@ export class GuardianService {
     }
 
     updateGuardian(updatedGuardian: IGuardian, id: number): Observable<IGuardian> {
-    console.log('update');
         this.data = this.setDataModel(updatedGuardian);
         const options = { 'headers': this.header };
     return this.httpClient.post<IGuardian>(`${this.url}/${id}`, this.data.toString(), options);
     }
-
-
 
 }
 
