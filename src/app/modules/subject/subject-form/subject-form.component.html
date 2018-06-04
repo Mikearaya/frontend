@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-4">
             <mat-form-field>
-              <input matInput placeholder="Subject Name" name="title" formControlName='title' >
+              <input matInput placeholder="Subject Name" formControlName='title' >
                 <mat-error *ngIf="subjectForm.get('title').errors?.required" >
                   Subject name is required
                 </mat-error>
@@ -63,8 +63,7 @@
   </mat-card-actions>
 </form>
 <output>
-  TODO: Remove Diagnostic
-  {{subjectForm.value | json}}
+
 </output>
 
 </mat-card>

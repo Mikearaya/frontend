@@ -30,7 +30,6 @@ export class SubjectFormComponent implements OnInit {
           this.subjectService.getSubjects(this.id).subscribe((response: any) => this.generateForm(response.result));
         } else {
           this.isUpdate = false;
-          
         }
       }
 
@@ -61,7 +60,6 @@ export class SubjectFormComponent implements OnInit {
       }
 
       onSubmit() {
-        console.log('submitted');
         this.subject = this.prepareData();
         if (this.isUpdate) {
           this.subjectService.updateSubject(this.subject, this.id)
