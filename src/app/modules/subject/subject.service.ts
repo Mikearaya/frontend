@@ -46,7 +46,8 @@ data: URLSearchParams;
 
     private setDataModel(formModel: any): URLSearchParams {
         const dataModel = new URLSearchParams();
-
+console.log('for model');
+console.log(formModel);
         dataModel.set('title', formModel['title']);
         dataModel.set('subject_type', formModel['type']);
         dataModel.set('grade_weightage', formModel['creditHr']);

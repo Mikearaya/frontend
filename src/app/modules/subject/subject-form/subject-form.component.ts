@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { SubjectService, ISubject } from '../subject.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,6 +13,7 @@ export class SubjectFormComponent implements OnInit {
     subject: ISubject;
     subjectForm: FormGroup;
     id: number;
+    subjects: FormArray;
     isUpdate: boolean;
   SUBJECT_TYPE = ['Elective', 'Major', 'General'];
   constructor(
@@ -20,9 +21,23 @@ export class SubjectFormComponent implements OnInit {
               private formBuilder: FormBuilder,
               private activatedRoute: ActivatedRoute
             ) {
-              this.generateForm();
+              this.subjectForm = this.formBuilder.group({
+                subjects : this.formBuilder.array([this.createSubject()])
+              });
             }
+          createSubject(): FormGroup {
+            return this.formBuilder.group(
+              { title: this.buildControl('', true),
+                type : this.buildControl('', true),
+                creditHr : this.buildControl('', true)
+              }
+            );
+          }
 
+      addSubject(): void {
+        this.subjects = this.subjectForm.get('subjects') as FormArray;
+        this.subjects.push(this.createSubject());
+      }
       ngOnInit() {
         this.id = +this.activatedRoute.snapshot.paramMap.get('id');
         if (this.id) {
@@ -33,26 +48,25 @@ export class SubjectFormComponent implements OnInit {
         }
       }
 
-      private generateForm(currentSubject: any = '') {
-        const subject = currentSubject;
-        console.log(currentSubject);
-        this.subjectForm = this.formBuilder.group({
-          title : this.buildControl(subject.title, true),
-          type : this.buildControl(subject.subject_type, true),
-          creditHr : this.buildControl(subject.grade_weightage, true)
-        });
+      private generateForm(currentSubject: ISubject[] ) {
+        (<FormArray>this.subjectForm.controls['subjects']).removeAt(0);
+        currentSubject.map(sub => (<FormArray>this.subjectForm.controls['subjects']).push(
+          this.formBuilder.group({
+            title : [sub.title , Validators.required],
+          type: [sub.subject_type, Validators.required ],
+          creditHr: [sub.grade_weightage, Validators.required]
+        })
+      ));
+    }
 
-      }
+
 
       private prepareData(): any {
         const formModel = this.subjectForm.value;
-        const subjectData = {
-          title: formModel.title ? formModel.title : '',
-          type:  formModel.type ? formModel.type : '',
-          creditHr: formModel.creditHr ? formModel.creditHr : ''
-
-        };
-        return subjectData;
+        const dataModel: ISubject = formModel.subjects.map((subject: ISubject) =>
+      Object.assign({}, subject));
+        console.log(dataModel);
+      return dataModel;
       }
 
       private buildControl(value: any = '', required: boolean = false) {
