@@ -28,6 +28,10 @@ import { StudentModule } from './modules/student/student.module';
 import { CourseModule } from './modules/course/course.module';
 
 import { SubjectModule } from './modules/subject/subject.module';
+import { ScholarshipCoverageModule } from './modules/scholarship-coverage/scholarship-coverage.module';
+import { ScholarshipTypeModule } from './modules/scholarship-type/scholarship-type.module';
+import { EmployeeModule } from './modules/employee/employee.module';
+import { ScholarshipsModule } from './modules/scholarships/scholarships.module';
 
 
 @NgModule({
@@ -35,12 +39,13 @@ import { SubjectModule } from './modules/subject/subject.module';
   imports: [
              BrowserModule, BrowserAnimationsModule,
              MatInputModule, MatFormFieldModule,
-              FormsModule, MatIconModule, MatToolbarModule,
-              MatSidenavModule, MatProgressSpinnerModule, MatListModule,
+             FormsModule, MatIconModule, MatToolbarModule,
+             MatSidenavModule, MatProgressSpinnerModule, MatListModule,
              MatButtonModule, HttpClientModule, MatTableModule,
              ReactiveFormsModule, StudentModule, MatCheckboxModule,
              MatPaginatorModule, MatSortModule, MatCardModule,
-             CourseModule, SubjectModule, AppRoutingModule
+             CourseModule, SubjectModule, ScholarshipCoverageModule, ScholarshipTypeModule, EmployeeModule, ScholarshipsModule,
+              AppRoutingModule
            ],
   declarations: [
             AppComponent, MenusComponent,
