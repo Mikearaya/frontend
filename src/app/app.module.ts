@@ -19,30 +19,31 @@ import {FromdemoComponent} from './component/fromdemo/fromdemo.component';
 import {MenusComponent} from './component/menus/menus.component';
 import {FormsComponent} from './component/forms/forms.component';
 import { LayoutComponent } from './layout/layout.component';
-import { GridComponent } from './component/grid/grid.component';
 import { TableComponent } from './component/table/table.component';
 import { SortComponent } from './component/sort/sort.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { OtherComponent } from './pages/other/other.component';
-import { GridsComponent } from './pages/grids/grids.component';
 import { DataComponent } from './pages/data/data.component';
 import { GridServices } from './services/grid.services';
 import { TitleCasePipe } from './pipes/title-case.pipe';
 import { StudentModule } from './modules/student/student.module';
 import { CourseModule } from './modules/course/course.module';
+import { EmployeeModule } from './modules/employee/employee.module';
+import { ScholarshipsModule} from './modules/scholarships/scholarships.module';
+import { ScholarshipTypeModule } from './modules/scholarship-type/scholarship-type.module';
 @NgModule({
   declarations: [
     AppComponent, SidenavComponent, MenudemoComponent, CarddemoComponent, TabdemoComponent,
     FromdemoComponent, MenusComponent, FormsComponent,
-    LayoutComponent, GridComponent, TableComponent, SortComponent,
-    HomeComponent, GridsComponent, OtherComponent, DataComponent, TitleCasePipe
+    LayoutComponent, TableComponent, SortComponent,
+    HomeComponent, OtherComponent, DataComponent, TitleCasePipe
 ],
   imports: [
     BrowserModule, BrowserAnimationsModule, CoreModule , MatInputModule, MatFormFieldModule,
-    SharedModule, HttpModule, FormsModule, MatButtonModule, HttpClientModule, 
-    StudentModule, CourseModule, AppRoutingModule, ReactiveFormsModule
+    SharedModule, HttpModule, FormsModule, MatButtonModule, HttpClientModule, ScholarshipsModule,
+    StudentModule, CourseModule, AppRoutingModule, ReactiveFormsModule, EmployeeModule, ScholarshipTypeModule
   ],
   providers: [ItemsServices, GridServices, MainService],
   bootstrap: [AppComponent],

@@ -1,0 +1,29 @@
+.employee-form {
+    min-width: 200px;
+    max-width: 500px;
+    width: 100%;
+    padding-left: 10%;
+  }
+  
+  .employee-full-width {
+    width: 100%;
+  }
+  .employee-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .employee-form {
+    margin: 5% 10px;
+  }
+ 
+
+  .btn {
+    padding-left: 15%;
+    size: 20ex;
+  }
+  .title {
+    padding-left: 30%;
+  }

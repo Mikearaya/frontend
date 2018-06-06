@@ -1,0 +1,23 @@
+.type-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.title {
+    text-align: center
+}
+.btn{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }

@@ -1,0 +1,39 @@
+<form [formGroup]="scholarshipForm" (ngSubmit)="onSubmit">
+  <div>
+     <mat-card>
+       <div>
+         <mat-card-title>{{title}}</mat-card-title>
+       </div>
+       <div>
+         <mat-form-field>
+          <input matInput type="string | number" 
+                          formControlName="Scholarship_type" 
+                          placeholder="Scholarship Type">
+             <span *ngIf="scholarshipForm.get().errors?.required"></span>
+          </mat-form-field>
+       </div>
+       <div>
+         <mat-form-field>
+          <input matInput type="string"
+                          formControlName="Application_Code"
+                          placeholder="Application Code">
+            <span *ngIf="scholarshipForm.get().errors?.required"></span>
+         </mat-form-field>        
+       </div>
+     </mat-card>
+   </div>
+ </form>
+    <div>
+        <mat-card-actions>
+            <button mat-raised-button class="btn"  color="primary"
+                    type="submit"
+                    [disabled]= "!scholarshipForm.valid">
+                                        submit
+                                      </button>
+            <button mat-raised-button class="btn"  color="warn"
+                                        type="submit">
+                                        cancel
+                                      </button>     
+        </mat-card-actions>
+    </div>
+{{employeeForm.value | json}}
