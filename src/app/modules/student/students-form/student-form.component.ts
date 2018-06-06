@@ -1,21 +1,26 @@
 import { StudentService, IStudent } from '../student.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Location } from '@angular/common';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import {GuardianFormComponent} from '../../guardian/guardian-form/guardian-form.component';
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
   styleUrls: ['./student-form.component.css']
 })
-export class StudentFormComponent implements OnInit {
-  studentForm: FormGroup;
+export class StudentFormComponent implements OnInit, AfterViewInit {
 
+  studentForm: FormGroup;
+  guardianForm: FormGroup;
+@ViewChild(GuardianFormComponent) guardian;
   student: IStudent;
   error: Array<any>;
   isUpdate: Boolean;
   id: number;
   id_no: string;
+  studentSaved = false;
+  RELATIONSHIPS = ['Mother', 'Father'];
   bloodTypes = ['A+', 'A-', 'B-', 'B+', 'AB+', 'AB-', 'O+', 'O-' ];
   constructor(private formBuilder: FormBuilder,
               private studentService: StudentService,
@@ -25,41 +30,39 @@ export class StudentFormComponent implements OnInit {
     this.generateForm();
    }
 
+        ngOnInit() {
+          this.id = +  this.activatedRoute.snapshot.paramMap.get('id');
+          this.isUpdate = (this.id) ? true : false;
+          this.studentService.getStudents(this.id).subscribe((student: any) => this.generateForm(student.result));
+        }
+        ngAfterViewInit() {
+          this.guardianForm = this.guardian.form;
+        }
    generateForm(selectedStudent: any = '') {
      this.id_no = selectedStudent.id_no;
+     const student = selectedStudent;
       this.studentForm = this.formBuilder.group({
-        full_name: selectedStudent.full_name ?
-                                              [selectedStudent.full_name, Validators.required] :
-                                              ['', Validators.required],
-        gender: selectedStudent.gender ?
-        [selectedStudent.gender, Validators.required] :
-        ['', Validators.required],
-        blood_group: selectedStudent.blood_group ? selectedStudent.blood_group : '',
-        birthdate: selectedStudent.birthdate ? selectedStudent.birthdate : '',
+        full_name: this.buildControl(student.full_name, true),
+        gender: this.buildControl(student.gender , true),
+        blood_group: this.buildControl(student.blood_group),
+        birthdate: this.buildControl(student.birthdate, true),
         addressForm : this.formBuilder.group({
-          region : selectedStudent.region ? selectedStudent.region : '',
-          wereda: selectedStudent.wereda ? selectedStudent.wereda : '',
-          kebele: selectedStudent.kebele ? selectedStudent.kebele : '',
-          houseNo: selectedStudent.house_no ? selectedStudent.house_no : '',
-          mobile: selectedStudent.mobile ? selectedStudent.mobile : '',
-          phone: selectedStudent.phone ? selectedStudent.phone : '',
-          postCode: selectedStudent.post_code ? selectedStudent.post_code : '',
-          status: selectedStudent.status ? selectedStudent.status : '',
-          type: selectedStudent.type ? selectedStudent.type : ''
+          region : this.buildControl(student.region, true),
+          wereda: this.buildControl(student.wereda, true ),
+          city: this.buildControl(student.city, true ),
+          subCity: this.buildControl(student.sub_city, true ),
+          houseNo: this.buildControl(student.house_no, true),
+          mobile: this.buildControl(student.mobile, true),
+          phone: this.buildControl(student.phone, true),
+          postCode: this.buildControl(student.post_code),
         })
       });
+
    }
 
-  ngOnInit() {
-    this.id = +  this.activatedRoute.snapshot.paramMap.get('id');
-    this.isUpdate = (this.id) ? true : false;
-    this.studentService.getStudents(this.id).subscribe((student: any) => this.generateForm(student.result));
-  }
   prepareData(): any {
 
     const formModel = this.studentForm.value;
-    console.log('student form' );
-    console.log(formModel);
     const studentData = {
       id_no: this.id,
       id: this.id ? this.id : 0,
@@ -71,13 +74,12 @@ export class StudentFormComponent implements OnInit {
       address: {
         region: formModel.addressForm.region,
         wereda: formModel.addressForm.wereda,
-        kebele: formModel.addressForm.kebele,
-        house_no: formModel.addressForm.houseNo,
+        houseNo: formModel.addressForm.houseNo,
+        city: formModel.addressForm.city,
+        subCity: formModel.addressForm.subCity,
         mobile: formModel.addressForm.mobile,
         phone: formModel.addressForm.phone,
         postCode: formModel.addressForm.postCode,
-        status: formModel.addressForm.status,
-        type: formModel.addressForm.type
       }
     };
     return studentData;
@@ -86,17 +88,27 @@ export class StudentFormComponent implements OnInit {
     this.student = this.prepareData();
 
     if (!this.isUpdate) {
-
-    this.studentService.addStudent(this.student).subscribe((response: any) => this.handelResponse(response));
+        this.studentService.addStudent(this.student).subscribe((response: any) => this.handelResponse(response));
     } else {
-      this.studentService.updateStudent(this.student, this.id).subscribe((response: any) => this.handelResponse(response));
+        this.studentService.updateStudent(this.student, this.id).subscribe((response: any) => this.handelResponse(response));
     }
   }
 
+  buildControl(value: any = '', required: Boolean = false) {
+    return (required) ? [value, Validators.required ] : value;
+
+    }
+
+
   handelResponse(response: any) {
     if (response.success) {
-      this.location.back();
+      this.studentSaved = true;
+      if (response.studentId) {
+        this.id = response.studentId;
+      }
+      // this.location.back();
     } else {
+      this.studentSaved = false;
       this.error = response;
     }
   }

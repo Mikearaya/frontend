@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
-import { Student } from '../../template-classes/student';
 import { of } from 'rxjs/observable/of';
 
 export class IStudent {
@@ -70,20 +69,17 @@ export class StudentService {
             dataModel.set('gender', formModel.gender);
             dataModel.set('blood_group', formModel.blood_group);
             dataModel.set('birthdate', formModel.birthdate);
-            dataModel.set('address[hasAddress]', 'true');
-            dataModel.set('address[region]', formModel.address.region );
-            dataModel.set('address[wereda]', formModel.address.wereda );
-            dataModel.set('address[kebele]', formModel.address.kebele );
-            dataModel.set('address[type]', formModel.address.type );
-            dataModel.set('address[phone]', formModel.address.phone );
-            dataModel.set('address[mobile]', formModel.address.mobile );
-            dataModel.set('address[house_no]', formModel.address.house_no );
-            dataModel.set('address[post_code]', formModel.address.postCode );
-
+            dataModel.set('hasGuardian', 'true');
+            dataModel.set('region', formModel.address.region );
+            dataModel.set('wereda', formModel.address.wereda );
+            dataModel.set('phone', formModel.address.phone );
+            dataModel.set('city', formModel.address.city );
+            dataModel.set('sub_city', formModel.address.subCity );
+            dataModel.set('mobile', formModel.address.mobile );
+            dataModel.set('house_no', formModel.address.houseNo );
+            dataModel.set('post_code', formModel.address.postCode );
          return dataModel;
 
       }
 
 }
-
-

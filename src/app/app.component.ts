@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemsServices} from './services/items.services';
-import { RouterOutlet, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,13 +20,9 @@ export class AppComponent implements OnInit {
     { path: '/home', icon: 'home', label: 'Home'}
   ];
 
-  constructor (private items: ItemsServices, private route: ActivatedRoute) {
+  constructor () {
   }
-  spin(x: any[]) {
-    console.log('spin');
-    console.log(x);
-    this.spinner = true;
-  }
+
   ngOnInit() {
     // this.items.getData('1').subscribe(data => this.datas = data);
 
