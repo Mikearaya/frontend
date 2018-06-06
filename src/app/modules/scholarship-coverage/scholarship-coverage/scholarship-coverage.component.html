@@ -1,0 +1,56 @@
+<form [formGroup]="scholarshipcoverageForm" (ngSubmit)="onSubmit">
+    <div>
+       <mat-card>
+         <div>
+           <mat-card-title>{{title}}</mat-card-title>
+         </div>
+         <div>
+             <mat-form-field>
+                 <input matInput type="text | number"
+                                 placeholder="Scholarship Code"
+                                 formControlName="scholarship_code">
+             </mat-form-field>
+         </div>
+         <div>
+            <mat-form-field>
+                <input matInput type="text | number"
+                                placeholder="FeeType Code"
+                                formControlName="fee_type_code">
+            </mat-form-field>
+        </div>
+         <div>
+            <mat-form-field>
+                <input matInput type="number" class="coverage-right-align"
+                                 placeholder="Amount"
+                                 formControlName="amount">
+                <span matPrefix>$&nbsp;</span>
+                <span matSuffix>.00</span>
+              </mat-form-field>
+         </div>
+         <div>
+           <mat-form-field>
+             <input matInput type="text"
+                             placeholder="Amount Type"
+                             formControlName="amount_type">
+           </mat-form-field>
+         </div>
+       </mat-card>
+     </div>
+   </form>
+       <div>
+           <mat-card-actions>
+               <button mat-raised-button class="btn"  color="primary"
+                       type="submit"
+                       [disabled]= "!employeeForm.valid">
+                                           submit
+                                         </button>
+               <button mat-raised-button class="btn"  color="warn"
+                                           type="submit">
+                                           cancel
+                                         </button>     
+               
+           </mat-card-actions>
+         </div>
+
+         {{scholarshipcoverageForm.value | json}}
+

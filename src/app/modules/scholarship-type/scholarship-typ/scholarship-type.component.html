@@ -1,0 +1,48 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit">
+    <div>
+       <mat-card>
+         <div>
+           <mat-card-title>{{title}}</mat-card-title>
+         </div>
+         <div>
+             <mat-form-field>
+                 <input matInput type="text"
+                                 placeholder="Name"
+                                 formControlName="Name">
+             </mat-form-field>
+         </div>
+         <div>
+            <mat-form-field>
+                <input matInput type="number" class="type-right-align"
+                                 placeholder="Amount"
+                                 formControlName="Amount">
+                <span matPrefix>$&nbsp;</span>
+                <span matSuffix>.00</span>
+              </mat-form-field>
+         </div>
+         <div>
+           <mat-form-field>
+             <input matInput type="text"
+                             placeholder="Amount Type"
+                             formControlName="Amount_Type">
+           </mat-form-field>
+         </div>
+       </mat-card>
+     </div>
+   </form>
+       <div>
+           <mat-card-actions>
+               <button mat-raised-button class="btn"  color="primary"
+                       type="submit"
+                       [disabled]= "!employeeForm.valid">
+                                           submit
+                                         </button>
+               <button mat-raised-button class="btn"  color="warn"
+                                           type="submit">
+                                           cancel
+                                         </button>     
+               
+           </mat-card-actions>
+         </div>
+
+         {{employeeForm.value | json}}

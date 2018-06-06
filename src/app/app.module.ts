@@ -18,14 +18,15 @@ import { MenusComponent} from './components/menus/menus.component';
 import { TableComponent } from './components/table/table.component';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { HomeComponent } from './components/home/home.component';
 import { DataComponent } from './components/data/data.component';
-
 import { GridServices } from './services/grid.services';
 import { TitleCasePipe } from './pipes/title-case.pipe';
 
 import { StudentModule } from './modules/student/student.module';
 import { CourseModule } from './modules/course/course.module';
+
 import { SubjectModule } from './modules/subject/subject.module';
 
 
@@ -47,6 +48,7 @@ import { SubjectModule } from './modules/subject/subject.module';
             DataComponent, TitleCasePipe
           ],
   providers: [GridServices],
+
   bootstrap: [AppComponent],
   exports: []
 })
