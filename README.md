@@ -10,10 +10,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 4. use `Reactive Forms` for forms as they are easy for testing and also hiding component logic from the template promoting `SOC Separation of Concern`.
 5. Use `1 tab indentation`  to show hierarcy of code (dont use space).
 6. Use `Observables` instead of `Promises` to handel asyncronous coding paradiam as they provide the folowing benefits
-    • Observable provide easy retry function if failed operation eg HTTP.
-    • Observables do not mutate the server response (as can occur through chained .then() calls on promises). Instead, you can use a series of operators to transform values as needed. 
-    • HTTP requests are cancellable through the unsubscribe() method. 
-    • Requests can be configured to get progress event updates. 
+    - Observable provide easy retry function if failed operation eg HTTP.
+    - Observables do not mutate the server response (as can occur through chained .then() calls on promises). Instead, you can use a series of operators to transform values as needed. 
+    - HTTP requests are cancellable through the unsubscribe() method. 
+    - Requests can be configured to get progress event updates. 
 7. Create a deadicated routing module for each module to handle its routing request.
 8. Create error message for each input rather than using a general one say rather than sayin `Field is Required` say `First Name is required`.
 9. Place both `*.ts & *.spec.ts files` under the same folder as siblings to make testing each module easy 
