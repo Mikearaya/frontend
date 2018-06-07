@@ -18,6 +18,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 8. Create error message for each input rather than using a general one say rather than sayin `Field is Required` say `First Name is required`.
 9. Place both `*.ts & *.spec.ts files` under the same folder as siblings to make testing each module easy 
 10. Use `undefined`. Do not use `null`.
+
 ## Namings
 1. use `camelCase` naming for variable names `eg. let variableName = 0`.
 2. use `camelCase` naming for function names `eg. functionName()`.
