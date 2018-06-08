@@ -47,10 +47,11 @@ data: URLSearchParams;
     private setDataModel(formModel: any[]): URLSearchParams {
         const dataModel = new URLSearchParams();
         formModel.forEach((form, i) => {
-        dataModel.set(`title[${i}]`, form['title']);
-        dataModel.set(`subject_type[${i}]`, form['type']);
-        dataModel.set(`grade_weightage[${i}]`, form['creditHr']);
-        dataModel.set(`code[${i}]`, form['code'] ? form['code'] : '');
+        dataModel.append(`subject[title][${i}]`, form['title']);
+        dataModel.append(`subject[subject_type][${i}]`, form['type']);
+        dataModel.append(`subject[grade_weightage][${i}]`, form['creditHr']);
+        dataModel.append(`subject[code][${i}]`, form['code'] ? form['code'] : '');
+
       });
       return dataModel;
     }
