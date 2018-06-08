@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { URLSearchParams } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -47,10 +48,10 @@ data: URLSearchParams;
     private setDataModel(formModel: any[]): URLSearchParams {
         const dataModel = new URLSearchParams();
         formModel.forEach((form, i) => {
-        dataModel.append(`subject[title][${i}]`, form['title']);
-        dataModel.append(`subject[subject_type][${i}]`, form['type']);
-        dataModel.append(`subject[grade_weightage][${i}]`, form['creditHr']);
-        dataModel.append(`subject[code][${i}]`, form['code'] ? form['code'] : '');
+        dataModel.append('title[]', form['title']);
+        dataModel.append('subject_type[]', form['type']);
+        dataModel.append('grade_weightage[]', form['creditHr']);
+        dataModel.append('code[]', form['code'] ? form['code'] : '');
 
       });
       return dataModel;
