@@ -30,13 +30,18 @@ import { CourseModule } from './modules/course/course.module';
 import { SubjectModule } from './modules/subject/subject.module';
 import { ScholarshipCoverageModule } from './modules/scholarship-coverage/scholarship-coverage.module';
 import { ScholarshipTypeModule } from './modules/scholarship-type/scholarship-type.module';
+<<<<<<< HEAD
 import { EmployeeModule } from './modules/employee/employee.module';
 import { ScholarshipsModule } from './modules/scholarships/scholarships.module';
 
 
+=======
+import { ScholarshipCoverageModule } from './modules/scholarship-coverage/scholarship-coverage.module';
+>>>>>>> ephrem
 @NgModule({
 
   imports: [
+<<<<<<< HEAD
              BrowserModule, BrowserAnimationsModule,
              MatInputModule, MatFormFieldModule,
              FormsModule, MatIconModule, MatToolbarModule,
@@ -54,6 +59,13 @@ import { ScholarshipsModule } from './modules/scholarships/scholarships.module';
           ],
   providers: [GridServices],
 
+=======
+    BrowserModule, BrowserAnimationsModule, CoreModule , MatInputModule, MatFormFieldModule,
+    SharedModule, HttpModule, FormsModule, MatButtonModule, HttpClientModule, ScholarshipsModule,
+    StudentModule, CourseModule, AppRoutingModule, ReactiveFormsModule, EmployeeModule, ScholarshipTypeModule, ScholarshipCoverageModule
+  ],
+  providers: [ItemsServices, GridServices, MainService],
+>>>>>>> ephrem
   bootstrap: [AppComponent],
   exports: []
 })

@@ -1,0 +1,23 @@
+
+.btn {
+    align-content: center;
+    padding-left: 15%;
+    size: 20ex;
+  }
+  .scholarships-form {
+    min-width: 200px;
+    max-width: 500px;
+    width: 100%;
+    padding-left: 10%;
+    margin-top: 3%;
+  }
+  .title {
+      align-content: center;
+      padding-left: 30%;
+  }
+  .employee-form {
+    margin: 5% 10px;
+  }
+  .container {
+      align-content: center;
+  }

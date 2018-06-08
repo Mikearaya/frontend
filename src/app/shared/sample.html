@@ -1,0 +1,87 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit">
+ <div>
+    <mat-card>
+      <div>
+        <mat-card-title>{{title}}</mat-card-title>
+      </div>
+      <div>
+        <mat-form-field>
+         <input matInput type="string | number" 
+                         formControlName="Employee_Id" 
+                         placeholder="Employee Id">
+            <span *ngIf="employeeForm.get().errors?.required"></span>
+         </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+         <input matInput type="string"
+                         formControlName="Full_Name"
+                         placeholder="Full_Name">
+           <span *ngIf="employeeForm.get().errors?.required"></span>
+        </mat-form-field>        
+      </div>
+      <div>
+        <section class="employee-section">
+           <label class="employee-margin">Gender:</label>
+              <mat-radio-group [(ngModel)]="labelPosition"
+                               formControlName="Gender">                 
+                <mat-radio-button class="employee-margin" value="female">female</mat-radio-button>
+                <mat-radio-button class="employee-margin" value="male">male</mat-radio-button>
+              </mat-radio-group>
+           <span *ngIf="employeeForm.get().errors?.required"></span>           
+        </section>                
+      </div>
+      <div>
+        <mat-form-field>
+         <input matInput [matDatepicker]="picker" 
+                         placeholder="Choose a date"
+                         formControlName="Birth_Date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+           <span *ngIf="employeeForm.get().errors?.required"></span>          
+        </mat-form-field>       
+      </div>
+      <div>
+          <mat-form-field>
+              <input matInput type="string | number"
+                              placeholder="Address"
+                              formControlName="Address_Code">
+           <span *ngIf="employeeForm.get().errors?.required"></span>                              
+          </mat-form-field>
+      </div>
+      <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" 
+                             placeholder="Choose a date"
+                             formControlName="Employment Date">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+               <span *ngIf="employeeForm.get().errors?.required"></span>          
+            </mat-form-field>       
+          </div>
+          <div>
+            <mat-form-field>
+                <mat-select placeholder="Blood Group">
+                    <mat-option *ngFor="let Blood_Group of Blood_Group" [value]="Blood_Group.value">
+                            {{ Blood_Group.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+          </div>
+    </mat-card>
+  </div>
+</form>
+    <div>
+        <mat-card-actions>
+            <button mat-raised-button class="btn"  color="primary"
+                    type="submit"
+                    [disabled]= "!employeeForm.valid">
+                                        submit
+                                      </button>
+            <button mat-raised-button class="btn"  color="warn"
+                                        type="submit">
+                                        cancel
+                                      </button>     
+            
+        </mat-card-actions>
+      </div>
