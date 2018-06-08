@@ -1,4 +1,4 @@
-<form [formGroup]="employeeForm" (ngSubmit)="onSubmit">
+<form [formGroup]="scholarshiptypeForm" (ngSubmit)="onSubmit()">
     <div>
        <mat-card>
          <div>
@@ -34,15 +34,15 @@
            <mat-card-actions>
                <button mat-raised-button class="btn"  color="primary"
                        type="submit"
-                       [disabled]= "!employeeForm.valid">
+                       [disabled]= "!scholarshiptypeForm.valid">
                                            submit
                                          </button>
                <button mat-raised-button class="btn"  color="warn"
-                                           type="submit">
+                                           type="cancel">
                                            cancel
                                          </button>     
                
            </mat-card-actions>
          </div>
 
-         {{employeeForm.value | json}}
+         {{scholarshiptypeForm.value | json}}

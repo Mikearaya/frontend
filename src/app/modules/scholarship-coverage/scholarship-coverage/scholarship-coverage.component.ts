@@ -21,7 +21,9 @@ export class ScholarshipCoverageComponent implements OnInit {
     constructor(private fb: FormBuilder,
                 private scholarshipcoverageservice: ScholarshipCoverageService,
                 private activatedRoute: ActivatedRoute,
-                private router: Router) { }
+                private router: Router) {
+                  this.generateForm();
+                 }
 
   generateForm(activeCoverage: any = '') {
 this.id = activeCoverage.id;

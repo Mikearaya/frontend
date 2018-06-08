@@ -21,6 +21,7 @@ export class ScholarshipTypeComponent implements OnInit {
                private scholarshiptypeservice: ScholarshipTypeService,
                private activatedRoute: ActivatedRoute,
                private router: Router ) {
+                 this.generateForm();
   }
 
       generateForm(activeType: any = '') {
@@ -38,7 +39,8 @@ export class ScholarshipTypeComponent implements OnInit {
   ngOnInit(): void {
   this.id = +  this.activatedRoute.snapshot.paramMap.get('id');
     this.isUpdate = (this.id) ? true : false;
-    this.scholarshiptypeservice.GetType(this.id).subscribe((scholarshiptype: any) => this.generateForm(scholarshiptype.result));
+    this.scholarshiptypeservice.GetType(this.id)
+        .subscribe((scholarshiptype: any) => this.generateForm(scholarshiptype.result));
 
 }
   prepareData(): any {

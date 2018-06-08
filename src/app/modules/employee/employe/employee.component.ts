@@ -72,11 +72,13 @@ export class EmployeeComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('hola');
     this.employee = this.prepareData();
 
     if (!this.isUpdate) {
 
-    this.employeeService.PostEmployee(this.employee).subscribe((response: any) => this.handelResponse(response));
+    this.employeeService.PostEmployee(this.employee).subscribe((response: any) =>
+    this.handelResponse(response));
     } else {
 
       this.employeeService.UpdateEmployee(this.employee, this.id).subscribe((response: any) => this.handelResponse(response));

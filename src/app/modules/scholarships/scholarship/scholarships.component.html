@@ -1,15 +1,15 @@
-<form [formGroup]="scholarshipForm" (ngSubmit)="onSubmit">
-  <div>
+<form class="scholarships-form" [formGroup]="scholarshipForm"  (ngSubmit)="onSubmit()">
+  <div class="container">
      <mat-card>
-       <div>
+       <div class="title">
          <mat-card-title>{{title}}</mat-card-title>
        </div>
        <div>
          <mat-form-field>
-          <input matInput type="string | number" 
+          <input matInput type="text | number" 
                           formControlName="Scholarship_type" 
                           placeholder="Scholarship Type">
-             <span *ngIf="scholarshipForm.get().errors?.required"></span>
+             <span *ngIf="scholarshipForm.get('Scholarship_type').errors?.required"></span>
           </mat-form-field>
        </div>
        <div>
@@ -17,23 +17,31 @@
           <input matInput type="string"
                           formControlName="Application_Code"
                           placeholder="Application Code">
-            <span *ngIf="scholarshipForm.get().errors?.required"></span>
+            <span *ngIf="scholarshipForm.get('Application_Code').errors?.required"></span>
          </mat-form-field>        
        </div>
+       <div>
+         <input [matDatepicker]="picker" 
+                         placeholder="Choose Date"
+                         formControlName="Date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+      </div>
      </mat-card>
    </div>
+   <div class="btn">
+    <mat-card-actions>
+        <button mat-raised-button class="btn"  color="primary"
+                type="submit"
+                [disabled]= "!scholarshipForm.valid">
+                                    submit
+                                  </button>
+        <button mat-raised-button class="btn"  color="warn"
+                                    type="submit">
+                                    cancel
+                                  </button>     
+    </mat-card-actions>
+</div>
  </form>
-    <div>
-        <mat-card-actions>
-            <button mat-raised-button class="btn"  color="primary"
-                    type="submit"
-                    [disabled]= "!scholarshipForm.valid">
-                                        submit
-                                      </button>
-            <button mat-raised-button class="btn"  color="warn"
-                                        type="submit">
-                                        cancel
-                                      </button>     
-        </mat-card-actions>
-    </div>
-{{employeeForm.value | json}}
+ {{scholarshipForm.value | json}}
+   

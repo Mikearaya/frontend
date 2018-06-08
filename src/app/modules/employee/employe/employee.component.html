@@ -1,4 +1,4 @@
-<form class="employee-form" [formGroup]="employeeForm" (ngSubmit)="onSubmit">
+<form class="employee-form" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     <div>
        <mat-card class="employee-card">
          <div class="title">
@@ -31,7 +31,7 @@
          <div>
            <mat-form-field>
             <input matInput [matDatepicker]="picker1" 
-                            placeholder="Choose a date"
+                            placeholder="Choose Birth Date"
                             formControlName="Birth_Date">
                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                      <mat-datepicker #picker1></mat-datepicker>
@@ -47,7 +47,7 @@
          <div>
                <mat-form-field>
                  <input matInput [matDatepicker]="picker" 
-                                placeholder="Choose a date"
+                                placeholder="Choose Employment Date"
                                 formControlName="Employment_Date">
                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                          <mat-datepicker #picker></mat-datepicker>
@@ -64,20 +64,20 @@
              </div>
        </mat-card>
      </div>
+     <div class="btn">
+      <mat-card-actions>
+          <button mat-raised-button class="btn"  color="primary"
+                                    type="submit" > 
+                                    submit
+                                    </button>
+          <button mat-raised-button class="btn"  color="warn"
+                                      type="submit">
+                                      cancel
+                                    </button>     
+          
+      </mat-card-actions>
+    </div>
    </form>
-       <div class="btn">
-           <mat-card-actions>
-               <button mat-raised-button class="btn"  color="primary"
-                       type="submit"
-                       [disabled]= "!employeeForm.valid">
-                                           submit
-                                         </button>
-               <button mat-raised-button class="btn"  color="warn"
-                                           type="submit">
-                                           cancel
-                                         </button>     
-               
-           </mat-card-actions>
-         </div>
+       
 
          {{employeeForm.value | json}}

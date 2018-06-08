@@ -33,6 +33,7 @@ import { CourseModule } from './modules/course/course.module';
 import { EmployeeModule } from './modules/employee/employee.module';
 import { ScholarshipsModule} from './modules/scholarships/scholarships.module';
 import { ScholarshipTypeModule } from './modules/scholarship-type/scholarship-type.module';
+import { ScholarshipCoverageModule } from './modules/scholarship-coverage/scholarship-coverage.module';
 @NgModule({
   declarations: [
     AppComponent, SidenavComponent, MenudemoComponent, CarddemoComponent, TabdemoComponent,
@@ -43,7 +44,7 @@ import { ScholarshipTypeModule } from './modules/scholarship-type/scholarship-ty
   imports: [
     BrowserModule, BrowserAnimationsModule, CoreModule , MatInputModule, MatFormFieldModule,
     SharedModule, HttpModule, FormsModule, MatButtonModule, HttpClientModule, ScholarshipsModule,
-    StudentModule, CourseModule, AppRoutingModule, ReactiveFormsModule, EmployeeModule, ScholarshipTypeModule
+    StudentModule, CourseModule, AppRoutingModule, ReactiveFormsModule, EmployeeModule, ScholarshipTypeModule, ScholarshipCoverageModule
   ],
   providers: [ItemsServices, GridServices, MainService],
   bootstrap: [AppComponent],
