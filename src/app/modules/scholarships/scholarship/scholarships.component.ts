@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./scholarships.component.css']
 })
 export class ScholarshipsComponent implements OnInit {
-  title = 'Scholarship Type';
+  title = 'Scholarship';
   scholarshipForm: FormGroup;
   scholarships: IScholarships;
   error: Array<any>;
@@ -21,7 +21,9 @@ export class ScholarshipsComponent implements OnInit {
   constructor( private fb: FormBuilder,
                private scholarshipservice: ScholarshipsService,
                private activatedRoute: ActivatedRoute,
-               private router: Router, ) { }
+               private router: Router, ) {
+                 this.generateForm();
+               }
 
 
   generateForm(activeScholarship: any = '') {

@@ -15,32 +15,20 @@ import { catchError } from 'rxjs/operators/catchError';
 export class ScholarshipCoverageService {
   data: URLSearchParams;
   private header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-  private baseURL = 'http://localhost/smart-school/index.php/scholarship-coverage';
+  private baseURL = 'http://localhost/smart-school/index.php/api';
 
   constructor(private http: HttpClient) { }
   private extractData(res, any) {
-    const body = res.JSON();
-    return body.fields || {};
   }
   private handleError(error: HttpErrorResponse) {
-    console.error('post error: ', error);
-    return Observable.throw(error.statusText);
   }
 // GET: get Scholarshp Coverage
 GetCoverage(id: string | number = 0): Observable < IScholarshipCoverage[] > {
     console.log(id);
     if (id) {
-      return this.http.get<IScholarshipCoverage[]>(`${this.baseURL}/scholarship-coverage/${id}`)
-        .pipe(
-          map(this.extractData),
-          catchError(this.handleError)
-        );
+      return this.http.get<IScholarshipCoverage[]>(`${this.baseURL}/scholarship-coverage/${id}`);
     } else {
-return this.http.get < IScholarshipCoverage[] > (`${this.baseURL}/scholarship-coverage`)
-        .pipe(
-          map(this.extractData),
-          catchError(this.handleError)
-        );
+return this.http.get < IScholarshipCoverage[] > (`${this.baseURL}/scholarship-coverage`);
     }
 
   }
@@ -60,10 +48,7 @@ return this.http.post < IScholarshipCoverage > (`${this.baseURL}/${id}`, this.da
 // DELETE: delete Scholarship Coverage from server
   DeleteCoverage(id: number): Observable < IScholarshipCoverage > {
     const url = `${this.baseURL}/${id}`;
-    return this.http.delete(this.baseURL)
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http.delete(this.baseURL);
   }
   // Data model
 

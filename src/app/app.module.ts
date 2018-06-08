@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule, MatIcon, MatIconModule, MatToolbarModule,
@@ -16,23 +16,18 @@ import {AppComponent} from './app.component';
 
 import { MenusComponent} from './components/menus/menus.component';
 import { TableComponent } from './components/table/table.component';
-
 import { AppRoutingModule } from './app-routing.module';
-
 import { HomeComponent } from './components/home/home.component';
 import { DataComponent } from './components/data/data.component';
 import { GridServices } from './services/grid.services';
 import { TitleCasePipe } from './pipes/title-case.pipe';
-
 import { StudentModule } from './modules/student/student.module';
 import { CourseModule } from './modules/course/course.module';
-
 import { SubjectModule } from './modules/subject/subject.module';
 import { ScholarshipCoverageModule } from './modules/scholarship-coverage/scholarship-coverage.module';
 import { ScholarshipTypeModule } from './modules/scholarship-type/scholarship-type.module';
 import { EmployeeModule } from './modules/employee/employee.module';
 import { ScholarshipsModule } from './modules/scholarships/scholarships.module';
-
 
 @NgModule({
 
@@ -44,7 +39,8 @@ import { ScholarshipsModule } from './modules/scholarships/scholarships.module';
              MatButtonModule, HttpClientModule, MatTableModule,
              ReactiveFormsModule, StudentModule, MatCheckboxModule,
              MatPaginatorModule, MatSortModule, MatCardModule,
-             CourseModule, SubjectModule, ScholarshipCoverageModule, ScholarshipTypeModule, EmployeeModule, ScholarshipsModule,
+             CourseModule, SubjectModule, ScholarshipCoverageModule, ScholarshipTypeModule, EmployeeModule,
+             ScholarshipsModule,
               AppRoutingModule
            ],
   declarations: [

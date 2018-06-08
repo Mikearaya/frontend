@@ -13,13 +13,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { ScholarshipsComponent } from '../scholarships/scholarship/scholarships.component';
 import { ScholarshipsService } from './scholarships.service';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ScholarshipRoutingModule } from './scholarship-routing.module';
 
 @NgModule({
   imports: [
     CommonModule, BrowserModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule,
     HttpModule, FormsModule, HttpClientModule, ReactiveFormsModule, ScholarshipRoutingModule,
-    MatInputModule, MatFormFieldModule, MatListModule,
+    MatInputModule, MatFormFieldModule, MatListModule, MatDatepickerModule,
     MatCheckboxModule, MatCardModule, MatButtonModule,
   ],
   declarations: [ ScholarshipsComponent],
