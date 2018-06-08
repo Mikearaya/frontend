@@ -27,13 +27,13 @@ data: URLSearchParams;
         }
     }
 
-    addSubject(newSubject: ISubject): Observable<any> {
+    addSubject(newSubject: any): Observable<any> {
         const options = {'headers' : this.header};
         const data = this.setDataModel(newSubject);
       return this.httpClient.post<any>(`${this.url}`, data.toString(), options );
     }
 
-    updateSubject(updatedSubject: ISubject, id: number): Observable<any> {
+    updateSubject(updatedSubject: any, id: number): Observable<any> {
             const options = {'headers' : this.header};
             const data = this.setDataModel(updatedSubject);
         return this.httpClient.post(`${this.url}/${id}`, data.toString(), options);
@@ -44,13 +44,14 @@ data: URLSearchParams;
     }
 
 
-    private setDataModel(formModel: any): URLSearchParams {
+    private setDataModel(formModel: any[]): URLSearchParams {
         const dataModel = new URLSearchParams();
-
-        dataModel.set('title', formModel['title']);
-        dataModel.set('subject_type', formModel['type']);
-        dataModel.set('grade_weightage', formModel['creditHr']);
-        dataModel.set('code', formModel['code'] ? formModel['code'] : '');
+        formModel.forEach((form, i) => {
+        dataModel.set(`title[${i}]`, form['title']);
+        dataModel.set(`subject_type[${i}]`, form['type']);
+        dataModel.set(`grade_weightage[${i}]`, form['creditHr']);
+        dataModel.set(`code[${i}]`, form['code'] ? form['code'] : '');
+      });
       return dataModel;
     }
 
