@@ -12,7 +12,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { StudentFormComponent } from './students-form/student-form.component';
 import { StudentService } from './student.service';
 import { StudentRoutingModule } from './student-routing.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { GuardianModule } from '../guardian/guardian.module';
 
 
@@ -28,7 +27,6 @@ import { GuardianModule } from '../guardian/guardian.module';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
     MatCardModule,
     StudentRoutingModule,
     MatStepperModule,
