@@ -29,7 +29,6 @@ const MENU_ITEM = [
   { path: '/data/employee', icon: 'people', label: 'Employees'},
   { path: '/data/events', icon: 'event', label: 'Events'},
   { path: '/data/scholarships', label: 'Scholarship'},
-  { path: '/data/scholarship_type', label: 'Scholarship Type'},
   { path: '/data/scholarship_coverage', label: 'Scholarship Coverage'}
 ];
 
