@@ -1,56 +1,54 @@
 <mat-card>
-  <mat-card-header>
-    
+  <mat-card-header>    
     <mat-card-title>Subject</mat-card-title>
     <mat-card-subtitle>{{currentAction}}</mat-card-subtitle>
   </mat-card-header>
   <form [formGroup]="subjectForm" (ngSubmit)="onSubmit()"  class="mat-elevation-z8"   >
     
-    <mat-card-content formArrayName="subjectArray"
-     >
-     <div *ngFor="let subject of subjects; let i=index"
-    [formGroupName]="i" >
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-sm-5">
-            <mat-form-field>
-              <input matInput placeholder="Subject Name" formControlName='title' >
-               <mat-error *ngIf="subjects[i].get('title')">
-                 Subject Title is required
-               </mat-error>
-            </mat-form-field>            
-          </div>
-          <div class="col-xs-8 col-sm-3">
-            <mat-form-field>
-            <mat-select placeholder="Subject type" formControlName="type">
-              <mat-option *ngFor="let type of SUBJECT_TYPE" [value]="type">{{type}}</mat-option>
-            </mat-select>
-            <mat-error *ngIf="subjects[i].get('title')">
-                Subject Type is required
-              </mat-error>
-          </mat-form-field>
-          </div>
-          <div class="col-xs-4 col-sm-3">
-            <mat-form-field>
-              <input matInput placeholder="Credit Hour" formControlName="creditHr" >
-              <mat-error *ngIf="subjects[i].get('title')">
-                  Subject Credit Hours is required
+    <mat-card-content formArrayName="subjectArray" >
+      <div 
+          *ngFor="let subject of subjects; let i=index"
+          [formGroupName]="i" 
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-5">
+              <mat-form-field>
+                <input matInput placeholder="Subject Name" formControlName='title' >
+                <mat-error *ngIf="subjects[i].get('title')">
+                  Subject Name is required
                 </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="col-xs-4 col-sm-1">
-            <button mat-button (click)="removeSubject(i)">delete</button>
-          </div>
+              </mat-form-field>            
+            </div>
+            <div class="col-xs-8 col-sm-3">
+              <mat-form-field>
+                <mat-select placeholder="Subject type" formControlName="type">
+                  <mat-option *ngFor="let type of SUBJECT_TYPE" [value]="type">{{type}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="subjects[i].get('title')">
+                    Subject Type is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-xs-4 col-sm-3">
+              <mat-form-field>
+                <input matInput placeholder="Credit Hour" formControlName="creditHr" >
+                <mat-error *ngIf="subjects[i].get('title')">
+                    Subject Credit Hours is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-xs-4 col-sm-1">
+              <button mat-button (click)="removeSubject(i)">delete</button>
+            </div>
         </div> <!-- First row end-->
-        
+          
       </div> <!-- Container End-->
-    </div>
+    </div> <!-- Subject Array Block end-->
     <div class="text-center">
       <button mat-button type="button" [disabled]="subjectForm.invalid || subjectForm.submitted" (click)="addSubject()">Add</button>
     </div>
-    </mat-card-content>
-    
-  
+  </mat-card-content>
   <mat-card-actions>
     <div class="container">
       <div class="row">
@@ -61,21 +59,24 @@
                     color="warn"
                  
                     [disabled]="false"
-                    >Cancel</button>
+                    >
+                    Cancel
+            </button>
           </div>
           <div class="col-xs-6 col-sm-6">
             <button 
                     mat-raised-button 
                     type="submit" 
                     color="primary"
-                    [disabled]="subjectForm.invalid " >Save</button>
+                    [disabled]="subjectForm.invalid " >
+                    Save
+            </button>
           </div>
         </div>
       </div>
-  </mat-card-actions>
-</form>
-<output>
+    </mat-card-actions>
+  </form>
+  <output>
 
-</output>
-
+  </output>
 </mat-card>
