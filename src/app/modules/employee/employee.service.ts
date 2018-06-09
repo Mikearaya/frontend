@@ -10,46 +10,17 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import { map } from 'rxjs/operators/map';
 import { catchError } from 'rxjs/operators/catchError';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { CrudService } from './../../services/crud.service';
+export class Url {
+  baseURL = 'http://localhost/smart-school/index.php/api/employees';
+  }
 
 @Injectable()
-    export class EmployeeService {
+    export class EmployeeService extends CrudService {
   data: URLSearchParams;
-  private header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-  private baseURL= 'http://localhost/smart_school/index.php/api/employee';
-       constructor( private http: HttpClient) {  }
+  protected Url = 'http://localhost/smart_school/index.php/api/employee/';
 
-    // GET: get employee
-      GetEmployee(id: string | number = 0): Observable<IEmployee[]> {
-          console.log(id);
-          if (id) {
-            return this.http.get<IEmployee[]>(`${this.baseURL}/${id}`);
-              } else {
-            return this.http.get<IEmployee[]>(`${this.baseURL}`);
-      }
 
-    }
-    // POST: post employee to database
-    PostEmployee(newEmployee: IEmployee): Observable<IEmployee> {
-        const options = { 'headers': this.header };
-        this.data = this.setDataModel(newEmployee);
-  return this.http.post<IEmployee>(`${this.baseURL}`, this.data.toString(), options);
-}
-    // PUT: update employee on the server
-
-    UpdateEmployee(updatedEmployee: IEmployee, id: number): Observable<IEmployee> {
-        this.data = this.setDataModel(updatedEmployee);
-        const options = { 'headers': this.header };
-  return this.http.post<IEmployee>(`${this.baseURL}/${id}`, this.data.toString(), options);
-}
-    // DELETE: delete employee from server
-    DeleteEmployee(id: number): Observable<IEmployee> {
-       const url = `${this.baseURL}/${id}`;
-          return this.http.delete(url, httpOptions);
-}
 
   private setDataModel(formModel: any): URLSearchParams {
     const dataModel = new URLSearchParams();

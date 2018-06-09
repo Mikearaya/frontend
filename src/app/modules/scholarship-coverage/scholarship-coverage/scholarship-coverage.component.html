@@ -36,21 +36,22 @@
          </div>
        </mat-card>
      </div>
+     <div>
+      <mat-card-actions>
+          <button mat-raised-button class="btn"  color="primary"
+                  type="submit"
+                  [disabled]= "!scholarshipcoverageForm.valid">
+                                      submit
+                                    </button>
+          <button mat-raised-button class="btn"  color="warn"
+                                      type="submit">
+                                      cancel
+                                    </button>     
+          
+      </mat-card-actions>
+    </div>
    </form>
-       <div>
-           <mat-card-actions>
-               <button mat-raised-button class="btn"  color="primary"
-                       type="submit"
-                       [disabled]= "!scholarshipcoverageForm.valid">
-                                           submit
-                                         </button>
-               <button mat-raised-button class="btn"  color="warn"
-                                           type="submit">
-                                           cancel
-                                         </button>     
-               
-           </mat-card-actions>
-         </div>
+      
 
          {{scholarshipcoverageForm.value | json}}
 

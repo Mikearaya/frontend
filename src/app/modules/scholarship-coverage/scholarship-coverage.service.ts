@@ -19,8 +19,7 @@ baseURL = 'http://localhost/smart-school/index.php/api';
 @Injectable()
 export class ScholarshipCoverageService extends CrudService {
   data: URLSearchParams;
-  protected Url;
-  private baseURL = 'http://localhost/smart-school/index.php/api';
+  protected Url = 'http://localhost/smart_school/index.php/api/scholarship_coverage/';
 
 
   // Data model

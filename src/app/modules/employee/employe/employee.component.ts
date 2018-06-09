@@ -50,7 +50,7 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.id = +  this.activatedRoute.snapshot.paramMap.get('id');
     this.isUpdate = (this.id) ? true : false;
-    this.employeeService.GetEmployee(this.id).subscribe((employee: any) => this.generateForm(employee)); }
+    this.employeeService.getData(this.id).subscribe((employee: any) => this.generateForm(employee)); }
 
   prepareData(): any {
 
@@ -77,11 +77,11 @@ export class EmployeeComponent implements OnInit {
 
     if (!this.isUpdate) {
 
-    this.employeeService.PostEmployee(this.employee).subscribe((response: any) =>
+    this.employeeService.postData(this.employee).subscribe((response: any) =>
     this.handelResponse(response));
     } else {
 
-      this.employeeService.UpdateEmployee(this.employee, this.id).subscribe((response: any) => this.handelResponse(response));
+      this.employeeService.updateData(this.employee, this.id).subscribe((response: any) => this.handelResponse(response));
     }
   }
   handelResponse(response: any) {

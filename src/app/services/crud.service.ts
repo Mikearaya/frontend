@@ -13,7 +13,7 @@ export class CrudService {
   constructor(private http: HttpClient) {  }
  // GET: get data from DB
   getData(id: number = 0): Observable<any[]> {
-    console.log(id);
+    console.log(this.Url);
     if (id) {
       return this.http.get <any[]>(`${this.Url}${id}`);
     } else {
