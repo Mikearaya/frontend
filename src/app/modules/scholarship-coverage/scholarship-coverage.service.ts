@@ -11,6 +11,10 @@ import 'rxjs/add/observable/of';
 import { map } from 'rxjs/operators/map';
 import { catchError } from 'rxjs/operators/catchError';
 
+export class Url {
+baseURL = 'http://localhost/smart-school/index.php/api';
+}
+
 @Injectable()
 export class ScholarshipCoverageService {
   data: URLSearchParams;
@@ -18,38 +22,8 @@ export class ScholarshipCoverageService {
   private baseURL = 'http://localhost/smart-school/index.php/api';
 
   constructor(private http: HttpClient) { }
-  private extractData(res, any) {
-  }
-  private handleError(error: HttpErrorResponse) {
-  }
-// GET: get Scholarshp Coverage
-GetCoverage(id: string | number = 0): Observable < IScholarshipCoverage[] > {
-    console.log(id);
-    if (id) {
-      return this.http.get<IScholarshipCoverage[]>(`${this.baseURL}/scholarship-coverage/${id}`);
-    } else {
-return this.http.get < IScholarshipCoverage[] > (`${this.baseURL}/scholarship-coverage`);
-    }
 
-  }
-// POST: post Scholarship Coverage to database
-PostCoverage(newEmployee: IScholarshipCoverage): Observable < IScholarshipCoverage > {
-    const options = { 'headers': this.header };
-    this.data = this.setDataModel(newEmployee);
-return this.http.post < IScholarshipCoverage > (`${this.baseURL}`, this.data.toString(), options);
-  }
-// PUT: update Scholarship Coverage on the server
 
-UpdateCoverage(updatedEmployee: IScholarshipCoverage, id: number): Observable < IScholarshipCoverage > {
-    this.data = this.setDataModel(updatedEmployee);
-    const options = { 'headers': this.header };
-return this.http.post < IScholarshipCoverage > (`${this.baseURL}/${id}`, this.data.toString(), options);
-  }
-// DELETE: delete Scholarship Coverage from server
-  DeleteCoverage(id: number): Observable < IScholarshipCoverage > {
-    const url = `${this.baseURL}/${id}`;
-    return this.http.delete(this.baseURL);
-  }
   // Data model
 
   private setDataModel(formModel: any): URLSearchParams {
