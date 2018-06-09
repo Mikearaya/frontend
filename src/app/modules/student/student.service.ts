@@ -15,7 +15,6 @@ export class IStudent {
   blood_group: string;
 }
 
-
 @Injectable()
 export class StudentService {
 
