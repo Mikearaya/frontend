@@ -4,11 +4,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
-import { ScholarshipCoverageService } from './../modules/scholarship-coverage/scholarship-coverage.service';
-import { Url } from './../modules/scholarship-coverage/scholarship-coverage.service';
 
 @Injectable()
 export class CrudService {
+  protected Url;
   private header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
   constructor(private http: HttpClient) {  }
@@ -16,7 +15,7 @@ export class CrudService {
   getData(id: number = 0): Observable<any[]> {
     console.log(id);
     if (id) {
-      return this.http.get <any[]>(`${this.baseURL}`${id});
+      return this.http.get <any[]>(`${this.Url}${id}`);
     } else {
       return this.http.get <any[]>(`${this.Url}`);
     }
@@ -25,19 +24,19 @@ export class CrudService {
   postData(newData: any): Observable<any> {
     const body = JSON.stringify(newData);
     const options = { 'headers': this.header };
-    return this.http.post<any>(`${this.baseURL}`, options);
+    return this.http.post<any>(`${this.Url}`, options);
   }
   // UPDATE: update data method
   updateData(updatedData: any, id: number) {
     const body = JSON.stringify(updatedData);
     const options = { 'headers': this.header };
-    return this.http.put(this.baseURL + id,
+    return this.http.put(this.Url + id,
       body,
       options);
   }
    // DELETE: deleting data in DB
   deleteData (id: number) {
-    const url = `${this.baseURL}/${id}`;
+    const url = `${this.Url}/${id}`;
     return this.http.delete(url);
   }
   // .map(res => res.json());

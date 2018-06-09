@@ -10,18 +10,17 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import { map } from 'rxjs/operators/map';
 import { catchError } from 'rxjs/operators/catchError';
+import { CrudService } from '../../services/crud.service';
 
 export class Url {
 baseURL = 'http://localhost/smart-school/index.php/api';
 }
 
 @Injectable()
-export class ScholarshipCoverageService {
+export class ScholarshipCoverageService extends CrudService {
   data: URLSearchParams;
-  private header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+  protected Url;
   private baseURL = 'http://localhost/smart-school/index.php/api';
-
-  constructor(private http: HttpClient) { }
 
 
   // Data model

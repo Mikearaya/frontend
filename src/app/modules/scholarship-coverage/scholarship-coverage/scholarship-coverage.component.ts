@@ -43,7 +43,7 @@ this.id = activeCoverage.id;
   ngOnInit( ) {
   this.id = +  this.activatedRoute.snapshot.paramMap.get('id');
     this.isUpdate = (this.id) ? true : false;
-    this.scholarshipcoverageservice.GetCoverage(this.id).subscribe((scholarshipcoverage: any) =>
+    this.scholarshipcoverageservice.getData(this.id).subscribe((scholarshipcoverage: any) =>
     this.generateForm(scholarshipcoverage.result));
   }
 
@@ -68,11 +68,11 @@ this.id = activeCoverage.id;
 
     if (!this.isUpdate) {
 
-      this.scholarshipcoverageservice.PostCoverage(this.scholarshipcoverage)
+      this.scholarshipcoverageservice.postData(this.scholarshipcoverage)
           .subscribe((response: any) => this.HandelResponse(response));
     } else {
 
-      this.scholarshipcoverageservice.UpdateCoverage(this.scholarshipcoverage, this.id)
+      this.scholarshipcoverageservice.updateData(this.scholarshipcoverage, this.id)
           .subscribe((response: any) => this.HandelResponse(response));
     }
   }
