@@ -23,9 +23,7 @@ export class StudentService {
   private header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
   data: URLSearchParams;
 
-         constructor(
-                      private http: HttpClient
-                    ) { }
+        constructor( private http: HttpClient) { }
 
         getStudents(id: number = 0): Observable<IStudent[]> {
           console.log(id);
