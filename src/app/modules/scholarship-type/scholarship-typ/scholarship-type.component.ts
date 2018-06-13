@@ -39,7 +39,7 @@ export class ScholarshipTypeComponent implements OnInit {
   ngOnInit(): void {
   this.id = +  this.activatedRoute.snapshot.paramMap.get('id');
     this.isUpdate = (this.id) ? true : false;
-    this.scholarshiptypeservice.GetType(this.id)
+    this.scholarshiptypeservice.getData(this.id)
         .subscribe((scholarshiptype: any) => this.generateForm(scholarshiptype.result));
 
 }
@@ -62,12 +62,12 @@ export class ScholarshipTypeComponent implements OnInit {
 
         if (!this.isUpdate) {
 
-          this.scholarshiptypeservice.PostType(this.scholarshiptype)
-            .subscribe((response: any) => this.HandelResponse(response));
+          this.scholarshiptypeservice.postData(this.scholarshiptype)
+              .subscribe((response: any) => this.HandelResponse(response));
         } else {
 
-          this.scholarshiptypeservice.UpdateType(this.scholarshiptype, this.id)
-            .subscribe((response: any) => this.HandelResponse(response));
+          this.scholarshiptypeservice.updateData(this.scholarshiptype, this.id)
+              .subscribe((response: any) => this.HandelResponse(response));
         }
       }
   HandelResponse(response: any) {

@@ -33,14 +33,18 @@ export class EmployeeComponent implements OnInit {
                 this.id_no = activeEmployee.id_no;
                 console.log(activeEmployee);
                  this.employeeForm = this.fb.group({
-                    Employee_Id: activeEmployee.Employee_Id,
+                    Employee_Id: activeEmployee.Employee_Id ? [activeEmployee.Employee_Id, Validators.required] :
+                                                              ['', Validators.required],
                     Full_Name: activeEmployee.Full_Name ? [activeEmployee.Full_Name, Validators.required] :
                                                           ['', Validators.required],
                     Gender: activeEmployee.Gender ? [activeEmployee.Gender, Validators.required] :
                                                           ['', Validators.required],
-                    Birth_Date: activeEmployee.Birth_Date,
-                    Address_Code: activeEmployee.Address_Code,
-                    Employment_Date: activeEmployee.Employment_Date,
+                    Birth_Date: activeEmployee.Birth_Date ? [activeEmployee.Birth_Date, Validators.required] :
+                                                            ['', Validators.required],
+                    Address_Code: activeEmployee.Address_Code ? [activeEmployee.Address_Code, Validators.required] :
+                                                                ['', Validators.required],
+                    Employment_Date: activeEmployee.Employment_Date ? [activeEmployee.Employment_Date, Validators.required] :
+                                                                      ['', Validators.required],
                     Blood_Group: activeEmployee.Blood_Group ? activeEmployee.Blood_Group : '',
 
                  });
@@ -77,11 +81,14 @@ export class EmployeeComponent implements OnInit {
 
     if (!this.isUpdate) {
 
-    this.employeeService.postData(this.employee).subscribe((response: any) =>
+    this.employeeService.postData(this.employee)
+        .subscribe((response: any) =>
     this.handelResponse(response));
     } else {
 
-      this.employeeService.updateData(this.employee, this.id).subscribe((response: any) => this.handelResponse(response));
+      this.employeeService.updateData(this.employee, this.id)
+          .subscribe((response: any) =>
+      this.handelResponse(response));
     }
   }
   handelResponse(response: any) {

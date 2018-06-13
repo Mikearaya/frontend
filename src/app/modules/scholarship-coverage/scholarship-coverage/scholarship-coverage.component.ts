@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { IScholarshipCoverage } from '../scholarship-coverage.model';
 import { ScholarshipCoverageService } from '../scholarship-coverage.service';
 // import { ToastrService } from 'ngx-toastr'
 import { Router, ActivatedRoute } from '@angular/router';
+import { ScholarshipTypeComponent } from './../../scholarship-type/scholarship-typ/scholarship-type.component';
 
 @Component({
   selector: 'app-scholarship-coverage',
   templateUrl: './scholarship-coverage.component.html',
   styleUrls: ['./scholarship-coverage.component.css']
 })
-export class ScholarshipCoverageComponent implements OnInit {
+export class ScholarshipCoverageComponent implements OnInit, AfterViewInit {
   title = 'Scholarship Coverage';
+ @ViewChild(ScholarshipTypeComponent) scholarshiptype;
+  private ScholarshipTypeComponent: ScholarshipTypeComponent;
   scholarshipcoverageForm: FormGroup;
+  scholarshiptypeForm: FormGroup;
   scholarshipcoverage: IScholarshipCoverage;
   error: Array<any>;
   isUpdate: Boolean;
   id: number;
-
     constructor(private fb: FormBuilder,
                 private scholarshipcoverageservice: ScholarshipCoverageService,
                 private activatedRoute: ActivatedRoute,
@@ -26,7 +29,7 @@ export class ScholarshipCoverageComponent implements OnInit {
                  }
 
   generateForm(activeCoverage: any = '') {
-this.id = activeCoverage.id;
+    this.id = activeCoverage.id;
     this.scholarshipcoverageForm = this.fb.group({
       scholarship_code: activeCoverage.scholarship_code ? [activeCoverage.scholarship_code, Validators.required] :
                                                           ['', Validators.required],
@@ -61,6 +64,9 @@ this.id = activeCoverage.id;
 
     };
     return CoverageData;
+  }
+  ngAfterViewInit() {
+    this.scholarshiptypeForm = this.scholarshiptype;
   }
 
   onSubmit() {

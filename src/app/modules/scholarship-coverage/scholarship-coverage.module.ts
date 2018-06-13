@@ -14,12 +14,15 @@ import { MatCardModule } from '@angular/material/card';
 import { ScholarshipCoverageComponent } from '../scholarship-coverage/scholarship-coverage/scholarship-coverage.component';
 import { ScholarshipCoverageService } from './scholarship-coverage.service';
 import { ScholarshipCoverageRoutingModule } from './scholarship-coverage-routing.module';
+import { MatStepperModule } from '@angular/material/stepper';
+import { ScholarshipTypeModule } from './../scholarship-type/scholarship-type.module';
+
 
 @NgModule({
   imports: [ BrowserModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule,
-    HttpModule, FormsModule, HttpClientModule, ReactiveFormsModule, ScholarshipCoverageRoutingModule,
+    HttpModule, FormsModule, HttpClientModule, ReactiveFormsModule, ScholarshipCoverageRoutingModule, ScholarshipTypeModule,
     MatInputModule, MatFormFieldModule, MatListModule,
-    MatCheckboxModule, MatCardModule, MatButtonModule, CommonModule
+    MatCheckboxModule, MatCardModule, MatButtonModule, CommonModule, MatStepperModule
   ],
   declarations: [ScholarshipCoverageComponent],
   providers: [ScholarshipCoverageService]

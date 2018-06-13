@@ -14,7 +14,7 @@ export class CrudService {
  // GET: get data from DB
   getData(id: number = 0): Observable<any[]> {
     console.log(this.Url);
-    if (id) {
+   if (id) {
       return this.http.get <any[]>(`${this.Url}${id}`);
     } else {
       return this.http.get <any[]>(`${this.Url}`);

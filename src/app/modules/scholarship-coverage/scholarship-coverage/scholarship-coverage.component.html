@@ -1,4 +1,7 @@
-<form [formGroup]="scholarshipcoverageForm" (ngSubmit)="onSubmit">
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="scholarshipcoverageForm">
+<form [formGroup]="scholarshipcoverageForm" (ngSubmit)="onSubmit()">
+    <ng-template matStepLabel>Scholarship Coverage</ng-template>
     <div>
        <mat-card>
          <div>
@@ -34,6 +37,9 @@
                              formControlName="amount_type">
            </mat-form-field>
          </div>
+         <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
        </mat-card>
      </div>
      <div>
@@ -49,9 +55,21 @@
                                     </button>     
           
       </mat-card-actions>
+    
     </div>
    </form>
-      
+  </mat-step>
+  <mat-step>
+          <ng-template matStepLabel>Scholarship Type</ng-template>
+          <div>
+            <app-scholarship-type></app-scholarship-type>
 
-         {{scholarshipcoverageForm.value | json}}
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+      </mat-step>
+  </mat-horizontal-stepper> 
+
 

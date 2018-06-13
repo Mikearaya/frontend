@@ -22,6 +22,7 @@ import {ScholarshipTypeRoutingModule} from './scholarship-type-routing.module';
     MatCheckboxModule, MatCardModule, MatButtonModule, CommonModule
   ],
   declarations: [ScholarshipTypeComponent],
-  providers: [ScholarshipTypeService]
+  providers: [ScholarshipTypeService],
+  exports: [ScholarshipTypeComponent]
 })
 export class ScholarshipTypeModule { }
