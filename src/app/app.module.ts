@@ -28,6 +28,7 @@ import { ScholarshipCoverageModule } from './modules/scholarship-coverage/schola
 import { ScholarshipTypeModule } from './modules/scholarship-type/scholarship-type.module';
 import { EmployeeModule } from './modules/employee/employee.module';
 import { ScholarshipsModule } from './modules/scholarships/scholarships.module';
+import { EnrollmentModule } from './modules/enrollment/enrollment.module';
 
 @NgModule({
 
@@ -40,13 +41,13 @@ import { ScholarshipsModule } from './modules/scholarships/scholarships.module';
              ReactiveFormsModule, StudentModule, MatCheckboxModule,
              MatPaginatorModule, MatSortModule, MatCardModule,
              CourseModule, SubjectModule, ScholarshipCoverageModule, ScholarshipTypeModule, EmployeeModule,
-             ScholarshipsModule,
-              AppRoutingModule
+             ScholarshipsModule, EnrollmentModule,
+             AppRoutingModule
            ],
   declarations: [
             AppComponent, MenusComponent,
             TableComponent, HomeComponent,
-            DataComponent, TitleCasePipe
+            DataComponent, TitleCasePipe,
           ],
   providers: [GridServices],
 

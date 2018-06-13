@@ -19,7 +19,7 @@ export class EmployeeComponent implements OnInit {
   error: Array<any>;
   isUpdate: Boolean;
   id: number;
-  id_no: string;
+  id_no: string | number;
   Blood_Group = ['A+', 'A-', 'B-', 'B+', 'AB+', 'AB-', 'O+', 'O-' ];
 
   constructor(private fb: FormBuilder,

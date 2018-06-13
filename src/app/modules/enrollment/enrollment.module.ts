@@ -1,13 +1,11 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatRadioModule } from '@angular/material/radio';
-import { EmployeeComponent } from '../employee/employe/employee.component';
-import { EmployeeService } from './employee.service';
-import { EmployeeRoutingModule } from './employe-routing.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -17,19 +15,19 @@ import {MatCheckboxModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
+import { EnrollmentService } from './enrollment.service';
+import { EnrollmentRoutingModule } from './enrollment-routing.module';
+import { EnrollmentComponent } from './enrollment/enrollment.component';
+
 @NgModule({
-  declarations: [
-     EmployeeComponent
-],
   imports: [
-    BrowserModule, BrowserAnimationsModule , MatInputModule, MatFormFieldModule,
+    CommonModule,  BrowserModule, BrowserAnimationsModule , MatInputModule, MatFormFieldModule,
     HttpModule, FormsModule, HttpClientModule, ReactiveFormsModule, MatRadioModule,
     MatIconModule, MatDatepickerModule, MatSelectModule, MatListModule,
-    MatCheckboxModule, MatCardModule, EmployeeRoutingModule, MatButtonModule
+    MatCheckboxModule, MatCardModule, EnrollmentRoutingModule, MatButtonModule
   ],
-  providers: [EmployeeService],
+  providers: [EnrollmentService],
 
-  exports: [],
+  declarations: [EnrollmentComponent]
 })
-
-export class EmployeeModule { }
+export class EnrollmentModule { }

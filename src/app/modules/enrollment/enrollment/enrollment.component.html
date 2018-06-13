@@ -1,0 +1,66 @@
+<form class="enrollment-form" [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()">
+  <div>
+     <mat-card class="enrollment-card">
+       <div>
+         <mat-card-title class="title">{{title}}</mat-card-title>
+       </div>
+      <div class="body">
+       <div>
+         <mat-form-field>
+          <input matInput type="string | number" 
+                          formControlName="Student_Id" 
+                          placeholder="Student Id">
+          </mat-form-field>
+       </div>
+       <div>
+         <mat-form-field>
+          <input matInput [matDatepicker]="picker1" 
+                          placeholder="Date"
+                          formControlName="Date">
+                   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                   <mat-datepicker #picker1></mat-datepicker>
+         </mat-form-field>       
+       </div>
+       <div>
+           <mat-form-field>
+               <input matInput type="string | number"
+                               placeholder="term"
+                               formControlName="Term">
+           </mat-form-field>
+       </div>
+       <div>
+             <mat-form-field>
+               <input matInput [matDatepicker]="picker" 
+                              placeholder="year"
+                              formControlName="Year">
+                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                       <mat-datepicker #picker></mat-datepicker>
+             </mat-form-field>       
+           </div>
+       <div>
+            <mat-form-field>
+                <input matInput type="string | number"
+                                placeholder="course code"
+                                formControlName="Course_Code">
+            </mat-form-field>
+        </div>
+      </div>
+     </mat-card>
+   </div>
+   <div class="btn">
+    <mat-card-actions>
+        <button mat-raised-button class="btn"  color="primary"
+                                  type="submit" > 
+                                  submit
+                                  </button>
+        <button mat-raised-button class="btn"  color="warn"
+                                    type="submit">
+                                    cancel
+                                  </button>     
+        
+    </mat-card-actions>
+  </div>
+ </form>
+     
+
+ {{enrollmentForm.value | json}}
