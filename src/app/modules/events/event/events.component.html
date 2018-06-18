@@ -1,0 +1,61 @@
+<form class="event-form" [formGroup]="eventsForm" (ngSubmit)="onSubmit()">
+  <div>
+     <mat-card class="event-card">
+       <div>
+         <mat-card-title class="title">{{title}}</mat-card-title>
+       </div>
+      <div class="body">
+       <div>
+         <mat-form-field>
+          <input matInput type="string | number" 
+                          formControlName="Event_name" 
+                          placeholder="Event Name">
+          </mat-form-field>
+       </div>
+       <div>
+        <mat-form-field>
+          <textarea matInput type="string"
+                             placeholder="Description"
+                             formControlName="Description">
+          </textarea>
+        </mat-form-field>
+       </div>
+       <div>
+         <mat-form-field>
+          <input matInput [matDatepicker]="picker1" 
+                          placeholder="Start Date"
+                          formControlName="Start_date">
+                   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                   <mat-datepicker #picker1></mat-datepicker>
+         </mat-form-field>       
+         <mat-form-field>
+               <input matInput [matDatepicker]="picker" 
+                              placeholder="End Date"
+                              formControlName="End_date">
+                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                       <mat-datepicker #picker></mat-datepicker>
+         </mat-form-field>       
+       </div>
+       <div>
+         
+       </div>
+      </div>
+     </mat-card>
+   </div>
+   <div class="btn">
+    <mat-card-actions>
+        <button mat-raised-button class="btn"  color="primary"
+                                  type="submit" > 
+                                  submit
+                                  </button>
+        <button mat-raised-button class="btn"  color="warn"
+                                    type="submit">
+                                    cancel
+                                  </button>     
+        
+    </mat-card-actions>
+  </div>
+ </form>
+     
+
+ {{eventsForm.value | json}}

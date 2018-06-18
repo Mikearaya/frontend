@@ -20,7 +20,7 @@ import { CrudService } from './../../services/crud.service';
 
 
 
-  private setDataModel(formModel: any): URLSearchParams {
+  setDataModel(formModel: any): URLSearchParams {
     const dataModel = new URLSearchParams();
       dataModel.set('Employee_id', formModel.Employee_id);
       dataModel.set('Full_Name', formModel.Full_Name);

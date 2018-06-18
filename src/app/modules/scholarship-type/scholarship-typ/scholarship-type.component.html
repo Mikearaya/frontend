@@ -28,19 +28,25 @@
            </mat-form-field>
          </div>
        </mat-card>
+       <div>
+        <mat-card-actions>
+            <button mat-raised-button class="btn"  color="primary"
+                    type="submit"
+                    [disabled]= "!scholarshiptypeForm.valid">
+                                        submit
+                                      </button>
+            <button mat-raised-button class="btn"  color="warn"
+                                        type="cancel">
+                                        cancel
+                                      </button>     
+            
+        </mat-card-actions>
+      </div>
      </div>
    </form>
-       <div>
-           <mat-card-actions>
-               <button mat-raised-button class="btn"  color="primary"
-                       type="submit"
-                       [disabled]= "!scholarshiptypeForm.valid">
-                                           submit
-                                         </button>
-               <button mat-raised-button class="btn"  color="warn"
-                                           type="cancel">
-                                           cancel
-                                         </button>     
-               
-           </mat-card-actions>
-         </div>
+
+    <!-- <mat-card-content>
+        <app-table *ngIf="items"  (addnew)="addnew();" 
+        [showEvent]=true
+        [displayedColumns]="items?.columns" [items]="items?.result" datakey='id'></app-table>
+    </mat-card-content> -->

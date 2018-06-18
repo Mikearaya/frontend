@@ -1,0 +1,50 @@
+<form [formGroup]="feeTypeForm" (ngSubmit)="onSubmit()">
+    <div>
+       <mat-card>
+         <div>
+           <mat-card-title>{{title}}</mat-card-title>
+         </div>
+         <div>
+             <mat-form-field>
+                 <input matInput type="string"
+                                 placeholder="Fee"
+                                 formControlName="Fee">
+             </mat-form-field>
+         </div>
+         <div>
+            <mat-form-field>
+                <input matInput type="string"
+                                placeholder="Term"
+                                formControlName="Term">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input matInput type="number"
+                                placeholder="Duration"
+                                formControlName="Duration">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input matInput type="number"
+                                placeholder="Min Duration"
+                                formControlName="Min_duration">
+            </mat-form-field>
+        </div>
+       </mat-card>
+       <div class="btn">
+            <mat-card-actions>
+                <button mat-raised-button class="btn"  color="primary"
+                                          type="submit" > 
+                                          submit
+                                          </button>
+                <button mat-raised-button class="btn"  color="warn"
+                                            type="submit">
+                                            cancel
+                                          </button>     
+                
+            </mat-card-actions>
+          </div>
+     </div>
+   </form>

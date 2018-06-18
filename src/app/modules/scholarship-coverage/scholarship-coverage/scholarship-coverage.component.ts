@@ -1,22 +1,18 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { IScholarshipCoverage } from '../scholarship-coverage.model';
 import { ScholarshipCoverageService } from '../scholarship-coverage.service';
 // import { ToastrService } from 'ngx-toastr'
 import { Router, ActivatedRoute } from '@angular/router';
-import { ScholarshipTypeComponent } from './../../scholarship-type/scholarship-typ/scholarship-type.component';
 
 @Component({
   selector: 'app-scholarship-coverage',
   templateUrl: './scholarship-coverage.component.html',
   styleUrls: ['./scholarship-coverage.component.css']
 })
-export class ScholarshipCoverageComponent implements OnInit, AfterViewInit {
+export class ScholarshipCoverageComponent implements OnInit {
   title = 'Scholarship Coverage';
- @ViewChild(ScholarshipTypeComponent) scholarshiptype;
-  private ScholarshipTypeComponent: ScholarshipTypeComponent;
   scholarshipcoverageForm: FormGroup;
-  scholarshiptypeForm: FormGroup;
   scholarshipcoverage: IScholarshipCoverage;
   error: Array<any>;
   isUpdate: Boolean;
@@ -65,9 +61,7 @@ export class ScholarshipCoverageComponent implements OnInit, AfterViewInit {
     };
     return CoverageData;
   }
-  ngAfterViewInit() {
-    this.scholarshiptypeForm = this.scholarshiptype;
-  }
+
 
   onSubmit() {
     this.scholarshipcoverage = this.prepareData();

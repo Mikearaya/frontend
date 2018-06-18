@@ -14,11 +14,12 @@ import { MatCardModule } from '@angular/material/card';
 import {ScholarshipTypeComponent} from '../scholarship-type/scholarship-typ/scholarship-type.component';
 import {ScholarshipTypeService} from './scholarship-type.service';
 import {ScholarshipTypeRoutingModule} from './scholarship-type-routing.module';
+import { ScholarshipCoverageModule } from './../scholarship-coverage/scholarship-coverage.module';
 
 @NgModule({
   imports: [  BrowserModule, BrowserAnimationsModule , MatInputModule, MatFormFieldModule,
     HttpModule, FormsModule, HttpClientModule, ReactiveFormsModule, ScholarshipTypeRoutingModule,
-    MatInputModule, MatFormFieldModule, MatListModule,
+    MatInputModule, MatFormFieldModule, MatListModule, ScholarshipCoverageModule,
     MatCheckboxModule, MatCardModule, MatButtonModule, CommonModule
   ],
   declarations: [ScholarshipTypeComponent],

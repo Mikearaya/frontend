@@ -29,6 +29,9 @@ import { ScholarshipTypeModule } from './modules/scholarship-type/scholarship-ty
 import { EmployeeModule } from './modules/employee/employee.module';
 import { ScholarshipsModule } from './modules/scholarships/scholarships.module';
 import { EnrollmentModule } from './modules/enrollment/enrollment.module';
+// import { TableModule } from './components/table/table/table.module';
+import { EventsModule } from './modules/events/events.module';
+import { FeeTypeModule } from './modules/fee-type/fee-type.module';
 
 @NgModule({
 
@@ -41,7 +44,7 @@ import { EnrollmentModule } from './modules/enrollment/enrollment.module';
              ReactiveFormsModule, StudentModule, MatCheckboxModule,
              MatPaginatorModule, MatSortModule, MatCardModule,
              CourseModule, SubjectModule, ScholarshipCoverageModule, ScholarshipTypeModule, EmployeeModule,
-             ScholarshipsModule, EnrollmentModule,
+             FeeTypeModule, ScholarshipsModule, EnrollmentModule, EventsModule,
              AppRoutingModule
            ],
   declarations: [

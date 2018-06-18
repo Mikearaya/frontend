@@ -60,7 +60,7 @@ export class StudentService {
         }
 
 
-      private setDataModel(formModel: any): URLSearchParams {
+      public setDataModel(formModel: any): URLSearchParams {
           const dataModel = new URLSearchParams();
             dataModel.set('full_name', formModel.full_name);
             dataModel.set('gender', formModel.gender);

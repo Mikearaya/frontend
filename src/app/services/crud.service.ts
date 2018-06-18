@@ -39,5 +39,11 @@ export class CrudService {
     const url = `${this.Url}/${id}`;
     return this.http.delete(url);
   }
+//   setDataModel(formModel: any): URLSearchParams {
+//     const dataModel = new URLSearchParams();
+//       dataModel.set('full_name', formModel.full_name);
+//    return dataModel;
+
+// }
   // .map(res => res.json());
 }

@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { IScholarshipType } from '../scholarship-type.model';
 import { ScholarshipTypeService } from '../scholarship-type.service';
 // import { ToastrService } from 'ngx-toastr'
 import {Router, ActivatedRoute} from '@angular/router';
+import { ScholarshipCoverageComponent } from './../../scholarship-coverage/scholarship-coverage/scholarship-coverage.component';
+import { IScholarshipCoverage } from '../../scholarship-coverage/scholarship-coverage.model';
+import { TableComponent } from './../../../components/table/table.component';
 
 @Component({
   selector: 'app-scholarship-type',
   templateUrl: './scholarship-type.component.html',
   styleUrls: ['./scholarship-type.component.css']
 })
-export class ScholarshipTypeComponent implements OnInit {
+export class ScholarshipTypeComponent implements OnInit, AfterViewInit {
   title= 'Scholarship Type';
+ @ViewChild(ScholarshipCoverageComponent) scholarshipcoverage;
   scholarshiptypeForm: FormGroup;
+  scholarshipcoverageForm: FormGroup;
   scholarshiptype: IScholarshipType;
   error: Array<any>;
   isUpdate: Boolean;
@@ -56,6 +61,13 @@ export class ScholarshipTypeComponent implements OnInit {
     };
     return TypeData;
   }
+  ngAfterViewInit() {
+    this.scholarshipcoverageForm = this.scholarshipcoverage;
+  }
+
+  addnew() {
+    this.router.navigate([`/manage/${''}`]);
+  }
 
      onSubmit() {
         this.scholarshiptype = this.prepareData();
@@ -79,6 +91,7 @@ export class ScholarshipTypeComponent implements OnInit {
     }
 
 
+  }
 
-}
+
 
