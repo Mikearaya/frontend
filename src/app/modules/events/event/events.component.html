@@ -1,9 +1,10 @@
+<div class="event">
+<div>
+    <mat-card-title class="title">{{title}}</mat-card-title>
+</div>
 <form class="event-form" [formGroup]="eventsForm" (ngSubmit)="onSubmit()">
   <div>
      <mat-card class="event-card">
-       <div>
-         <mat-card-title class="title">{{title}}</mat-card-title>
-       </div>
       <div class="body">
        <div>
          <mat-form-field>
@@ -56,6 +57,6 @@
     </mat-card-actions>
   </div>
  </form>
-     
+</div>
 
  {{eventsForm.value | json}}

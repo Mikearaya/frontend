@@ -1,0 +1,59 @@
+<div class="user">
+<div>
+    <mat-card-title class="title">{{title}}</mat-card-title>
+</div>
+<form class="user-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div>
+     <mat-card class="user-card">
+        <div class="body">
+          <div>
+            <mat-form-field>
+              <input matInput type="string"
+                              formControlName="First_Name"
+                              placeholder="First Name">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput type="string"
+                              formControlName="Last_Name"
+                              placeholder="User Name">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput type="string | number"
+                              formControlName="User_Name"
+                              placeholder="Last Name">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput type="email"
+                              formControlName="Email"
+                              placeholder="Email">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput type="password"
+                              placeholder="Password"
+                             formControlName="Password">
+            </mat-form-field>
+          </div>
+      </div>
+      <div class="btn">
+          <mat-card-actions>
+              <button mat-raised-button class="btn"  color="primary"
+                                        type="submit" > 
+                                        submit
+                                        </button>
+          </mat-card-actions>
+        </div>
+     </mat-card>
+   </div>
+ </form>
+</div>
+
+  <!-- {{userForm.value | json}} -->
+

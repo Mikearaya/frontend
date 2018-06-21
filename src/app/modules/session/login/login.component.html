@@ -1,0 +1,35 @@
+<form class="login-form" [formGroup]="loginForm" (ngSubmit)=" onSubmit()">
+  <div>
+    <mat-card class="login-card">
+      <div>
+        <mat-card-title class="title">{{title}}</mat-card-title>
+      </div>
+      <div class="body">
+        <div>
+        <mat-form-field>
+          <input matInput type="string | number"
+                          formControlName="User_Name"
+                          placeholder="User Name" >
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput type="password"
+                          placeholder="Password"
+                          formControlName="Password">
+        </mat-form-field>
+      </div>
+    </div>
+      <div class="btn">
+          <button mat-raised-button class="btn"
+                                    color="primary"
+                                    type="submit">
+            login
+          </button>
+      </div>
+    </mat-card>
+  </div>
+</form>
+
+
+<!-- {{userForm.value | json}} -->

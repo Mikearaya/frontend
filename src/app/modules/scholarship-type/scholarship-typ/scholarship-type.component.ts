@@ -6,7 +6,6 @@ import { ScholarshipTypeService } from '../scholarship-type.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import { ScholarshipCoverageComponent } from './../../scholarship-coverage/scholarship-coverage/scholarship-coverage.component';
 import { IScholarshipCoverage } from '../../scholarship-coverage/scholarship-coverage.model';
-import { TableComponent } from './../../../components/table/table.component';
 
 @Component({
   selector: 'app-scholarship-type',

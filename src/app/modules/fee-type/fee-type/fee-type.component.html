@@ -1,9 +1,10 @@
+<div class="fee-type">
+<div>
+        <mat-card-title>{{title}}</mat-card-title>
+ </div>
 <form [formGroup]="feeTypeForm" (ngSubmit)="onSubmit()">
     <div>
        <mat-card>
-         <div>
-           <mat-card-title>{{title}}</mat-card-title>
-         </div>
          <div>
              <mat-form-field>
                  <input matInput type="string"
@@ -48,3 +49,4 @@
           </div>
      </div>
    </form>
+</div>

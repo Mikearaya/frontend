@@ -1,9 +1,10 @@
+<div class="type">
+    <div>
+        <mat-card-title>{{title}}</mat-card-title>
+      </div>
 <form [formGroup]="scholarshiptypeForm" (ngSubmit)="onSubmit()">
     <div>
        <mat-card>
-         <div>
-           <mat-card-title>{{title}}</mat-card-title>
-         </div>
          <div>
              <mat-form-field>
                  <input matInput type="text"
@@ -44,9 +45,9 @@
       </div>
      </div>
    </form>
-
-    <!-- <mat-card-content>
+  </div>
+     <!-- <mat-card-content>
         <app-table *ngIf="items"  (addnew)="addnew();" 
         [showEvent]=true
         [displayedColumns]="items?.columns" [items]="items?.result" datakey='id'></app-table>
-    </mat-card-content> -->
+    </mat-card-content>  -->

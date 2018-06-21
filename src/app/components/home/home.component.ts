@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import {FormControl, Validator } from '@angular/forms';
+import { LoginService } from './../../modules/session/services/login.service';
+import { User } from './../../modules/session/user.model';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +12,12 @@ import {FormControl, Validator } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private loginservice: LoginService) { }
+  users: User[] = [];
   ngOnInit() {
-  }
-
-  addnew() {
-  }
-
-  delete(selectedItem: any[]) {
+    this.loginservice.getAll().pipe(first()).subscribe( users => {
+      this.users = users;
+    } );
   }
 
 }

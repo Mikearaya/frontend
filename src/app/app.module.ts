@@ -6,9 +6,9 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule, MatIcon, MatIconModule, MatToolbarModule,
-          MatSidenav, MatSidenavModule, MatProgressSpinnerModule,
+          MatSidenav, MatSidenavModule, MatProgressSpinnerModule, MatGridList,
           MatNativeDateModule, MatListModule, MatTableModule, MatCheckboxModule,
-          MatPaginator, MatPaginatorModule, MatSortModule, MatCardModule,
+          MatPaginator, MatPaginatorModule, MatSortModule, MatCardModule, MatGridTile,
           MatButtonModule
         } from '@angular/material';
 
@@ -32,6 +32,10 @@ import { EnrollmentModule } from './modules/enrollment/enrollment.module';
 // import { TableModule } from './components/table/table/table.module';
 import { EventsModule } from './modules/events/events.module';
 import { FeeTypeModule } from './modules/fee-type/fee-type.module';
+import { ToastrModule } from 'ngx-toastr';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { UserModule } from './modules/user/user.module';
+import { LoginModule } from './modules/session/login/login.module';
 
 @NgModule({
 
@@ -44,13 +48,13 @@ import { FeeTypeModule } from './modules/fee-type/fee-type.module';
              ReactiveFormsModule, StudentModule, MatCheckboxModule,
              MatPaginatorModule, MatSortModule, MatCardModule,
              CourseModule, SubjectModule, ScholarshipCoverageModule, ScholarshipTypeModule, EmployeeModule,
-             FeeTypeModule, ScholarshipsModule, EnrollmentModule, EventsModule,
-             AppRoutingModule
+             FeeTypeModule, ScholarshipsModule, EnrollmentModule, EventsModule, ToastrModule, UserModule,
+             LoginModule, AppRoutingModule
            ],
   declarations: [
             AppComponent, MenusComponent,
-            TableComponent, HomeComponent,
-            DataComponent, TitleCasePipe,
+            TableComponent, HomeComponent, DashboardComponent, MatGridList,
+            DataComponent, TitleCasePipe, MatGridTile,
           ],
   providers: [GridServices],
 

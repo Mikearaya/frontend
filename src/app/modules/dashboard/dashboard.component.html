@@ -1,0 +1,16 @@
+ <mat-card>
+ <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>Data1</mat-grid-tile>
+      <mat-grid-tile>Data2</mat-grid-tile>
+      <mat-grid-tile>Data3</mat-grid-tile>
+      <mat-grid-tile>
+        <div>
+          <ul>
+              <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+          </ul>
+      </div>
+      <p><a [routerLink]="['/login']">Logout</a></p>
+      
+      </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
