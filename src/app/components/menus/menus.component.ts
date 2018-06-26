@@ -29,8 +29,8 @@ const MENU_ITEM = [
   { path: '/data/enrollments', icon: 'assignment_ind', label: 'Enrolment'},
   { path: '/data/employee', icon: 'people', label: 'Employees'},
   { path: '/data/events', icon: 'event', label: 'Events'},
-  { path: '/data/scholarships', icon: 'scholarship', label: 'Scholarship'},
-  { path: '/data/scholarship_type', label: 'Scholarship Type'},
+  { path: '/data/scholarships', icon: 'school', label: 'Scholarship'},
+  { path: '/data/scholarship_type', icon: 'money', label: 'Scholarship Type'},
   { path: '/data/users', icon: 'people', label: 'User'}
 ];
 

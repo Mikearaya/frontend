@@ -20,7 +20,7 @@ export class FeeTypeComponent implements OnInit {
   id_no: string | number;
   constructor( private fb: FormBuilder,
                private activatedRoute: ActivatedRoute,
-               private feetypeService: FeeTypeService, ) {
+               private feetypeService: FeeTypeService ) {
                  this.generateForm();
                }
   generateForm(activeFeeType: any = '') {

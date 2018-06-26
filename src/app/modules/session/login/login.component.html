@@ -1,8 +1,9 @@
+<mat-card>
 <form class="login-form" [formGroup]="loginForm" (ngSubmit)=" onSubmit()">
   <div>
     <mat-card class="login-card">
-      <div>
-        <mat-card-title class="title">{{title}}</mat-card-title>
+      <div class="title">
+        <mat-card-title>{{title}}</mat-card-title>
       </div>
       <div class="body">
         <div>
@@ -30,6 +31,6 @@
     </mat-card>
   </div>
 </form>
-
+</mat-card>
 
 <!-- {{userForm.value | json}} -->

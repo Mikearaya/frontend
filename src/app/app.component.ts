@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   ];
 
   links = [
-    { path: '/logout', label: 'logout'},
+    { path: '/login', label: 'logout'},
   ];
 
   constructor () {

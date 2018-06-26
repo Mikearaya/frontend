@@ -33,9 +33,9 @@ import { EnrollmentModule } from './modules/enrollment/enrollment.module';
 import { EventsModule } from './modules/events/events.module';
 import { FeeTypeModule } from './modules/fee-type/fee-type.module';
 import { ToastrModule } from 'ngx-toastr';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { UserModule } from './modules/user/user.module';
 import { LoginModule } from './modules/session/login/login.module';
+import { FeeRateModule } from './modules/fee-rate/fee-rate.module';
 
 @NgModule({
 
@@ -49,11 +49,11 @@ import { LoginModule } from './modules/session/login/login.module';
              MatPaginatorModule, MatSortModule, MatCardModule,
              CourseModule, SubjectModule, ScholarshipCoverageModule, ScholarshipTypeModule, EmployeeModule,
              FeeTypeModule, ScholarshipsModule, EnrollmentModule, EventsModule, ToastrModule, UserModule,
-             LoginModule, AppRoutingModule
+             LoginModule, FeeRateModule, AppRoutingModule
            ],
   declarations: [
             AppComponent, MenusComponent,
-            TableComponent, HomeComponent, DashboardComponent, MatGridList,
+            TableComponent, HomeComponent, MatGridList,
             DataComponent, TitleCasePipe, MatGridTile,
           ],
   providers: [GridServices],

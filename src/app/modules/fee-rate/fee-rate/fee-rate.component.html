@@ -1,0 +1,46 @@
+<div class="fee-rate">
+  <div>
+          <mat-card-title>{{title}}</mat-card-title>
+   </div>
+  <form [formGroup]="feeRateForm" (ngSubmit)="onSubmit()">
+      <div>
+         <mat-card>
+           <div>
+               <mat-form-field>
+                   <input matInput type="string"
+                                   placeholder="Fee Type"
+                                   formControlName="Fee_Type">
+               </mat-form-field>
+           </div>
+           <div>
+              <mat-form-field>
+                  <input matInput type="string"
+                                  placeholder="Rate"
+                                  formControlName="Rate">
+              </mat-form-field>
+          </div>
+          <div>
+              <mat-form-field>
+                  <input matInput type="number"
+                                  placeholder="Course Code"
+                                  formControlName="Course_Code">
+              </mat-form-field>
+          </div>
+         </mat-card>
+         <div class="btn">
+              <mat-card-actions>
+                  <button mat-raised-button class="btn"  color="primary"
+                                            type="submit" > 
+                                            submit
+                                            </button>
+                  <button mat-raised-button class="btn"  color="warn"
+                                              type="submit">
+                                              cancel
+                                            </button>     
+                  
+              </mat-card-actions>
+            </div>
+       </div>
+     </form>
+  </div>
+  
