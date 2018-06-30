@@ -1,4 +1,13 @@
 .type {
     margin-left: 3%;
     margin-top: 2%;
+    margin-right: 2%;
+}
+.cov {
+    margin-left: 4%;
+
+}
+.btn {
+    margin-right: 5%;
+    margin-left: 70%;
 }

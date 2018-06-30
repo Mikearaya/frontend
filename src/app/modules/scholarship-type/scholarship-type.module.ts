@@ -5,25 +5,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCheckboxModule } from '@angular/material';
-import { MatInputModule } from '@angular/material';
-import { MatListModule } from '@angular/material/list';
-import { MatCardModule } from '@angular/material/card';
-import {ScholarshipTypeComponent} from '../scholarship-type/scholarship-typ/scholarship-type.component';
-import {ScholarshipTypeService} from './scholarship-type.service';
-import {ScholarshipTypeRoutingModule} from './scholarship-type-routing.module';
+import { ScholarshipTypeComponent} from '../scholarship-type/scholarship-typ/scholarship-type.component';
+import { ScholarshipTypeService} from './scholarship-type.service';
+import { ScholarshipTypeRoutingModule} from './scholarship-type-routing.module';
 import { ScholarshipCoverageModule } from './../scholarship-coverage/scholarship-coverage.module';
+import { MatInputModule, MatIconModule, MatToolbarModule,
+        MatProgressSpinnerModule,
+        MatNativeDateModule, MatListModule, MatTableModule, MatCheckboxModule,
+        MatPaginatorModule, MatSortModule, MatCardModule,
+        MatButtonModule
+} from '@angular/material';
+import { CdkTableModule } from '@angular/cdk/table';
+import { TableService } from './table.service';
 
 @NgModule({
   imports: [  BrowserModule, BrowserAnimationsModule , MatInputModule, MatFormFieldModule,
-    HttpModule, FormsModule, HttpClientModule, ReactiveFormsModule, ScholarshipTypeRoutingModule,
-    MatInputModule, MatFormFieldModule, MatListModule, ScholarshipCoverageModule,
-    MatCheckboxModule, MatCardModule, MatButtonModule, CommonModule
+              MatIconModule, MatToolbarModule,
+              MatProgressSpinnerModule, HttpModule,
+              MatNativeDateModule, MatListModule, MatTableModule, MatCheckboxModule,
+              MatPaginatorModule, MatSortModule, MatCardModule,
+              MatButtonModule, FormsModule, HttpClientModule, ReactiveFormsModule, ScholarshipTypeRoutingModule,
+              MatInputModule, MatFormFieldModule, MatListModule, ScholarshipCoverageModule,
+              MatCheckboxModule, MatCardModule, MatButtonModule, CommonModule, CdkTableModule
   ],
   declarations: [ScholarshipTypeComponent],
-  providers: [ScholarshipTypeService],
-  exports: [ScholarshipTypeComponent]
+  providers: [ScholarshipTypeService, TableService],
+  exports: []
 })
 export class ScholarshipTypeModule { }

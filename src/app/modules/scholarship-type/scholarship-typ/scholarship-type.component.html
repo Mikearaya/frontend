@@ -1,53 +1,91 @@
 <div class="type">
+  <div>
+    <mat-card-title>{{title}}</mat-card-title>
+  </div>
+  <form [formGroup]="scholarshiptypeForm" (ngSubmit)="onSubmit()">
     <div>
-        <mat-card-title>{{title}}</mat-card-title>
-      </div>
-<form [formGroup]="scholarshiptypeForm" (ngSubmit)="onSubmit()">
-    <div>
-       <mat-card>
-         <div>
-             <mat-form-field>
-                 <input matInput type="text"
-                                 placeholder="Name"
-                                 formControlName="Name">
-             </mat-form-field>
-         </div>
-         <div>
-            <mat-form-field>
-                <input matInput type="number" class="type-right-align"
-                                 placeholder="Amount"
-                                 formControlName="Amount">
+      <mat-card>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-4 col-sm-3">
+              <mat-form-field>
+                <input matInput type="text" 
+                                placeholder="Name" 
+                                formControlName="Name">
+              </mat-form-field>
+            </div>
+            <div class="col-xs-8 col-sm-3">
+              <mat-form-field>
+                <input matInput type="number" class="type-right-align" 
+                                placeholder="Amount" 
+                                formControlName="Amount">
                 <span matPrefix>$&nbsp;</span>
                 <span matSuffix>.00</span>
               </mat-form-field>
-         </div>
-         <div>
-           <mat-form-field>
-             <input matInput type="text"
-                             placeholder="Amount Type"
-                             formControlName="Amount_Type">
-           </mat-form-field>
-         </div>
-       </mat-card>
-       <div>
+            </div>
+            <div class="col-xs-4 col-sm-3">
+              <mat-form-field>
+                <input matInput type="text" 
+                                placeholder="Amount Type" 
+                                formControlName="Amount_Type">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+      <div class="btn">
         <mat-card-actions>
-            <button mat-raised-button class="btn"  color="primary"
-                    type="submit"
-                    [disabled]= "!scholarshiptypeForm.valid">
-                                        submit
-                                      </button>
-            <button mat-raised-button class="btn"  color="warn"
-                                        type="cancel">
-                                        cancel
-                                      </button>     
-            
+          <button mat-raised-button color="primary" type="submit">
+            submit
+          </button>
+          <button mat-raised-button (click)="btnCancel()" color="warn" type="button">
+            cancel
+          </button>
+
         </mat-card-actions>
       </div>
-     </div>
-   </form>
+    </div>
+  </form>
+</div>
+<!-- table  -->
+<mat-card class="type">
+  <div class="coverage-header">
+    <button mat-raised-button color="primary" (click)="addnew();">Add</button>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
   </div>
-     <!-- <mat-card-content>
-        <app-table *ngIf="items"  (addnew)="addnew();" 
-        [showEvent]=true
-        [displayedColumns]="items?.columns" [items]="items?.result" datakey='id'></app-table>
-    </mat-card-content>  -->
+  <!-- number-column -->
+  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource">
+    <ng-container matColumnDef="no">
+      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+      <mat-cell *matCellDef="let coverage">{{coverage.no}}</mat-cell>
+    </ng-container>
+    <!-- scholarship-code -->
+    <ng-container matColumnDef="scholarshipCode">
+      <mat-header-cell *matHeaderCellDef>Scholarship Code</mat-header-cell>
+      <mat-cell class="code-cell" *matCellDef="let coverage">{{coverage.code}}</mat-cell>
+    </ng-container>
+    <!-- fee-type column -->
+    <ng-container matColumnDef="feeType">
+      <mat-header-cell *matHeaderCellDef>Fee Type</mat-header-cell>
+      <mat-cell class="type-cell" *matCellDef="let coverage">{{coverage.fee-type}}</mat-cell>
+    </ng-container>
+    <!-- amount column -->
+    <ng-container matColumnDef="amount">
+      <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+      <mat-cell class="amount-cell" *matCellDef="let coverage">{{coverage.amount}}</mat-cell>
+    </ng-container>
+    <!-- amount type column -->
+    <ng-container matColumnDef="amountType">
+      <mat-header-cell *matHeaderCellDef>Amount Type</mat-header-cell>
+      <mat-cell class="amount-type-cell" *matCellDef="let coverage">{{coverage.amount-type}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClick(row)"></mat-row>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 15, 25, 100]"></mat-paginator>
+</mat-card>

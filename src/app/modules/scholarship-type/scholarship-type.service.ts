@@ -15,7 +15,7 @@ import { CrudService } from './../../services/crud.service';
 @Injectable()
 export class ScholarshipTypeService extends CrudService {
   data: URLSearchParams;
-  protected Url = 'http://localhost/smart_school/index.php/api/employee/';
+  protected Url = 'http://localhost/smart_school/index.php/api/scholarship_type/';
 
   private setDataModel(formModel: any): URLSearchParams {
     const dataModel = new URLSearchParams();

@@ -76,6 +76,10 @@ export class ScholarshipCoverageComponent implements OnInit {
           .subscribe((response: any) => this.HandelResponse(response));
     }
   }
+  onCancel() {
+    this.router.navigate([`/manage/${'scholarship_type'}`]);
+  }
+
   HandelResponse(response: any) {
     if (response.success) {
       console.log('submited');

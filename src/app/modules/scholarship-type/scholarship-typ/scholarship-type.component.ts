@@ -1,11 +1,17 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, EventEmitter, Output, Input  } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 import { IScholarshipType } from '../scholarship-type.model';
 import { ScholarshipTypeService } from '../scholarship-type.service';
 // import { ToastrService } from 'ngx-toastr'
 import {Router, ActivatedRoute} from '@angular/router';
 import { ScholarshipCoverageComponent } from './../../scholarship-coverage/scholarship-coverage/scholarship-coverage.component';
-import { IScholarshipCoverage } from '../../scholarship-coverage/scholarship-coverage.model';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {PageEvent} from '@angular/material';
+import { IScholarshipCoverage } from './../../scholarship-coverage/scholarship-coverage.model';
+import { DataSource } from '@angular/cdk/collections';
+import { TableService } from './../table.service';
+import {Location} from '@angular/common';
+import { TableDataSource } from './../table-data-source';
 
 @Component({
   selector: 'app-scholarship-type',
@@ -21,10 +27,14 @@ export class ScholarshipTypeComponent implements OnInit, AfterViewInit {
   error: Array<any>;
   isUpdate: Boolean;
   id: number;
+  dataSource: TableDataSource;
+  displayedColumns = ['no', 'scholarshipCode', 'feeType', 'amount', 'amountType' ];
   constructor( private fb: FormBuilder,
                private scholarshiptypeservice: ScholarshipTypeService,
                private activatedRoute: ActivatedRoute,
-               private router: Router ) {
+               private router: Router,
+               private _location: Location,
+               private tableservice: TableService ) {
                  this.generateForm();
   }
 
@@ -45,7 +55,8 @@ export class ScholarshipTypeComponent implements OnInit, AfterViewInit {
     this.isUpdate = (this.id) ? true : false;
     this.scholarshiptypeservice.getData(this.id)
         .subscribe((scholarshiptype: any) => this.generateForm(scholarshiptype.result));
-
+        this.dataSource = new TableDataSource(this.tableservice);
+        this.dataSource.loadCoverages('', '', 'asc', 0, 5);
 }
   prepareData(): any {
 
@@ -65,7 +76,7 @@ export class ScholarshipTypeComponent implements OnInit, AfterViewInit {
   }
 
   addnew() {
-    this.router.navigate([`/manage/${''}`]);
+    this.router.navigate([`/manage/${'scholarship_coverage'}`]);
   }
 
      onSubmit() {
@@ -87,6 +98,14 @@ export class ScholarshipTypeComponent implements OnInit, AfterViewInit {
       } else {
         this.error = response;
       }
+    }
+
+    // coverage table
+    onRowClick(row) {
+      console.log('Row clicked: ', row);
+    }
+    btnCancel() {
+      this._location.back();
     }
 
 
