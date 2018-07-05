@@ -9,10 +9,12 @@ import { Observable } from 'rxjs/Observable';
 export class CrudService {
   baseUrl = 'http://localhost/smart_school/index.php/api';
   protected url;
-  Url = `${this.baseUrl + this.url}`;
+  Url = `${this.baseUrl}/${this.url}`;
   private header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient, url: String) {
+    this.Url = `${this.baseUrl}/${url}`;
+   }
  // GET: get data from DB
   getData(id: number = 0): Observable<any[]> {
     console.log(this.Url);
