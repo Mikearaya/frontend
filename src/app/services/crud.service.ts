@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -7,7 +7,9 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CrudService {
-  protected Url;
+  baseUrl = 'http://localhost/smart_school/index.php/api';
+  protected url;
+  Url = `${this.baseUrl + this.url}`;
   private header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
   constructor(private http: HttpClient) {  }
@@ -22,16 +24,16 @@ export class CrudService {
   }
  // POST: Inserting data to DB
   postData(newData: any): Observable<any> {
-    const body = JSON.stringify(newData);
+    const Data = this.setDataModel(newData);
     const options = { 'headers': this.header };
-    return this.http.post<any>(`${this.Url}`, options);
+    return this.http.post<any>(`${this.Url}`, JSON.stringify(Data),
+     options);
   }
   // UPDATE: update data method
   updateData(updatedData: any, id: number) {
-    const body = JSON.stringify(updatedData);
+    const Data = this.setDataModel(updatedData);
     const options = { 'headers': this.header };
-    return this.http.put(this.Url + id,
-      body,
+    return this.http.put(this.Url + id, JSON.stringify(Data),
       options);
   }
    // DELETE: deleting data in DB
@@ -39,11 +41,25 @@ export class CrudService {
     const url = `${this.Url}/${id}`;
     return this.http.delete(url);
   }
-//   setDataModel(formModel: any): URLSearchParams {
-//     const dataModel = new URLSearchParams();
-//       dataModel.set('full_name', formModel.full_name);
-//    return dataModel;
+  // getting the dataModel in all modules service
+  setDataModel(formModel: any): URLSearchParams {
+    const dataModel = new URLSearchParams();
+      for (const key in  formModel) {
+        if (formModel.hasOwnProperty(key)) {
+            const value = formModel[key];
+            if (value instanceof Object) {
+              for (const key2 in value) {
+                if (value.hasOwnProperty(key2)) {
+                  const element = value[key];
+                  dataModel.set(`${value}[${key2}]`, element);
+                }
+              }
+            } else {
+              dataModel.set(`${key}`, value);
+            }
+          }
+      }
+    return dataModel;
 
-// }
-  // .map(res => res.json());
+    }
 }

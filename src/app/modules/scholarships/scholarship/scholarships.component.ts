@@ -59,11 +59,11 @@ export class ScholarshipsComponent implements OnInit {
 
         if (!this.isUpdate) {
 
-          this.scholarshipservice.PostScholarship(this.scholarships)
+          this.scholarshipservice.postData(this.scholarships)
               .subscribe((response: any) => this.HandelResponse(response));
         } else {
 
-          this.scholarshipservice.UpdateScholarship(this.scholarships, this.id)
+          this.scholarshipservice.updateData(this.scholarships, this.id)
               .subscribe((response: any) => this.HandelResponse(response));
         }
       }
