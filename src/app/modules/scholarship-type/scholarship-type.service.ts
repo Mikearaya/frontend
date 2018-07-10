@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CrudService } from './../../services/crud.service';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable()
 export class ScholarshipTypeService extends CrudService {
-  protected url = '/scholarship_type/';
+
+  constructor(private httpClient: HttpClient) {
+    super(httpClient, '/scholarship_type/');
+  }
 
 }

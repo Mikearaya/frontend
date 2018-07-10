@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   isUpdate: Boolean;
   id: number;
   id_no: string | number;
+  hide = true;
 
   constructor(
     private userService: UserService,

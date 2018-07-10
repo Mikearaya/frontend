@@ -8,16 +8,19 @@
         <div>
           <mat-form-field>
             <input matInput type="text | number" 
-                            placeholder="Scholarship Code" 
-                            formControlName="scholarship_code">
+                            placeholder="Scholarship" 
+                            formControlName="scholarship">
           </mat-form-field>
         </div>
         <div>
           <mat-form-field>
-            <input matInput type="text | number" 
-                            placeholder="Fee Type Code" 
-                            formControlName="fee_type_code">
-          </mat-form-field>
+            <mat-select placeholder="Fee Type"
+                        formControlName="fee_type">
+                <mat-option *ngFor="let type of Fee_Type" [value]="type">
+                        {{ type }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
         </div>
         <div>
           <mat-form-field>
@@ -30,9 +33,12 @@
         </div>
         <div>
           <mat-form-field>
-            <input matInput type="text"
-                            placeholder="Amount Type"
-                            formControlName="amount_type">
+            <mat-select placeholder="Amount Type"
+                        formControlName="amount_type">
+                  <mat-option *ngFor="let type of Amount_Type" [value]="type">
+                          {{ type }}
+                  </mat-option>
+              </mat-select>
           </mat-form-field>
         </div>
 

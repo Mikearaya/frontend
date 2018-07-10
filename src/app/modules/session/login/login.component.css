@@ -1,4 +1,21 @@
-.login-card {
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* .cont-card {
+    margin-left: 2%;
+    margin-bottom: 1%;
+    margin-right: 2%;
+} */
+.title {
+    align-content: center;
+}
+
+
+
+ /* .login-card {
     padding-left: 3%;
     padding-right: 22%;
     margin-left: 35%;
@@ -11,4 +28,4 @@
 }
 .title {
     margin-left: 30%;
-}
+} */

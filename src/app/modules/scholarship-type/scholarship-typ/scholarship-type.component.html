@@ -25,10 +25,13 @@
             </div>
             <div class="col-xs-4 col-sm-3">
               <mat-form-field>
-                <input matInput type="text" 
-                                placeholder="Amount Type" 
-                                formControlName="Amount_Type">
-              </mat-form-field>
+              <mat-select placeholder="Amount Type"
+                          formControlName="Amount_Type">
+                <mat-option *ngFor="let type of Amount_Type" [value]="type">
+                        {{ type }}
+                </mat-option>
+            </mat-select>
+          </mat-form-field>
             </div>
           </div>
         </div>

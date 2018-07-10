@@ -10,35 +10,55 @@
             <mat-form-field>
               <input matInput type="string"
                               formControlName="First_Name"
-                              placeholder="First Name">
+                              placeholder="First Name"
+                              required>
             </mat-form-field>
           </div>
           <div>
             <mat-form-field>
               <input matInput type="string"
                               formControlName="Last_Name"
-                              placeholder="User Name">
+                              placeholder="User Name"
+                              required>
             </mat-form-field>
           </div>
           <div>
             <mat-form-field>
               <input matInput type="string | number"
                               formControlName="User_Name"
-                              placeholder="Last Name">
+                              placeholder="Last Name"
+                              required>
             </mat-form-field>
           </div>
           <div>
             <mat-form-field>
               <input matInput type="email"
                               formControlName="Email"
-                              placeholder="Email">
+                              placeholder="Email"
+                              email
+                              required>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field hintLable="must be atleast 6 characters.">
+              <input matInput [type]="hide ? 'password':'text'"
+                              placeholder="Password"
+                             formControlName="Password"
+                             required
+                             minlength="6">
+                     <mat-icon matSuffix (click)="hide = !hide">
+                       {{hide ? 'visibility' : 'visibility_off'}}
+                     </mat-icon>
             </mat-form-field>
           </div>
           <div>
             <mat-form-field>
               <input matInput type="password"
-                              placeholder="Password"
-                             formControlName="Password">
+                              placeholder="Confirm Password"
+                              required>
+                              <mat-icon matSuffix (click)="hide = !hide">
+                                {{hide ? 'visibility' : 'visibility_off'}}
+                              </mat-icon>
             </mat-form-field>
           </div>
       </div>

@@ -23,11 +23,14 @@
          </mat-form-field>       
        </div>
        <div>
-           <mat-form-field>
-               <input matInput type="string | number"
-                               placeholder="term"
-                               formControlName="Term">
-           </mat-form-field>
+          <mat-form-field>
+              <mat-select placeholder="Term"
+                          formControlName="Term">
+                  <mat-option *ngFor="let ter of Term" [value]="ter">
+                          {{ ter }}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
        </div>
        <div>
              <mat-form-field>

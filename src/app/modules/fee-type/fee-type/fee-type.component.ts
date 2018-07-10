@@ -18,6 +18,8 @@ export class FeeTypeComponent implements OnInit {
   isUpdate: Boolean;
   id: number;
   id_no: string | number;
+  Term = ['one time', 'mothly', 'yearly'];
+
   constructor( private fb: FormBuilder,
                private activatedRoute: ActivatedRoute,
                private feetypeService: FeeTypeService ) {

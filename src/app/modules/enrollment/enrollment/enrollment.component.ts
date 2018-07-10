@@ -18,6 +18,7 @@ export class EnrollmentComponent implements OnInit {
   isUpdate: Boolean;
   id: number;
   id_no: string | number;
+  Term = ['first', 'second'];
 
   constructor( private fb: FormBuilder,
                private activatedRoute: ActivatedRoute,
@@ -72,7 +73,7 @@ export class EnrollmentComponent implements OnInit {
         this.enrollmentService.postData (
         this.enrollment
       ).subscribe((response: any) =>
-      this.handelResponse(response));
+        this.handelResponse(response));
       } else {
         this.enrollmentService.updateData (
         this.enrollment,

@@ -17,6 +17,8 @@ export class ScholarshipCoverageComponent implements OnInit {
   error: Array<any>;
   isUpdate: Boolean;
   id: number;
+  Amount_Type = ['full', 'partial'];
+  Fee_Type = ['Registration', 'Transportation', 'Book', 'Tution'];
     constructor(private fb: FormBuilder,
                 private scholarshipcoverageservice: ScholarshipCoverageService,
                 private activatedRoute: ActivatedRoute,
@@ -27,9 +29,9 @@ export class ScholarshipCoverageComponent implements OnInit {
   generateForm(activeCoverage: any = '') {
     this.id = activeCoverage.id;
     this.scholarshipcoverageForm = this.fb.group({
-      scholarship_code: activeCoverage.scholarship_code ? [activeCoverage.scholarship_code, Validators.required] :
+      scholarship: activeCoverage.scholarship ? [activeCoverage.scholarship, Validators.required] :
                                                           ['', Validators.required],
-      fee_type_code: activeCoverage.fee_type_code ? [activeCoverage.fee_type_code, Validators.required] :
+      fee_type: activeCoverage.fee_type ? [activeCoverage.fee_type, Validators.required] :
                                                     ['', Validators.required],
       amount: activeCoverage.amount ? [activeCoverage.amount, Validators.required] :
                                       ['', Validators.required],
@@ -53,8 +55,8 @@ export class ScholarshipCoverageComponent implements OnInit {
     console.log(formModel);
     const CoverageData = {
       id: this.id ? this.id : 0,
-      scholarship_code: formModel.scholarship_code ? formModel.scholarship_code : '',
-      fee_type_code: formModel.fee_type_code ? formModel.fee_type_code : '',
+      scholarship: formModel.scholarship_code ? formModel.scholarship_code : '',
+      fee_type: formModel.fee_type_code ? formModel.fee_type_code : '',
       amount: formModel.amount ? formModel.amount : '',
       amount_type: formModel.amount_type ? formModel.amount_type : '',
 

@@ -15,12 +15,13 @@ import { ScholarshipCoverageComponent } from '../scholarship-coverage/scholarshi
 import { ScholarshipCoverageService } from './scholarship-coverage.service';
 import { ScholarshipCoverageRoutingModule } from './scholarship-coverage-routing.module';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material';
 
 
 @NgModule({
   imports: [ BrowserModule, BrowserAnimationsModule, MatInputModule, MatFormFieldModule,
     HttpModule, FormsModule, HttpClientModule, ReactiveFormsModule, ScholarshipCoverageRoutingModule,
-    MatInputModule, MatFormFieldModule, MatListModule,
+    MatInputModule, MatFormFieldModule, MatListModule, MatSelectModule,
     MatCheckboxModule, MatCardModule, MatButtonModule, CommonModule, MatStepperModule
   ],
   declarations: [ScholarshipCoverageComponent],

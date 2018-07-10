@@ -28,6 +28,7 @@ export class ScholarshipTypeComponent implements OnInit, AfterViewInit {
   isUpdate: Boolean;
   id: number;
   dataSource: TableDataSource;
+  Amount_Type = ['full', 'partial', 'initial'];
   displayedColumns = ['no', 'scholarshipCode', 'feeType', 'amount', 'amountType' ];
   constructor( private fb: FormBuilder,
                private scholarshiptypeservice: ScholarshipTypeService,
@@ -79,19 +80,23 @@ export class ScholarshipTypeComponent implements OnInit, AfterViewInit {
     this.router.navigate([`/manage/${'scholarship_coverage'}`]);
   }
 
-     onSubmit() {
-        this.scholarshiptype = this.prepareData();
+  onSubmit() {
+    this.router.navigate([`/manage/${'scholarship_coverage'}`]);
 
-        if (!this.isUpdate) {
+  }
+    //  onSubmit() {
+    //     this.scholarshiptype = this.prepareData();
 
-          this.scholarshiptypeservice.postData(this.scholarshiptype)
-              .subscribe((response: any) => this.HandelResponse(response));
-        } else {
+    //     if (!this.isUpdate) {
 
-          this.scholarshiptypeservice.updateData(this.scholarshiptype, this.id)
-              .subscribe((response: any) => this.HandelResponse(response));
-        }
-      }
+    //       this.scholarshiptypeservice.postData(this.scholarshiptype)
+    //           .subscribe((response: any) => this.HandelResponse(response));
+    //     } else {
+
+    //       this.scholarshiptypeservice.updateData(this.scholarshiptype, this.id)
+    //           .subscribe((response: any) => this.HandelResponse(response));
+    //     }
+    //   }
   HandelResponse(response: any) {
       if (response.success) {
         console.log('submited');

@@ -8,8 +8,8 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class CrudService {
   baseUrl = 'http://localhost/smart_school/index.php/api';
-  protected url;
-  Url = `${this.baseUrl}/${this.url}`;
+  Url = `${this.baseUrl}`;
+  private httpBody: URLSearchParams;
   private header = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
   constructor(private http: HttpClient, url: String) {
@@ -26,17 +26,17 @@ export class CrudService {
   }
  // POST: Inserting data to DB
   postData(newData: any): Observable<any> {
-    const Data = this.setDataModel(newData);
+    console.log(newData);
+    this.httpBody = this.setDataModel(newData);
+    console.log(this.httpBody);
     const options = { 'headers': this.header };
-    return this.http.post<any>(`${this.Url}`, JSON.stringify(Data),
-     options);
+    return this.http.post<any>(`${this.Url}`, this.httpBody.toString(), options);
   }
   // UPDATE: update data method
   updateData(updatedData: any, id: number) {
     const Data = this.setDataModel(updatedData);
     const options = { 'headers': this.header };
-    return this.http.put(this.Url + id, JSON.stringify(Data),
-      options);
+    return this.http.put(this.Url + id, JSON.stringify(Data), options);
   }
    // DELETE: deleting data in DB
   deleteData (id: number) {

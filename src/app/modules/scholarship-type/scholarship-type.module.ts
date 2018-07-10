@@ -13,7 +13,7 @@ import { ScholarshipCoverageModule } from './../scholarship-coverage/scholarship
 import { MatInputModule, MatIconModule, MatToolbarModule,
         MatProgressSpinnerModule,
         MatNativeDateModule, MatListModule, MatTableModule, MatCheckboxModule,
-        MatPaginatorModule, MatSortModule, MatCardModule,
+        MatPaginatorModule, MatSortModule, MatCardModule, MatSelectModule,
         MatButtonModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -27,7 +27,7 @@ import { TableService } from './table.service';
               MatPaginatorModule, MatSortModule, MatCardModule,
               MatButtonModule, FormsModule, HttpClientModule, ReactiveFormsModule, ScholarshipTypeRoutingModule,
               MatInputModule, MatFormFieldModule, MatListModule, ScholarshipCoverageModule,
-              MatCheckboxModule, MatCardModule, MatButtonModule, CommonModule, CdkTableModule
+              MatCheckboxModule, MatCardModule, MatButtonModule, MatSelectModule, CommonModule, CdkTableModule
   ],
   declarations: [ScholarshipTypeComponent],
   providers: [ScholarshipTypeService, TableService],

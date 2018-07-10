@@ -4,8 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserService extends CrudService {
-  protected url = '/users/';
   constructor(private httpClient: HttpClient) {
-    super(httpClient, '/users/');
+    super(httpClient, 'users/');
   }
 }
