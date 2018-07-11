@@ -1,7 +1,17 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, EventEmitter , Output } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, EventEmitter , Output, ElementRef } from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {PageEvent} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
+import { DataViewDataSource } from './data-table.datasource';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { fromEvent, merge } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { DataTableService } from './data-table.service';
+
+const allowMultiSelect = true;
+const initialSelection = [];
 
 @Component({
   selector: 'app-table',
@@ -19,69 +29,79 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Input() readonly = false;
   @Input() displayedColumns: any [];
   @Input() showEvent: boolean;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('input') input: ElementRef;
+  currentPage: string;
+  dataSource: DataViewDataSource;
   pageSize = 10;
   pageSizeOptions = [5, 10, 25, 100];
   pageEvent: PageEvent;
+  cols: any[];
   displayedColumnsWith: any [];
   selection = new SelectionModel(true, []);
   pageindex= (this.pageEvent) ? this.pageEvent.pageIndex : 0;
   mydata= null;
-  dataSource= null;
+
   length: number;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  constructor(private route: ActivatedRoute,
+    private crudService: DataTableService,
+    private router: Router,
+    private httpClient: HttpClient
+  ) {   }
 
-  constructor() { }
 
-  isAllSelected() {
+  ngOnInit() {
+    this.dataSource = new DataViewDataSource(this.crudService);
+    this.route.params.subscribe(params => {
+            this.currentPage = params['id']; // (+) converts string 'id' to a number
+            this.viewData();
+          });
+    this.selection = new SelectionModel(allowMultiSelect, initialSelection);
+    }
+
+    ngAfterViewInit() {
+          fromEvent(this.input.nativeElement, 'keyup').pipe(
+            debounceTime(500),
+            distinctUntilChanged(),
+            tap(() => {
+              this.paginator.pageIndex = 0 ;
+              this.viewData();
+            })
+          )
+      .subscribe((data) => console.log(data));
+      this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+      merge(this.sort.sortChange, this.paginator.page).pipe(
+        tap(() => this.viewData())
+      )
+      .subscribe((data) => console.log(data));
+  }
+
+
+viewData() {
+this.dataSource.loadData(
+                          this.currentPage,
+                          this.input.nativeElement.value,
+                          this.sort.active,
+                          this.sort.direction,
+                          this.paginator.pageIndex,
+                          this.paginator.pageSize
+                      );
+}
+
+    isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
-  }
+    }
 
-  masterToggle() {
+
+    masterToggle() {
     this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => { this.selection.select(row); });
-  }
+        this.selection.clear() : this.dataSource.data.forEach((row) => this.selection.select(row));
 
-  ngOnInit() {
-    this.dataSource = this.paginator;
-        this.dataSource = this.sort;
-      if (this.items) {
-        this.dataSource = new MatTableDataSource(this.items);
-        this.displayedColumnsWith = this.displayedColumns.slice();
-        if (this.datakey) {
-          this.displayedColumnsWith.unshift('select');
-        }
-      }
-
-  }
-
-  getData(items) {
-
-    if (items.length) {
-      this.dataSource = new MatTableDataSource(items);
-      this.displayedColumnsWith = this.displayedColumns.slice();
-      if (this.datakey) {
-        this.displayedColumnsWith.unshift('select');
-      }
-      return this.dataSource;
     }
-  }
 
-  ngAfterViewInit() {
-    if (this.items) {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }
-  }
-
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
 
 }

@@ -10,10 +10,10 @@
       (click)="deleted.emit(selection.selected);$event.stopImmediatePropagation();">Delete</button>
     </span>
     <mat-form-field class="example-spacer" layout-align="end center">
-      <input matInput (keyup)="applyFilter(filterString.value)" #filterString placeholder="Filter">
+      <input matInput  #input placeholder="Filter">
     </mat-form-field>
   </div>
-  <mat-table #table [dataSource]="getData(items)" matSort>
+  <mat-table #table [dataSource]="dataSource" matSort>
      <!-- Checkbox Column -->
      <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef>
@@ -29,12 +29,12 @@
           </mat-checkbox>
         </mat-cell>
       </ng-container>
-      <ng-container  [matColumnDef]="x" *ngFor="let x of displayedColumns">
+      <ng-container  [matColumnDef]="x" *ngFor="let x of dataSource.columns">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{x}} </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element[x]  | titleCase}} </mat-cell>
       </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumnsWith"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumnsWith;"></mat-row>
+    <mat-header-row *matHeaderRowDef="dataSource.columns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: dataSource.columns;"></mat-row>
   </mat-table>
   <mat-paginator [length]="length"
               [pageSize]="pageSize"

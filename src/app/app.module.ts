@@ -36,6 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { UserModule } from './modules/user/user.module';
 import { LoginModule } from './modules/session/login/login.module';
 import { FeeRateModule } from './modules/fee-rate/fee-rate.module';
+import { DataTableService } from './components/table/data-table.service';
 
 @NgModule({
 
@@ -56,7 +57,7 @@ import { FeeRateModule } from './modules/fee-rate/fee-rate.module';
             TableComponent, HomeComponent, MatGridList,
             DataComponent, TitleCasePipe, MatGridTile,
           ],
-  providers: [GridServices],
+  providers: [GridServices, DataTableService],
 
   bootstrap: [AppComponent],
   exports: []

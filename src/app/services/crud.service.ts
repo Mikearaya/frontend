@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
+import { DataViewModel } from '../components/table/data-table.datasource';
 
 @Injectable()
 export class CrudService {
@@ -63,5 +64,17 @@ export class CrudService {
       }
     return dataModel;
 
+    }
+
+    displayData(table, filter = '', sortColumn = '', sortOrder = 'asc', pageNumber = 0, pageSize = 5): Observable<DataViewModel> {
+        return this.http.get<DataViewModel>(`${this.Url}/${table}`, {
+          params: {
+            filter_string: filter,
+            sort_column: sortColumn,
+            sort_order: sortOrder,
+            page_number: pageNumber.toString(),
+            page_size: pageSize.toString()
+          }
+        });
     }
 }
