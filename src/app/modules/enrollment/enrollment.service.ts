@@ -6,6 +6,6 @@ import { HttpClient } from '@angular/common/http';
 export class EnrollmentService extends CrudService {
 
   constructor(private httpClient: HttpClient) {
-    super(httpClient, '/enrollments/');
+    super(httpClient, '/enrollment/');
   }
 }

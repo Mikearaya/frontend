@@ -22,21 +22,21 @@
                         [indeterminate]="selection.hasValue() && !isAllSelected()">
           </mat-checkbox>
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">
+        <mat-cell *matCellDef="let row;">
           <mat-checkbox (click)="$event.stopPropagation()"
-                        (change)="$event ? selection.toggle(row[datakey]) : null"
-                        [checked]="selection.isSelected(row[datakey])">
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
           </mat-checkbox>
         </mat-cell>
       </ng-container>
-      <ng-container  [matColumnDef]="x" *ngFor="let x of dataSource.columns">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{x}} </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element[x]  | titleCase}} </mat-cell>
+      <ng-container *ngFor="let column of customerViewColumns" [matColumnDef]="column">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{column}}</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row[column] }}</mat-cell>
       </ng-container>
-    <mat-header-row *matHeaderRowDef="dataSource.columns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: dataSource.columns;"></mat-row>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-  <mat-paginator [length]="length"
+  <mat-paginator [length]="dataSource.totalRow$"
               [pageSize]="pageSize"
               [pageSizeOptions]="pageSizeOptions"
               (page)="pageEvent = $event">
