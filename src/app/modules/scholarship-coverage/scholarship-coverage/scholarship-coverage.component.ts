@@ -19,6 +19,8 @@ export class ScholarshipCoverageComponent implements OnInit {
   id: number;
   Amount_Type = ['full', 'partial'];
   Fee_Type = ['Registration', 'Transportation', 'Book', 'Tution'];
+  scholarships$:  any[] = [];
+  feetype$: any[] = [];
     constructor(private fb: FormBuilder,
                 private scholarshipcoverageservice: ScholarshipCoverageService,
                 private activatedRoute: ActivatedRoute,
@@ -46,6 +48,10 @@ export class ScholarshipCoverageComponent implements OnInit {
     this.isUpdate = (this.id) ? true : false;
     this.scholarshipcoverageservice.getData(this.id).subscribe((scholarshipcoverage: any) =>
     this.generateForm(scholarshipcoverage.result));
+    this.scholarshipcoverageservice.getFeeType()
+                                   .subscribe((feetype: any) => this.feetype$ = feetype.result);
+    this.scholarshipcoverageservice.getScholarship()
+                                   .subscribe((scholarship: any) => this.scholarships$ = scholarship.result);
   }
 
   prepareData(): any {

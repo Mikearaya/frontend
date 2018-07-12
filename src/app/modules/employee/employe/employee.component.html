@@ -6,17 +6,17 @@
     <div class="card">
        <mat-card class="employee-card">
          <div>
-           <mat-form-field>
+           <mat-form-field class="wrap">
             <input matInput type="string | number" 
                             formControlName="Employee_Id" 
                             placeholder="Employee Id">
             </mat-form-field>
          </div>
          <div>
-           <mat-form-field>
+           <mat-form-field class="wrap">
             <input matInput type="string"
                             formControlName="Full_Name"
-                            placeholder="Full_Name">
+                            placeholder="Full Name">
            </mat-form-field>        
          </div>
          <div>
@@ -30,7 +30,7 @@
            </section>                
          </div>
          <div>
-           <mat-form-field>
+           <mat-form-field class="wrap">
             <input matInput [matDatepicker]="picker1" 
                             placeholder="Choose Birth Date"
                             formControlName="Birth_Date">
@@ -39,14 +39,14 @@
            </mat-form-field>       
          </div>
          <div>
-             <mat-form-field>
+             <mat-form-field class="wrap">
                  <input matInput type="string | number"
                                  placeholder="Address"
                                  formControlName="Address_Code">
              </mat-form-field>
          </div>
          <div>
-               <mat-form-field>
+               <mat-form-field class="wrap">
                  <input matInput [matDatepicker]="picker" 
                                 placeholder="Choose Employment Date"
                                 formControlName="Employment_Date">
@@ -55,7 +55,7 @@
                </mat-form-field>       
              </div>
              <div>
-               <mat-form-field>
+               <mat-form-field class="wrap">
                    <mat-select placeholder="Blood Group">
                        <mat-option *ngFor="let blood of Blood_Group" [value]="blood">
                                {{ blood }}

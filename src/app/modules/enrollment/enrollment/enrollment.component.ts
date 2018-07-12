@@ -38,7 +38,7 @@ export class EnrollmentComponent implements OnInit {
                                                           ['', Validators.required],
                Year: activeEnrollment.Year ? [activeEnrollment.Year, Validators.required] :
                                                             ['', Validators.required],
-               Course_Code: activeEnrollment.Course_Code ? [activeEnrollment.Course_Code, Validators.required] :
+               Course: activeEnrollment.Course ? [activeEnrollment.Course, Validators.required] :
                                                            ['', Validators.required]
                  });
                 }
@@ -62,7 +62,7 @@ export class EnrollmentComponent implements OnInit {
         Date: formModel.Date ? formModel.Date : '' ,
         Term: formModel.Term ? formModel.Term : '',
         Year: formModel.Year ? formModel.Year : '',
-        Course_Code: formModel.Course_Code ? formModel.Course_Code : ''
+        Course: formModel.Course ? formModel.Course : ''
       };
       return enrollmentData;
     }
