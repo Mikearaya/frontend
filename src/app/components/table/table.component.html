@@ -1,6 +1,6 @@
 <div class="example-container mat-elevation-z8">
   <div class="example-header">
-    <span *ngIf="showEvent">
+    <span >
       <button mat-raised-button color="primary" (click)="addnew.emit();">Add</button>
       <button mat-raised-button *ngIf="selection.selected.length == 1" 
       (click)="edit.emit(selection.selected); $event.stopImmediatePropagation();">Edit</button>
@@ -11,6 +11,11 @@
     </span>
     <mat-form-field class="example-spacer" layout-align="end center">
       <input matInput  #input placeholder="Filter">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select #input multiple #selectedView [formControl]="selectedColumns" (selectionChange)="manageView(selectedView.value)">
+        <mat-option *ngFor="let cols of viewColumns" selected="true" [value]="cols">{{cols}}</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
   <mat-table #table [dataSource]="dataSource" matSort>
@@ -29,7 +34,7 @@
           </mat-checkbox>
         </mat-cell>
       </ng-container>
-      <ng-container *ngFor="let column of customerViewColumns" [matColumnDef]="column">
+      <ng-container *ngFor="let column of viewColumns" [matColumnDef]="column">
         <mat-header-cell *matHeaderCellDef mat-sort-header>{{column}}</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row[column] }}</mat-cell>
       </ng-container>

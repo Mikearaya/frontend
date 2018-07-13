@@ -9,7 +9,8 @@ import { MatInputModule, MatIcon, MatIconModule, MatToolbarModule,
           MatSidenav, MatSidenavModule, MatProgressSpinnerModule, MatGridList,
           MatNativeDateModule, MatListModule, MatTableModule, MatCheckboxModule,
           MatPaginator, MatPaginatorModule, MatSortModule, MatCardModule, MatGridTile,
-          MatButtonModule
+          MatButtonModule,
+          MatSelectModule
         } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -50,7 +51,7 @@ import { DataTableService } from './components/table/data-table.service';
              MatPaginatorModule, MatSortModule, MatCardModule,
              CourseModule, SubjectModule, ScholarshipCoverageModule, ScholarshipTypeModule, EmployeeModule,
              FeeTypeModule, ScholarshipsModule, EnrollmentModule, EventsModule, ToastrModule, UserModule,
-             LoginModule, FeeRateModule, AppRoutingModule
+             LoginModule, FeeRateModule, AppRoutingModule, MatSelectModule,
            ],
   declarations: [
             AppComponent, MenusComponent,

@@ -9,6 +9,7 @@ import { fromEvent, merge } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { DataTableService } from './data-table.service';
+import { FormControl } from '@angular/forms';
 
 const allowMultiSelect = true;
 const initialSelection = [];
@@ -21,24 +22,11 @@ const initialSelection = [];
 
 export class TableComponent implements OnInit, AfterViewInit {
 
-  customerViewColumns = [
-    {key: 'first_name', humanReadable: 'First Name'},
-    {key: 'last_name', humanReadable: 'Last Name'},
-    {key: 'nationality', humanReadable: 'Nationality'},
-    {key: 'country', humanReadable: 'country'},
-    {key: 'city', humanReadable: 'city'},
-    {key: 'house_no', humanReadable: 'House Number'},
-    {key: 'driving_licence_id', humanReadable: 'Driving Licence ID'},
-    {key: 'passport_number', humanReadable: 'Passport Number'},
-    {key: 'hotel_name', humanReadable: 'Hotel Name'},
-    {key: 'hotel_phone', humanReadable: 'Hotel Phone'},
-    {key: 'mobile_number', humanReadable: 'Mobile'},
-    {key: 'other_phone', humanReadable: 'Other Phone'},
-    {key: 'registered_on', humanReadable: 'Registered'},
-  ];
+ viewColumns: any[] = ['select'];
 
-  displayedColumns: String[] = ['select', 'first_name', 'last_name', 'mobile_number', 'driving_licence_id', 'registered_on'];
-
+  displayedColumns: String[] = [];
+  filteredColumns: any[] = [];
+ selectedColumns: FormControl;
   currentPage: string;
   dataSource: DataViewDataSource;
   pageSize = 10;
@@ -47,18 +35,27 @@ export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
-  displayedColumnsWith: any [];
+  displayedColumnsWith: any ['select'];
   selection = new SelectionModel(true, []);
 
   constructor(private route: ActivatedRoute,
     private crudService: DataTableService,
     private router: Router
-  ) {   }
+  ) {
+
+   }
 
 
   ngOnInit() {
     this.dataSource = new DataViewDataSource(this.crudService);
-    this.dataSource.currentColumns$.subscribe((data ) => this.customerViewColumns = data);
+    this.dataSource.currentColumns$.subscribe((data ) => {
+                                        this.viewColumns = data;
+                                        this.displayedColumns = ['select'];
+                                        data.forEach((col) => this.displayedColumns.push(col));
+                                        this.selectedColumns = new FormControl(this.displayedColumns);
+                                        this.displayedColumns.splice(0, 0, 'select');
+                                      }
+                                  );
     this.dataSource.currentColumns$.subscribe((data ) => this.displayedColumns = data);
     this.route.params.subscribe(params => {
             this.currentPage = params['id']; // (+) converts string 'id' to a number
@@ -67,7 +64,10 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.selection = new SelectionModel(allowMultiSelect, initialSelection);
 
     }
-
+ manageView(selection: any) {
+   this.displayedColumns = selection;
+   this.displayedColumns.splice(0, 0, 'select');
+ }
     ngAfterViewInit() {
           fromEvent(this.input.nativeElement, 'keyup').pipe(
             debounceTime(500),
