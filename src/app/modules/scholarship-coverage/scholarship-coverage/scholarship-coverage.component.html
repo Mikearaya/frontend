@@ -1,4 +1,4 @@
-<div class="coverage">
+ <div class="coverage">  
   <div>
     <mat-card-title>{{title}}</mat-card-title>
   </div>
@@ -7,17 +7,20 @@
       <mat-card>
         <div>
           <mat-form-field>
-            <input matInput type="text | number" 
-                            placeholder="Scholarship" 
-                            formControlName="scholarship">
+            <mat-select  placeholder="Scholarship" 
+                         formControlName="scholarship">
+                      <mat-option *ngFor="let scholarship of scholarships$" [value]="scholarship.scholarship_type">
+                              {{ scholarship.scholarship_type }}
+                      </mat-option>
+           </mat-select>
           </mat-form-field>
         </div>
         <div>
           <mat-form-field>
             <mat-select placeholder="Fee Type"
                         formControlName="fee_type">
-                <mat-option *ngFor="let type of Fee_Type" [value]="type">
-                        {{ type }}
+                <mat-option *ngFor="let type of feetype$" [value]="type.fee">
+                        {{ type.fee }}
                 </mat-option>
             </mat-select>
         </mat-form-field>

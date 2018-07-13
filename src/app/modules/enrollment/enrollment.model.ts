@@ -5,7 +5,7 @@ export class IEnrollment {
          Date: number | string,
          Term: string | number,
          Year: string | number,
-         Course_Code: string
+         Course: string
           ) {
     }
 }
