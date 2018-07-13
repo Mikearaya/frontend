@@ -36,9 +36,9 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-  <mat-paginator [length]="dataSource.totalRow$"
+  <mat-paginator [length]="dataSource.totalRow$ | async"
               [pageSize]="pageSize"
               [pageSizeOptions]="pageSizeOptions"
-              (page)="pageEvent = $event">
+            >
   </mat-paginator>
 </div>
