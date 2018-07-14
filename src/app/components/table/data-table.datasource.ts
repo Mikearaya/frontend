@@ -1,9 +1,10 @@
 
 import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import { catchError, finalize } from 'rxjs/operators';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject} from 'rxjs';
 
 import { DataTableService } from './data-table.service';
+import { of } from 'rxjs/observable/of';
 
 // TODO: Replace this with your own data model type
 export interface DataViewModel {

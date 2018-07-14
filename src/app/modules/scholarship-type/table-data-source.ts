@@ -1,6 +1,6 @@
 import { TableService } from './table.service';
 import { DataSource, CollectionViewer } from '@angular/cdk/collections';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { IScholarshipCoverage } from '../scholarship-coverage/scholarship-coverage.model';
 

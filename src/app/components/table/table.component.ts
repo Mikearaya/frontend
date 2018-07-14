@@ -5,11 +5,13 @@ import {SelectionModel} from '@angular/cdk/collections';
 import { DataViewDataSource } from './data-table.datasource';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { fromEvent, merge } from 'rxjs';
+
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { DataTableService } from './data-table.service';
 import { FormControl } from '@angular/forms';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { merge } from 'rxjs/observable/merge';
 
 const allowMultiSelect = true;
 const initialSelection = [];

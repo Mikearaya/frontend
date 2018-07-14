@@ -1,3 +1,4 @@
+import { FooterModule } from './components/footer/footer.module';
 import {NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -33,11 +34,12 @@ import { EnrollmentModule } from './modules/enrollment/enrollment.module';
 // import { TableModule } from './components/table/table/table.module';
 import { EventsModule } from './modules/events/events.module';
 import { FeeTypeModule } from './modules/fee-type/fee-type.module';
-import { ToastrModule } from 'ngx-toastr';
 import { UserModule } from './modules/user/user.module';
 import { LoginModule } from './modules/session/login/login.module';
 import { FeeRateModule } from './modules/fee-rate/fee-rate.module';
 import { DataTableService } from './components/table/data-table.service';
+import { SidebarModule } from './components/sidebar/sidebar.module';
+import { NavbarModule } from './components/navbar/navbar.module';
 
 @NgModule({
 
@@ -50,8 +52,8 @@ import { DataTableService } from './components/table/data-table.service';
              ReactiveFormsModule, StudentModule, MatCheckboxModule,
              MatPaginatorModule, MatSortModule, MatCardModule,
              CourseModule, SubjectModule, ScholarshipCoverageModule, ScholarshipTypeModule, EmployeeModule,
-             FeeTypeModule, ScholarshipsModule, EnrollmentModule, EventsModule, ToastrModule, UserModule,
-             LoginModule, FeeRateModule, AppRoutingModule, MatSelectModule,
+             FeeTypeModule, ScholarshipsModule, EnrollmentModule, EventsModule,  UserModule,
+             LoginModule, FeeRateModule, AppRoutingModule, MatSelectModule, SidebarModule, NavbarModule, FooterModule
            ],
   declarations: [
             AppComponent, MenusComponent,

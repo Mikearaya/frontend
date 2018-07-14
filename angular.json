@@ -21,9 +21,15 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/sass/light-bootstrap-dashboard.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/bootstrap-notify/bootstrap-notify.js",
+              "./node_modules/chartist/dist/chartist.js"
+          ]
           },
           "configurations": {
             "production": {
@@ -123,7 +129,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "styleext": "css"
+      "styleext": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "app"
