@@ -217,7 +217,7 @@ input:focus {
     position: relative;
     max-height: calc(100vh - 75px);
     min-height: 100%;
-    overflow: auto;
+    overflow: hidden !important;
     width: 260px;
     z-index: 4;
     padding-bottom: 75px; }
